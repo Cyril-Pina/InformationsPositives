@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- activity_main.xml -->
+    <dimen name="margin_icon_menu">10dp</dimen>
+    <dimen name="padding_icon_menu">8dp</dimen>
+    <dimen name="size_icon_menu">50dp</dimen>
+</resources>
