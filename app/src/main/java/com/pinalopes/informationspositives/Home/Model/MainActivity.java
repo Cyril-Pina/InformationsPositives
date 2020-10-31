@@ -12,15 +12,9 @@ import com.pinalopes.informationspositives.R;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        ImageView iconMenu = findViewById(R.id.icon_menu);
-        iconMenu.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
     }
 }
