@@ -9,14 +9,22 @@
         android:supportsRtl="true"
         android:configChanges="orientation"
         android:screenOrientation="portrait"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Home.Model.MainActivity">
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/informations_positives_backup_rules"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".LaunchScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Home.Model.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
