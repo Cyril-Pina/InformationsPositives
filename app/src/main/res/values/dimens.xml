@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- launch_screen.xml -->
+    <dimen name="size_logo">280dp</dimen>
+
     <!-- activity_main.xml -->
 </resources>

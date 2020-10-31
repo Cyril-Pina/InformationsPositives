@@ -1,3 +1,7 @@
 <resources>
+    <!-- All -->
     <string name="app_name">InformationsPositives</string>
+    <!-- Image Content Description -->
+    <string name="logo_informations_positives">Logo Informations Positives</string>
+
 </resources>
