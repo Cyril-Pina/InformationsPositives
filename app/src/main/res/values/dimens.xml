@@ -2,6 +2,7 @@
 <resources>
     <!-- launch_screen.xml -->
     <dimen name="size_logo">280dp</dimen>
+    <dimen name="size_init_round_animated">40dp</dimen>
 
     <!-- activity_main.xml -->
 </resources>
