@@ -11,7 +11,7 @@ import android.view.ViewTreeObserver;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.pinalopes.informationspositives.Home.Model.MainActivity;
+import com.pinalopes.informationspositives.home.model.MainActivity;
 import com.pinalopes.informationspositives.databinding.LaunchScreenBinding;
 
 public class LaunchScreen extends AppCompatActivity {
