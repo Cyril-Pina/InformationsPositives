@@ -1,0 +1,130 @@
+stages:
+  - environment
+  - build
+  - test
+  - internal
+
+variables:
+  SONAR_TOKEN: "188549095efc5cc8d45682e5e22cd0e0efb804ba"
+  SONAR_HOST_URL: "http://localhost:9000 "
+  SONAR_PROJECT_KEY: "informations_positives_android"
+
+.updateContainerJob:
+  image: docker:stable
+  only:
+    - merge_requests
+    - tags
+  stage: environment
+  services:
+    - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+updateContainer:
+  extends: .updateContainerJob
+  only:
+    changes:
+      - Dockerfile
+
+ensureContainer:
+  extends: .updateContainerJob
+  allow_failure: true
+  before_script:
+    - "mkdir -p ~/.docker && echo '{\"experimental\": \"enabled\"}' > ~/.docker/config.json"
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker manifest inspect $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG > /dev/null && exit || true
+  except:
+    changes:
+      - Dockerfile
+
+# On merge request
+buildDebug-on-merge-request:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: build
+  before_script:
+    - chmod +x gradlew
+    - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
+    - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
+  script:
+    - bundle exec fastlane buildDebug
+  only:
+    - merge_requests
+
+test-on-merge-request:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: test
+  before_script:
+    - chmod +x gradlew
+    - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
+    - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
+  script:
+    - ./gradlew test --scan
+  only:
+    - merge_requests
+
+buildRelease-on-merge-request:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: build
+  before_script:
+    - chmod +x gradlew
+    - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
+    - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
+  script:
+    - bundle exec fastlane buildRelease
+  only:
+    - merge_requests
+
+#On tag master
+buildDebug-on-tag-master:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: build
+  before_script:
+    - chmod +x gradlew
+    - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
+    - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
+  script:
+    - bundle exec fastlane buildDebug
+  only:
+    - tags
+
+test-on-tag-master:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: test
+  before_script:
+    - chmod +x gradlew
+    - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
+    - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
+  script:
+    - ./gradlew clean
+    - ./gradlew build --scan
+    - ./gradlew test --scan
+  only:
+    - tags
+
+buildRelease-on-merge-request:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: build
+  before_script:
+    - chmod +x gradlew
+    - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
+    - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
+  script:
+    - bundle exec fastlane buildRelease
+  only:
+    - tags
+
+#SonarQube
+sonarqube-check:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: test
+  before_script:
+    - chmod +x gradlew
+    - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
+    - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
+  script: ./gradlew sonarqube -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
+  allow_failure: true
+  only:
+    - merge_requests
