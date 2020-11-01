@@ -12,6 +12,7 @@
         android:allowBackup="true"
         android:fullBackupContent="@xml/informations_positives_backup_rules"
         android:theme="@style/AppTheme.NoActionBar">
+
         <activity android:name=".LaunchScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,5 +27,4 @@
         </activity>
 
     </application>
-
 </manifest>
