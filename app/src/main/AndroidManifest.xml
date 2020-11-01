@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Home.Model.MainActivity">
+        <activity android:name=".home.model.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

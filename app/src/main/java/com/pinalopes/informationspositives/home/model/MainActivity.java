@@ -1,12 +1,8 @@
-package com.pinalopes.informationspositives.Home.Model;
+package com.pinalopes.informationspositives.home.model;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.pinalopes.informationspositives.R;
 
