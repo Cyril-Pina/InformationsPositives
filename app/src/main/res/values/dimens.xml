@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- launch_screen.xml -->
     <dimen name="size_logo">280dp</dimen>
     <dimen name="size_init_round_animated">40dp</dimen>
 
     <!-- activity_main.xml -->
+    <dimen name="bottom_navigation_view_icon_size">26dp</dimen>
+    <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">11sp</dimen>
 </resources>
