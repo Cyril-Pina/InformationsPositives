@@ -18,11 +18,6 @@ android {
         viewBinding true
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -38,11 +33,15 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.fragment:fragment:1.2.5'
+    api 'com.google.dagger:dagger:2.29.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.29.1'
+    implementation 'io.sentry:sentry-android:3.1.0'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
 }

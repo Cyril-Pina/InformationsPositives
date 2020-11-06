@@ -70,9 +70,13 @@ public class LaunchScreen extends AppCompatActivity {
                 finish();
             }
             @Override
-            public void onAnimationCancel(Animator animator) {}
+            public void onAnimationCancel(Animator animator) {
+                // onAnimationCancel() ignored
+            }
             @Override
-            public void onAnimationRepeat(Animator animator) {}
+            public void onAnimationRepeat(Animator animator) {
+                // onAnimationRepeat() ignored
+            }
         };
     }
 
