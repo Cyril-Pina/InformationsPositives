@@ -66,7 +66,7 @@ public class LaunchScreen extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animator) {
                 startActivity(new Intent(LaunchScreen.this, MainActivity.class));
-                overridePendingTransition(0, 0);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
             }
             @Override

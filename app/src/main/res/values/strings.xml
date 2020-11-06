@@ -4,4 +4,8 @@
     <!-- Image Content Description -->
     <string name="logo_informations_positives">Logo Informations Positives</string>
 
+    <!-- Bottom Navigation Menu -->
+    <string name="bottom_navigation_menu_categories">Catégories</string>
+    <string name="bottom_navigation_menu_feed">Fil d\'actualité</string>
+    <string name="bottom_navigation_menu_settings">Paramètres</string>
 </resources>

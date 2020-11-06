@@ -17,7 +17,8 @@
         <meta-data android:name="io.sentry.dsn"
             android:value="https://1b43a24a56fa463ea8554a9087cc8b2b@o472853.ingest.sentry.io/5507056" />
 
-        <activity android:name=".LaunchScreen">
+        <activity android:name=".LaunchScreen"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
