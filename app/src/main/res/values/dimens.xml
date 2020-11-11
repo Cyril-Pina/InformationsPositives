@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- all -->
+    <dimen name="size_loading_view">110dp</dimen>
+    <dimen name="radius_loading_view">55dp</dimen>
+    <dimen name="text_size_loading">10sp</dimen>
+    <dimen name="margin_top_text_loading">10dp</dimen>
+
     <!-- launch_screen.xml -->
     <dimen name="size_logo">280dp</dimen>
     <dimen name="size_init_round_animated">40dp</dimen>
 
     <!-- activity_main.xml -->
+    <dimen name="height_top_bar">64dp</dimen>
+    <dimen name="elevation_top_bar">10dp</dimen>
+    <dimen name="height_width_logo_top_bar">64dp</dimen>
+    <dimen name="height_width_ic_top_bar">22dp</dimen>
+    <dimen name="margin_end_ic_top_bar">18dp</dimen>
+    <dimen name="height_divider">0.5dp</dimen>
     <dimen name="bottom_navigation_view_icon_size">26dp</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">11sp</dimen>
+
+    <!-- feed_fragment.xml -->
+
 </resources>

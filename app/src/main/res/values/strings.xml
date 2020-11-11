@@ -1,11 +1,19 @@
 <resources>
     <!-- All -->
     <string name="app_name">Informations Positives</string>
+
     <!-- Image Content Description -->
     <string name="logo_informations_positives">Logo Informations Positives</string>
+    <string name="loading_image">Image Chargement</string>
+    <string name="logo_informations_positives_transparent">Logo Informations Positives Transparent</string>
+    <string name="icon_search">Icône Recherche</string>
 
     <!-- Bottom Navigation Menu -->
     <string name="bottom_navigation_menu_categories">Catégories</string>
     <string name="bottom_navigation_menu_feed">Fil d\'actualité</string>
     <string name="bottom_navigation_menu_settings">Paramètres</string>
+
+    <!-- feed_fragment.xml -->
+    <string name="loading_articles">Un peu de patience,\n
+        vos superbes articles arrivent…</string>
 </resources>

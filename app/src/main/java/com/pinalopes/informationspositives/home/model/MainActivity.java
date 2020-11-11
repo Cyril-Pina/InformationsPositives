@@ -5,23 +5,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.pinalopes.informationspositives.R;
-import com.pinalopes.informationspositives.articles.Article;
-import com.pinalopes.informationspositives.articles.ArticleComponent;
-import com.pinalopes.informationspositives.articles.DaggerArticleComponent;
+import com.pinalopes.informationspositives.categories.model.CategoriesFragment;
 import com.pinalopes.informationspositives.databinding.ActivityMainBinding;
-import com.pinalopes.informationspositives.editor.EditorModule;
-import com.pinalopes.informationspositives.editor.SocialNetworks;
-
-import javax.inject.Inject;
-
-import io.sentry.Sentry;
+import com.pinalopes.informationspositives.feed.model.FeedFragment;
+import com.pinalopes.informationspositives.settings.model.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
-
-    @Inject
-    Article article;
 
     private ActivityMainBinding binding;
 
@@ -30,20 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        Sentry.captureMessage("testing SDK setup");
-
-        ArticleComponent articleComponent = DaggerArticleComponent.builder().editorModule(new EditorModule(
-               "NewMan",
-               "Nicolas",
-               "Nick",
-               new SocialNetworks(
-                       "nick@gmail.com",
-                       "Nicolas Newman",
-                       "n.newman",
-                       "Nick Newman"
-               ))).build();
-        articleComponent.inject(this);
         initBottomNavigationMenu();
     }
 
@@ -57,18 +35,21 @@ public class MainActivity extends AppCompatActivity {
         binding.activityMainBottomNavigation.setSelectedItemId(R.id.action_feed);
     }
 
-    private Boolean updateMainFragment(Integer integer) {
+    private Boolean updateMainFragment(Integer itemId) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        switch (integer) {
+        switch (itemId) {
             case R.id.action_categories:
+                setTopBarVisibility(View.VISIBLE);
                 Fragment categoriesFragment = new CategoriesFragment();
                 fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, categoriesFragment).commit();
                 break;
             case R.id.action_feed:
+                setTopBarVisibility(View.VISIBLE);
                 Fragment mapFragment = new FeedFragment();
                 fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, mapFragment).commit();
                 break;
             case R.id.action_settings:
+                setTopBarVisibility(View.GONE);
                 Fragment settingsFragment = new SettingsFragment();
                 fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, settingsFragment).commit();
                 break;
@@ -76,5 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    private void setTopBarVisibility(int visibility) {
+        binding.cardViewTopBar.setVisibility(visibility);
     }
 }

@@ -3,7 +3,7 @@
     package="com.pinalopes.informationspositives">
 
     <application
-        android:name=".IPApplication"
+        android:name=".application.IPApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,8 +17,7 @@
         <meta-data android:name="io.sentry.dsn"
             android:value="https://1b43a24a56fa463ea8554a9087cc8b2b@o472853.ingest.sentry.io/5507056" />
 
-        <activity android:name=".LaunchScreen"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".LaunchScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
