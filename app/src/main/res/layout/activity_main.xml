@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,6 +11,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/activityMainBottomNavigation"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_top_bar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="@dimen/elevation_top_bar">
+
+            <ImageView
+                android:layout_width="@dimen/height_width_logo_top_bar"
+                android:layout_height="@dimen/height_width_logo_top_bar"
+                android:contentDescription="@string/logo_informations_positives_transparent"
+                android:src="@drawable/logo_transparent"
+                app:srcCompat="@drawable/logo_transparent"
+                tools:srcCompat="@drawable/logo_transparent"
+                android:layout_centerInParent="true" />
+
+            <ImageButton
+                android:layout_width="@dimen/height_width_ic_top_bar"
+                android:layout_height="@dimen/height_width_ic_top_bar"
+                android:layout_marginEnd="@dimen/margin_end_ic_top_bar"
+                android:contentDescription="@string/icon_search"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_search"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/activityMainBottomNavigation"
