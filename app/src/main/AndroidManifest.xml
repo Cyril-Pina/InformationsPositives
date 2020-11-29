@@ -30,5 +30,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".search.model.SearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
     </application>
 </manifest>

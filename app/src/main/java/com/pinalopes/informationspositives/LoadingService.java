@@ -11,10 +11,11 @@ import android.widget.RelativeLayout;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.pinalopes.informationspositives.Constants.DRAWABLE;
+import static com.pinalopes.informationspositives.Constants.PACKAGE_NAME;
+
 public class LoadingService {
 
-    private static final String DRAWABLE = "drawable";
-    private static final String PACKAGE_NAME = "com.pinalopes.informationspositives";
     private static final String LOADING_RES = "loading_";
     private static final int TOTAL_LOADING_IMAGE = 15;
     private static final int INDEX_RES_DEFAULT_VALUE = 1;

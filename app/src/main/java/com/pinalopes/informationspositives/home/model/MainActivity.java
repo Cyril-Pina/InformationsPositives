@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.categories.model.CategoriesFragment;
 import com.pinalopes.informationspositives.databinding.ActivityMainBinding;
 import com.pinalopes.informationspositives.feed.model.FeedFragment;
+import com.pinalopes.informationspositives.search.model.SearchActivity;
 import com.pinalopes.informationspositives.settings.model.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initBottomNavigationMenu();
+        setOnSearchClickListener();
     }
 
     private void initBottomNavigationMenu() {
@@ -33,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
         binding.activityMainBottomNavigation.setItemIconTintList(null);
         binding.activityMainBottomNavigation.setOnNavigationItemSelectedListener(item -> updateMainFragment(item.getItemId()));
         binding.activityMainBottomNavigation.setSelectedItemId(R.id.action_feed);
+    }
+
+    private void setOnSearchClickListener() {
+        binding.searchImageButton.setOnClickListener(view -> {
+            Intent intentSearch = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(intentSearch);
+            overridePendingTransition(
+                    getResources().getInteger(R.integer.no_animation),
+                    getResources().getInteger(R.integer.no_animation));
+        });
     }
 
     private Boolean updateMainFragment(Integer itemId) {
