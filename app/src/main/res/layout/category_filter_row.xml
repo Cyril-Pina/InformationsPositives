@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="filterCategoriesViewModel"
+            type="com.pinalopes.informationspositives.search.viewmodel.FilterCategoriesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_category_filter_row"
+        android:maxHeight="@dimen/height_category_filter_row"
+        android:minHeight="@dimen/height_category_filter_row">
+    
+        <androidx.cardview.widget.CardView
+            android:id="@+id/categoriesFilterCardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="@dimen/radius_category_filter_row"
+            android:alpha="@{filterCategoriesViewModel.selected ? 1.0f : 0.2f}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+    
+            <ImageView
+                android:id="@+id/categoryImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_border_grey_shape"
+                android:contentDescription="@string/category_picture"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@{filterCategoriesViewModel.categoryRes}"
+                app:srcCompat="@{filterCategoriesViewModel.categoryRes}"
+                tools:srcCompat="@{filterCategoriesViewModel.categoryRes}" />
+
+            <TextView
+                android:id="@+id/categoryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_start_category_filter_row"
+                android:text="@{filterCategoriesViewModel.categoryName}"
+                android:textSize="@dimen/text_size_category_filter"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/louis_george_cafe"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+    
+        </androidx.cardview.widget.CardView>
+    
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

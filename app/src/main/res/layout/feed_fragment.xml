@@ -43,6 +43,7 @@
             android:textColor="@android:color/black"
             android:text="@string/loading_articles"
             android:textSize="@dimen/text_size_loading"
+            android:fontFamily="@font/made_tommy"
             android:layout_below="@id/loadingCardView" />
     </RelativeLayout>
 

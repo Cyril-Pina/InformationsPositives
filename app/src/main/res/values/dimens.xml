@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- all -->
+    <!-- ALL -->
     <dimen name="size_loading_view">110dp</dimen>
     <dimen name="radius_loading_view">55dp</dimen>
     <dimen name="text_size_loading">10sp</dimen>
     <dimen name="margin_top_text_loading">10dp</dimen>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="height_divider">0.5dp</dimen>
+
+    <!-- LAYOUT -->
 
     <!-- launch_screen.xml -->
     <dimen name="size_logo">280dp</dimen>
@@ -13,15 +17,75 @@
 
     <!-- activity_main.xml -->
     <dimen name="height_top_bar">64dp</dimen>
-    <dimen name="elevation_top_bar">10dp</dimen>
     <dimen name="height_width_logo_top_bar">64dp</dimen>
-    <dimen name="height_width_ic_top_bar">22dp</dimen>
-    <dimen name="margin_end_ic_top_bar">18dp</dimen>
-    <dimen name="height_divider">0.5dp</dimen>
+    <dimen name="height_width_ic_top_bar">48dp</dimen>
+    <dimen name="margin_end_ic_top_bar">12dp</dimen>
+    <dimen name="padding_search_top_bar">14dp</dimen>
     <dimen name="bottom_navigation_view_icon_size">26dp</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">11sp</dimen>
 
     <!-- feed_fragment.xml -->
+
+    <!-- search_activity.xml -->
+    <dimen name="margin_start_logo_top_bar">14dp</dimen>
+    <dimen name="text_size__edit_text_search">10sp</dimen>
+    <dimen name="margin_start_end_edit_text_search">10dp</dimen>
+    <dimen name="margin_top_bottom_edit_text_search">12dp</dimen>
+    <dimen name="padding_start_top_bottom_edit_text_search">12dp</dimen>
+    <dimen name="padding_end_edit_text_search">48dp</dimen>
+    <dimen name="width_left_arrow_image_button">48dp</dimen>
+    <dimen name="padding_left_arrow_image_button">14dp</dimen>
+    <dimen name="text_size_title_filters">14sp</dimen>
+    <dimen name="size_filter_icon">14dp</dimen>
+    <dimen name="padding_start_end_filter_layout">8dp</dimen>
+    <dimen name="padding_bottom_filter_layout">12dp</dimen>
+    <dimen name="margin_end_filter_icon">8dp</dimen>
+    <dimen name="padding_title_filter_layout">10dp</dimen>
+    <dimen name="text_size_subtitles_filter">10sp</dimen>
+    <dimen name="margin_start_end_subtitles_filter">14dp</dimen>
+    <dimen name="card_view_elevation">10dp</dimen>
+    <dimen name="margin_start_end_filter_layout">3dp</dimen>
+    <dimen name="margin_end_filter_subtitle">6dp</dimen>
+    <dimen name="margin_start_invisible_view">5dp</dimen>
+    <dimen name="margin_end_invisible_view">16dp</dimen>
+    <dimen name="padding_top_bottom_date_text_view">4dp</dimen>
+    <dimen name="margin_top_date_filter_layout">10dp</dimen>
+    <dimen name="spacing_filter_grid_view">12dp</dimen>
+    <dimen name="columns_width_filter_grid_view">1dp</dimen>
+    <dimen name="margin_top_filter_grid_view">32dp</dimen>
+    <dimen name="size_validate_image_button">30dp</dimen>
+    <dimen name="padding_validate_image_button">4dp</dimen>
+    <dimen name="margin_top_validate_image_button">14dp</dimen>
+    <dimen name="margin_end_validate_image_button">8dp</dimen>
+    <dimen name="margin_bottom_validate_image_button">10dp</dimen>
+    <dimen name="margin_end_down_arrow_image">8dp</dimen>
+    <dimen name="size_down_arrow_image">20dp</dimen>
+    <dimen name="default_height_data_filter">0.1dp</dimen>
+    <dimen name="text_size_date_text_view">10sp</dimen>
+
+    <!-- category_filter_row.xml -->
+    <dimen name="height_category_filter_row">32dp</dimen>
+    <dimen name="text_size_category_filter">10sp</dimen>
+    <dimen name="elevation_category_filter_card_view">3dp</dimen>
+    <dimen name="radius_category_filter_row">3dp</dimen>
+    <dimen name="margin_start_category_filter_row">3dp</dimen>
+
+    <!-- DRAWABLE -->
+
+    <!-- rounded_border_grey_shape.xml -->
+    <dimen name="radius_rounded_grey_shape">20dp</dimen>
+    <dimen name="width_stroke_rounded_grey_shape">1dp</dimen>
+
+    <!-- rounded_border_gradient_shape.xml -->
+    <dimen name="radius_rounded_gradient_shape">14dp</dimen>
+
+    <!-- rounded_gradient_stroke_layer_list.xml -->
+    <dimen name="size_stroke">3dp</dimen>
+    <dimen name="radius_rounded_gradient_parent">24dp</dimen>
+    <dimen name="radius_rounded_gradient_child">20dp</dimen>
+
+    <!-- rounded_border_date_filter.xml -->
+    <dimen name="radius_rounded_date_filter">5dp</dimen>
 
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FilterCategoriesAdapter.java -->
+    <string-array name="categories_name">
+        <item>Nature</item>
+        <item>Faune</item>
+        <item>Technologie</item>
+        <item>Humanitaire</item>
+        <item>Alimentation</item>
+        <item>Économie</item>
+        <item>Sport</item>
+    </string-array>
+
+    <string-array name="categories_res">
+        <item>picture_nature</item>
+        <item>picture_fauna</item>
+        <item>picture_techno</item>
+        <item>picture_humanitarian</item>
+        <item>picture_food</item>
+        <item>picture_economy</item>
+        <item>picture_sport</item>
+    </string-array>
+
+</resources>

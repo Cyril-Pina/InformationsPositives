@@ -7,6 +7,13 @@
     <string name="loading_image">Image Chargement</string>
     <string name="logo_informations_positives_transparent">Logo Informations Positives Transparent</string>
     <string name="icon_search">Icône Recherche</string>
+    <string name="icon_left_arrow">Icône Flèche Gauche</string>
+    <string name="icon_filter_white">Icône Filtre</string>
+    <string name="category_picture">Image Categorie</string>
+    <string name="icon_validate">Icône Validation</string>
+    <string name="icon_down_arrow">Icône Flèche Bas</string>
+
+    <!-- Transition Name -->
 
     <!-- Bottom Navigation Menu -->
     <string name="bottom_navigation_menu_categories">Catégories</string>
@@ -16,4 +23,11 @@
     <!-- feed_fragment.xml -->
     <string name="loading_articles">Un peu de patience,\n
         vos superbes articles arrivent…</string>
+
+    <!-- search_activity.xml -->
+    <string name="hint_edit_text_search">Ne sois pas timide, que recherches-tu ?</string>
+    <string name="title_filters">Gérer les filtres</string>
+    <string name="beginning_date">Date de début</string>
+    <string name="ending_date">Date de fin</string>
+
 </resources>
