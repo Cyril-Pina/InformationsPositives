@@ -2,8 +2,8 @@ package com.pinalopes.informationspositives.search.model;
 
 public class CategoryFilter {
 
-    private String name;
-    private String pictureRes;
+    private final String name;
+    private final String pictureRes;
     private boolean isSelected;
 
     public CategoryFilter(String name, String pictureRes) {
