@@ -13,6 +13,7 @@
     <string name="icon_validate">Icône Validation</string>
     <string name="icon_down_arrow">Icône Flèche Bas</string>
     <string name="category_icon">Icône Categorie</string>
+    <string name="image_article">Image Article</string>
 
     <!-- Transition Name -->
 
@@ -30,5 +31,8 @@
     <string name="title_filters">Gérer les filtres</string>
     <string name="beginning_date">Date de début</string>
     <string name="ending_date">Date de fin</string>
+
+    <!-- article_story_row.xml -->
+    <string name="doggy">Un chiot sauvé de la noyade ! Francis en dit plus</string>
 
 </resources>
