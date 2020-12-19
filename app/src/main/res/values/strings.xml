@@ -12,6 +12,7 @@
     <string name="category_picture">Image Categorie</string>
     <string name="icon_validate">Icône Validation</string>
     <string name="icon_down_arrow">Icône Flèche Bas</string>
+    <string name="category_icon">Icône Categorie</string>
 
     <!-- Transition Name -->
 

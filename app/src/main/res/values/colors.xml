@@ -3,4 +3,20 @@
     <color name="colorPrimary">#006C67</color>
     <color name="colorPrimaryDark">#003844</color>
     <color name="colorAccent">#FFB100</color>
+
+    <!-- Categories -->
+    <color name="colorGreenNature">#009237</color>
+    <color name="colorGreenNatureDarker">#006426</color>
+    <color name="colorBrownFauna">#783201</color>
+    <color name="colorBrownFaunaDarker">#5e2701</color>
+    <color name="colorBlueTechno">#3b83bd</color>
+    <color name="colorBlueTechnoDarker">#336e9c</color>
+    <color name="colorYellowHumanitarian">#fcce0c</color>
+    <color name="colorYellowHumanitarianDarker">#d3ac0b</color>
+    <color name="colorRedFood">#da0600</color>
+    <color name="colorRedFoodDarker">#bd0500</color>
+    <color name="colorGreyEconomy">#cccccc</color>
+    <color name="colorGreyEconomyDarker">#aaaaaa</color>
+    <color name="colorPurpleSport">#84258e</color>
+    <color name="colorPurpleSportDarker">#681b70</color>
 </resources>

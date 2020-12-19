@@ -22,12 +22,12 @@ public class LoadingService {
     private static final long DELAY_LOADING = 1000;
     private static final long PERIOD_LOADING = 1500;
 
-    private Context context;
-    private RelativeLayout loadingMainLayout;
-    private ImageView loadingImageView;
-    private Animation fadeOutAnimation;
-    private Animation fadeInAnimation;
-    private Timer timerLoading;
+    private final Context context;
+    private final RelativeLayout loadingMainLayout;
+    private final ImageView loadingImageView;
+    private final Animation fadeOutAnimation;
+    private final Animation fadeInAnimation;
+    private final Timer timerLoading;
     private int indexRes;
 
     public LoadingService(Context context, RelativeLayout loadingMainLayout, ImageView loadingImageView) {
