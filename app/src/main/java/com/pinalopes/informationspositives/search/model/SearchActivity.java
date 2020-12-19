@@ -3,6 +3,8 @@ package com.pinalopes.informationspositives.search.model;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -18,7 +20,9 @@ import androidx.transition.Transition;
 
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.TransitionService;
+import com.pinalopes.informationspositives.categories.model.Category;
 import com.pinalopes.informationspositives.databinding.SearchActivityBinding;
+import com.pinalopes.informationspositives.search.viewmodel.FilterCategoriesViewModel;
 import com.pinalopes.informationspositives.search.viewmodel.SearchActivityViewModel;
 import com.pinalopes.informationspositives.utils.DateUtils;
 
@@ -28,6 +32,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import static com.pinalopes.informationspositives.Constants.DRAWABLE;
+import static com.pinalopes.informationspositives.Constants.PACKAGE_NAME;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -102,18 +109,23 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initCategoriesFilterAdapter() {
-        List<CategoryFilter> categories = new ArrayList<>();
+        List<FilterCategoriesViewModel> categories = new ArrayList<>();
         String[] categoriesName = getResources().getStringArray(R.array.categories_name);
         String[] categoriesRes = getResources().getStringArray(R.array.categories_res);
+        String[] categoriesIcon = getResources().getStringArray(R.array.categories_icon);
 
         for (int i = 0; i != categoriesName.length ; i ++) {
             String categoryName = categoriesName[i];
-            String categoryRes = categoriesRes[i];
+            int categoryRes =  getResources().getIdentifier(categoriesRes[i], DRAWABLE, PACKAGE_NAME);
+            int categoryIcon =  getResources().getIdentifier(categoriesIcon[i], DRAWABLE, PACKAGE_NAME);
 
-            CategoryFilter categoryFilter = new CategoryFilter(
-                    categoryName,
-                    categoryRes);
-            categories.add(categoryFilter);
+            FilterCategoriesViewModel filterCategoriesViewModel = new FilterCategoriesViewModel(
+                    new Category(categoryName,
+                            categoryRes,
+                            categoryIcon),
+                    false
+            );
+            categories.add(filterCategoriesViewModel);
         }
 
         FilterCategoriesAdapter adapter = new FilterCategoriesAdapter(this, categories,
@@ -127,12 +139,31 @@ public class SearchActivity extends AppCompatActivity {
             filters.getCategories()[position] = !filters.getCategories()[position];
             binding.getSearchActivityViewModel().getFiltersMutable().setValue(filters);
         });
-        binding.getSearchActivityViewModel().getFiltersMutable().observe(this, currentFilters -> {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            SearchResultsFragment searchResultsFragment = SearchResultsFragment.newInstance(currentFilters);
-            fragmentTransaction.replace(R.id.searchResultsFrameLayout, searchResultsFragment);
-            fragmentTransaction.commit();
+        binding.searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // beforeTextChanged() ignored
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // onTextChanged() ignored
+            }
+            @Override
+            public void afterTextChanged(Editable keyWordEditable) {
+                openSearchFragment(keyWordEditable.toString(), filters);
+            }
         });
+        binding.getSearchActivityViewModel().getFiltersMutable().observe(this, currentFilters -> {
+            String currentKeyWordSearch = binding.searchEditText.getText().toString();
+            openSearchFragment(currentKeyWordSearch, currentFilters);
+        });
+    }
+
+    private void openSearchFragment(String keyWordSearch, Filters filters) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        SearchResultsFragment searchResultsFragment = SearchResultsFragment.newInstance(keyWordSearch, filters);
+        fragmentTransaction.replace(R.id.searchResultsFrameLayout, searchResultsFragment);
+        fragmentTransaction.commit();
     }
 
     private void initDateFiltersMutable() {

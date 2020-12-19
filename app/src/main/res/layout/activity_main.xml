@@ -6,12 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/activityMainFrameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/activityMainBottomNavigation"/>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewTopBar"
         android:layout_width="match_parent"
@@ -50,6 +44,13 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:id="@+id/activityMainFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/cardViewTopBar"
+        android:layout_above="@id/activityMainBottomNavigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/activityMainBottomNavigation"

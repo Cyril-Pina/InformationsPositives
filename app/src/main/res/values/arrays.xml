@@ -22,4 +22,31 @@
         <item>picture_sport</item>
     </string-array>
 
+    <string-array name="categories_icon">
+        <item>ic_nature</item>
+        <item>ic_fauna</item>
+        <item>ic_techno</item>
+        <item>ic_humanitarian</item>
+        <item>ic_food</item>
+        <item>ic_economy</item>
+        <item>ic_sport</item>
+    </string-array>
+
+    <array name="categories_colors">
+        <item>0xFF009237</item>
+        <item>0xFF004119</item>
+        <item>0xFF783201</item>
+        <item>0xFF381700</item>
+        <item>0xFF3b83bd</item>
+        <item>0xFF1d405c</item>
+        <item>0xFFfcce0c</item>
+        <item>0xFF8f7407</item>
+        <item>0xFFda0600</item>
+        <item>0xFF690300</item>
+        <item>0xFFcccccc</item>
+        <item>0xFF4e4e4e</item>
+        <item>0xFF84258e</item>
+        <item>0xFF340e38</item>
+    </array>
+
 </resources>

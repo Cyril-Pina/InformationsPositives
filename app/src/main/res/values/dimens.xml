@@ -70,6 +70,20 @@
     <dimen name="elevation_category_filter_card_view">3dp</dimen>
     <dimen name="radius_category_filter_row">3dp</dimen>
     <dimen name="margin_start_category_filter_row">3dp</dimen>
+    <dimen name="margin_start_category_icon_row">2dp</dimen>
+    <dimen name="size_category_icon_row">14dp</dimen>
+
+    <!-- category_row.xml -->
+    <dimen name="height_category_row_layout">104dp</dimen>
+    <dimen name="height_category_row">90dp</dimen>
+    <dimen name="radius_category_card_view">10dp</dimen>
+    <dimen name="text_size_category">18sp</dimen>
+    <dimen name="margin_start_text_category_row">10dp</dimen>
+    <dimen name="margin_start_end_category_row">20dp</dimen>
+    <dimen name="elevation_card_view_category_row">5dp</dimen>
+    <dimen name="size_category_icon">26dp</dimen>
+    <dimen name="margin_start_category_icon">6dp</dimen>
+    <dimen name="padding_category_icon">3dp</dimen>
 
     <!-- DRAWABLE -->
 

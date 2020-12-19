@@ -14,16 +14,13 @@ import com.pinalopes.informationspositives.search.viewmodel.FilterCategoriesView
 
 import java.util.List;
 
-import static com.pinalopes.informationspositives.Constants.DRAWABLE;
-import static com.pinalopes.informationspositives.Constants.PACKAGE_NAME;
-
 public class FilterCategoriesAdapter extends BaseAdapter {
 
     private final Context context;
-    private final List<CategoryFilter> categories;
+    private final List<FilterCategoriesViewModel> categories;
     private final MutableLiveData<Integer> clickOnCategoryMutable;
 
-    public FilterCategoriesAdapter(Context context, List<CategoryFilter> categories, MutableLiveData<Integer> clickOnCategoryMutable) {
+    public FilterCategoriesAdapter(Context context, List<FilterCategoriesViewModel> categories, MutableLiveData<Integer> clickOnCategoryMutable) {
         this.context = context;
         this.categories = categories;
         this.clickOnCategoryMutable = clickOnCategoryMutable;
@@ -36,17 +33,12 @@ public class FilterCategoriesAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public boolean isEnabled(int position) {
-        return true;
+        return categories.get(position);
     }
 
     @Override
@@ -54,23 +46,18 @@ public class FilterCategoriesAdapter extends BaseAdapter {
         @SuppressLint("ViewHolder")
         CategoryFilterRowBinding binding = CategoryFilterRowBinding.inflate(((Activity) context).getLayoutInflater());
 
-        int resId = context.getResources().getIdentifier(categories.get(position).getPictureRes(), DRAWABLE, PACKAGE_NAME);
-        updateDataRow(binding, position, resId);
+        updateDataRow(binding, categories.get(position));
 
         View categoryFilterRow = binding.getRoot();
         categoryFilterRow.setOnClickListener(view -> {
-            categories.get(position).changeSelectionState();
-            updateDataRow(binding, position, resId);
+            categories.get(position).changeSelection();
+            updateDataRow(binding, categories.get(position));
             clickOnCategoryMutable.setValue(position);
         });
         return categoryFilterRow;
     }
 
-    private void updateDataRow(CategoryFilterRowBinding binding, int position, int resId) {
-        binding.setFilterCategoriesViewModel(new FilterCategoriesViewModel(
-                categories.get(position).getName(),
-                resId,
-                categories.get(position).isSelected()
-        ));
+    private void updateDataRow(CategoryFilterRowBinding binding, FilterCategoriesViewModel filterCategoriesViewModel) {
+        binding.setFilterCategoriesViewModel(filterCategoriesViewModel);
     }
 }

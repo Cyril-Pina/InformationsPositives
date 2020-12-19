@@ -1,6 +1,5 @@
 package com.pinalopes.informationspositives.search;
 
-import com.pinalopes.informationspositives.search.model.CategoryFilter;
 import com.pinalopes.informationspositives.search.model.Filters;
 
 import org.junit.Before;
