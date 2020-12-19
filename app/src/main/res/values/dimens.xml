@@ -26,6 +26,7 @@
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">11sp</dimen>
 
     <!-- feed_fragment.xml -->
+    <dimen name="height_stories_frame_layout">170dp</dimen>
 
     <!-- search_activity.xml -->
     <dimen name="margin_start_logo_top_bar">14dp</dimen>
@@ -84,6 +85,14 @@
     <dimen name="size_category_icon">26dp</dimen>
     <dimen name="margin_start_category_icon">6dp</dimen>
     <dimen name="padding_category_icon">3dp</dimen>
+
+    <!-- article_story_row.xml -->
+    <dimen name="width_story_row">110dp</dimen>
+    <dimen name="margin_start_end_story_row">12dp</dimen>
+    <dimen name="margin_top_bottom_story_row">5dp</dimen>
+    <dimen name="radius_story_row">5dp</dimen>
+    <dimen name="margin_text_story_row">4dp</dimen>
+    <dimen name="size_text_story_article">12sp</dimen>
 
     <!-- DRAWABLE -->
 

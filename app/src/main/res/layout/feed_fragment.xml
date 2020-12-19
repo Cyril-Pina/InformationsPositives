@@ -9,6 +9,7 @@
         android:id="@+id/loadingMainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,5 +47,13 @@
             android:fontFamily="@font/made_tommy"
             android:layout_below="@id/loadingCardView" />
     </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/storiesFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_stories_frame_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@
     <color name="colorPrimary">#006C67</color>
     <color name="colorPrimaryDark">#003844</color>
     <color name="colorAccent">#FFB100</color>
+    <color name="colorBlackTransparent">#60000000</color>
 
     <!-- Categories -->
     <color name="colorGreenNature">#009237</color>

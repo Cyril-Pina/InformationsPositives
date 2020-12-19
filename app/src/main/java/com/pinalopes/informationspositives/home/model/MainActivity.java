@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initBottomNavigationMenu() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment mapFragment = new FeedFragment();
-        fragmentManager.beginTransaction().add(R.id.activityMainFrameLayout, mapFragment).commit();
+        Fragment feedFragment = new FeedFragment();
+        fragmentManager.beginTransaction().add(R.id.activityMainFrameLayout, feedFragment).commit();
 
         binding.activityMainBottomNavigation.setItemIconTintList(null);
         binding.activityMainBottomNavigation.setOnNavigationItemSelectedListener(item -> updateMainFragment(item.getItemId()));
@@ -50,25 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean updateMainFragment(Integer itemId) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        switch (itemId) {
-            case R.id.action_categories:
-                setTopBarVisibility(View.VISIBLE);
-                Fragment categoriesFragment = new CategoriesFragment();
-                fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, categoriesFragment).commit();
-                break;
-            case R.id.action_feed:
-                setTopBarVisibility(View.VISIBLE);
-                Fragment mapFragment = new FeedFragment();
-                fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, mapFragment).commit();
-                break;
-            case R.id.action_settings:
-                setTopBarVisibility(View.GONE);
-                Fragment settingsFragment = new SettingsFragment();
-                fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, settingsFragment).commit();
-                break;
-            default:
-                break;
+        Fragment newFragment = new CategoriesFragment();
+        if (itemId == R.id.action_categories) {
+            setTopBarVisibility(View.VISIBLE);
+        } else if (itemId == R.id.action_feed) {
+            setTopBarVisibility(View.VISIBLE);
+            newFragment = new FeedFragment();
+        } else if (itemId == R.id.action_settings) {
+            setTopBarVisibility(View.GONE);
+            newFragment = new SettingsFragment();
         }
+        fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, newFragment).commit();
         return true;
     }
 
