@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pinalopes.informationspositives.LoadingService;
 import com.pinalopes.informationspositives.R;
+import com.pinalopes.informationspositives.categories.model.Category;
 import com.pinalopes.informationspositives.databinding.FeedFragmentBinding;
 import com.pinalopes.informationspositives.feed.dagger.DaggerFeedComponent;
 import com.pinalopes.informationspositives.feed.dagger.LoadingModule;
+import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,18 +56,14 @@ public class FeedFragment extends Fragment {
     private void initFeedRecyclerView(Context context) {
         RecyclerView feedRecyclerView = binding.feedRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        List<String> test = new ArrayList<>();
+        List<ArticleRowViewModel> test = new ArrayList<>();
 
-        test.add("deecz");
-        test.add("suuu");
-        test.add("dedecdz");
-        test.add("deezcdz");
-        test.add("deecxadz");
-        test.add("deecdxz");
-        test.add("deecdfz");
-        test.add("deecdlz");
-        test.add("deecdpz");
-        test.add("deecdzo");
+        Category category = new Category("Nature", 0, R.drawable.ic_nature);
+
+        test.add(new ArticleRowViewModel("Un chiot est sauver par Gaston du PMU", "18:25-12/12/2020", "Michel Jaqueson", category, 1802, 235));
+        test.add(new ArticleRowViewModel("Sangoku a encore sauvé la terre top", "16:10-12/12/2020", "Miky Mike", category, 36820, 13));
+        test.add(new ArticleRowViewModel("Macron donne 1million d'euros à un jeune sans abri", "08:02-12/12/2020", "Michel Jaqueson", category, 36974, 13));
+        test.add(new ArticleRowViewModel("Oui, la news plus haute est vraie", "08:01-12/12/2020", "Brigitte Bardot", category, 1859265, 483));
 
         feedRecyclerView.setLayoutManager(layoutManager);
         FeedRecyclerAdapter adapter = new FeedRecyclerAdapter(test);

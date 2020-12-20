@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.databinding.ArticleRowBinding;
+import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 
 import java.util.List;
 
 public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapter.FeedViewHolder> {
 
-    private final List<String> feedArticleDataList;
+    private final List<ArticleRowViewModel> feedArticleDataList;
 
     public static class FeedViewHolder extends RecyclerView.ViewHolder {
 
@@ -25,9 +26,13 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
             super(binding.getRoot());
             this.binding = binding;
         }
+
+        public void bind(ArticleRowViewModel articleRowViewModel) {
+            binding.setArticleRowViewModel(articleRowViewModel);
+        }
     }
 
-    public FeedRecyclerAdapter(List<String> feedArticleDataList) {
+    public FeedRecyclerAdapter(List<ArticleRowViewModel> feedArticleDataList) {
         this.feedArticleDataList = feedArticleDataList;
     }
 
@@ -43,7 +48,7 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull FeedViewHolder holder, int position) {
-        // onBindViewHolder ignored for now
+        holder.bind(feedArticleDataList.get(position));
     }
 
     @Override
