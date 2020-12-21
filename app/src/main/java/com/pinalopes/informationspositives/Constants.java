@@ -12,4 +12,7 @@ public class Constants {
     public static final String KEY_WORD_SEARCH = "keyWordSearch";
     public static final String BIG_PIC = "_big";
     public static final int NO_FLAG = 0;
+    public static final int TYPE_HEADER = 0;
+    public static final int TYPE_ITEM = 1;
+    public static final int FIRST_INDEX = 0;
 }

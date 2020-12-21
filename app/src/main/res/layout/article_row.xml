@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="articleRowViewModel"
             type="com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel" />
@@ -26,6 +27,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/articleImage"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
                     android:adjustViewBounds="true"
@@ -47,6 +49,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:background="@drawable/picture_article_gradient_background" />
+
+                <ImageView
+                    android:layout_width="@dimen/size_icon_video_play"
+                    android:layout_height="@dimen/size_icon_video_play"
+                    android:contentDescription="@string/icon_video_play"
+                    android:layout_margin="@dimen/margin_icon_video_play"
+                    android:visibility="@{articleRowViewModel.video ? View.VISIBLE : View.GONE }"
+                    android:alpha=".5"
+                    android:src="@drawable/ic_video_play"
+                    app:srcCompat="@drawable/ic_video_play"
+                    tools:srcCompat="@drawable/ic_video_play"
+                    app:layout_constraintTop_toTopOf="@id/articleImage"
+                    app:layout_constraintStart_toStartOf="@id/articleImage" />
 
                 <LinearLayout
                     android:id="@+id/articleViewsLayout"
@@ -125,6 +140,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginEnd="@dimen/margin_end_icon_category"
                         android:paddingTop="@dimen/padding_top_icon_category"
+                        android:paddingEnd="@dimen/padding_s_e_b_icon_category"
+                        android:paddingBottom="@dimen/padding_s_e_b_icon_category"
+                        android:paddingStart="@dimen/padding_s_e_b_icon_category"
                         android:contentDescription="@string/category_icon"
                         android:layout_gravity="bottom"
                         android:src="@{articleRowViewModel.category.categoryIcon}"

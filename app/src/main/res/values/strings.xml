@@ -1,6 +1,7 @@
 <resources>
     <!-- All -->
     <string name="app_name">Informations Positives</string>
+    <string name="api_weather_token">e61315eb20b99a43c33db56da2431e0e</string>
 
     <!-- Image Content Description -->
     <string name="logo_informations_positives">Logo Informations Positives</string>
@@ -18,6 +19,7 @@
     <string name="icon_likes">Icône J\'aime</string>
     <string name="icon_clock">Icône Date</string>
     <string name="icon_feather">Icône Plume</string>
+    <string name="icon_video_play">Icône Vidéo</string>
 
     <!-- Transition Name -->
 
@@ -41,5 +43,8 @@
 
     <!-- article_row.xml -->
     <string name="written_by">Écrit par\u0020</string>
+
+    <!-- header_feed_recycler_view.xml -->
+    <string name="feed_title">Le meilleur moment de ta journée commence ici.</string>
 
 </resources>

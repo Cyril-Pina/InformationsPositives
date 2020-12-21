@@ -15,14 +15,16 @@ public class ArticleRowViewModel extends ViewModel {
     private Category category;
     private long nbViews;
     private long nbLikes;
+    private boolean isVideo;
 
-    public ArticleRowViewModel(String title, String date, String writer, Category category, long nbViews, long nbLikes) {
+    public ArticleRowViewModel(String title, String date, String writer, Category category, long nbViews, long nbLikes, boolean isVideo) {
         this.title = title;
         this.date = date;
         this.writer = writer;
         this.category = category;
         this.nbViews = nbViews;
         this.nbLikes = nbLikes;
+        this.isVideo = isVideo;
     }
 
     public String getTitle() {
@@ -71,6 +73,14 @@ public class ArticleRowViewModel extends ViewModel {
 
     public void setNbLikes(long nbLikes) {
         this.nbLikes = nbLikes;
+    }
+
+    public boolean isVideo() {
+        return isVideo;
+    }
+
+    public void setVideo(boolean video) {
+        isVideo = video;
     }
 
     @BindingAdapter({"android:src"})
