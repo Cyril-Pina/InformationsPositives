@@ -59,8 +59,8 @@ public class FeedFragment extends Fragment {
         List<ArticleRowViewModel> test = new ArrayList<>();
 
         Category category = new Category("Nature", 0, R.drawable.ic_nature_black);
-        Category categoryFauna = new Category("Nature", 0, R.drawable.ic_fauna_black);
-        Category categoryFood = new Category("Nature", 0, R.drawable.ic_food_black);
+        Category categoryFauna = new Category("Faune", 0, R.drawable.ic_fauna_black);
+        Category categoryFood = new Category("Alimentation", 0, R.drawable.ic_food_black);
 
         test.add(new ArticleRowViewModel("Un chiot est sauver par Gaston du PMU", "18:25-12/12/2020", "Michel Jaqueson", category, 1802, 235, true));
         test.add(new ArticleRowViewModel("Sangoku a encore sauvé la terre top", "16:10-12/12/2020", "Miky Mike", category, 36820, 13, true));
