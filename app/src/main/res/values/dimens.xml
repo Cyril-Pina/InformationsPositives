@@ -8,6 +8,7 @@
     <dimen name="margin_top_text_loading">10dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="height_divider">0.5dp</dimen>
+    <dimen name="height_slim_divider">0.1dp</dimen>
 
     <!-- LAYOUT -->
 
@@ -27,6 +28,41 @@
 
     <!-- feed_fragment.xml -->
     <dimen name="height_stories_frame_layout">170dp</dimen>
+
+    <!-- article_row.xml -->
+    <dimen name="height_article_row">400dp</dimen>
+    <dimen name="margin_card_view_article_row">10dp</dimen>
+    <dimen name="radius_card_view_article_row">10dp</dimen>
+    <dimen name="margin_start_article_views">10dp</dimen>
+    <dimen name="size_image_views">16dp</dimen>
+    <dimen name="margin_end_image_views">1dp</dimen>
+    <dimen name="padding_text_views">3dp</dimen>
+    <dimen name="size_text_views">14sp</dimen>
+    <dimen name="size_image_likes">15dp</dimen>
+    <dimen name="padding_text_likes">3dp</dimen>
+    <dimen name="margin_start_article_likes">3dp</dimen>
+    <dimen name="size_text_likes">14sp</dimen>
+    <dimen name="margin_end_article_category">10dp</dimen>
+    <dimen name="padding_start_end_article_category">8dp</dimen>
+    <dimen name="width_icon_category">16dp</dimen>
+    <dimen name="padding_top_icon_category">5dp</dimen>
+    <dimen name="margin_end_icon_category">5dp</dimen>
+    <dimen name="padding_top_text_category">5dp</dimen>
+    <dimen name="padding_bottom_text_category">2dp</dimen>
+    <dimen name="size_text_category">16sp</dimen>
+    <dimen name="margin_text_article_title">15dp</dimen>
+    <dimen name="size_text_article_title">22sp</dimen>
+    <dimen name="size_icon_clock">15dp</dimen>
+    <dimen name="margin_start_bottom_icon_clock">10dp</dimen>
+    <dimen name="margin_start_text_article_date">4dp</dimen>
+    <dimen name="margin_bottom_text_article_date">10dp</dimen>
+    <dimen name="size_text_article_date">12sp</dimen>
+    <dimen name="size_image_feather">15dp</dimen>
+    <dimen name="margin_end_image_feather">6dp</dimen>
+    <dimen name="margin_bottom_image_feather">10dp</dimen>
+    <dimen name="margin_article_writer">10dp</dimen>
+    <dimen name="size_text_article_writer">12sp</dimen>
+    <dimen name="padding_s_e_b_icon_category">2dp</dimen>
 
     <!-- search_activity.xml -->
     <dimen name="margin_start_logo_top_bar">14dp</dimen>
@@ -93,6 +129,14 @@
     <dimen name="radius_story_row">5dp</dimen>
     <dimen name="margin_text_story_row">4dp</dimen>
     <dimen name="size_text_story_article">12sp</dimen>
+    <dimen name="size_icon_video_play">50dp</dimen>
+    <dimen name="alpha_icon_video_play">0.5</dimen>
+    <dimen name="margin_icon_video_play">5dp</dimen>
+
+    <!-- header_feed.xml -->
+    <dimen name="margin_feed_title">20dp</dimen>
+    <dimen name="size_text_feed_title">30sp</dimen>
+    <dimen name="height_header_feed">50dp</dimen>
 
     <!-- DRAWABLE -->
 
@@ -110,5 +154,8 @@
 
     <!-- rounded_border_date_filter.xml -->
     <dimen name="radius_rounded_date_filter">5dp</dimen>
+
+    <!-- article_category_background.xml -->
+    <dimen name="radius_t_l_r_article_category">10dp</dimen>
 
 </resources>

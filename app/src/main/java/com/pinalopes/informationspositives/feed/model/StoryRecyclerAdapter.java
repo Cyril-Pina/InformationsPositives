@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pinalopes.informationspositives.R;
-import com.pinalopes.informationspositives.databinding.ArticleStoryRowBinding;
+import com.pinalopes.informationspositives.databinding.StoryRowBinding;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
     public static class StoriesViewHolder extends RecyclerView.ViewHolder {
 
-        ArticleStoryRowBinding binding;
+        StoryRowBinding binding;
 
-        public StoriesViewHolder(ArticleStoryRowBinding binding) {
+        public StoriesViewHolder(StoryRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
@@ -36,7 +36,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
     public StoryRecyclerAdapter.StoriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context mContext = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        ArticleStoryRowBinding binding = ArticleStoryRowBinding.inflate(layoutInflater, parent, false);
+        StoryRowBinding binding = StoryRowBinding.inflate(layoutInflater, parent, false);
         binding.getRoot().setOnClickListener(v -> v.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.item_pressed_anim)));
         return new StoryRecyclerAdapter.StoriesViewHolder(binding);
     }

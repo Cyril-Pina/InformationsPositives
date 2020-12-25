@@ -1,6 +1,7 @@
 <resources>
     <!-- All -->
     <string name="app_name">Informations Positives</string>
+    <string name="api_weather_token">e61315eb20b99a43c33db56da2431e0e</string>
 
     <!-- Image Content Description -->
     <string name="logo_informations_positives">Logo Informations Positives</string>
@@ -14,6 +15,11 @@
     <string name="icon_down_arrow">Icône Flèche Bas</string>
     <string name="category_icon">Icône Categorie</string>
     <string name="image_article">Image Article</string>
+    <string name="icon_views">Icône Vues</string>
+    <string name="icon_likes">Icône J\'aime</string>
+    <string name="icon_clock">Icône Date</string>
+    <string name="icon_feather">Icône Plume</string>
+    <string name="icon_video_play">Icône Vidéo</string>
 
     <!-- Transition Name -->
 
@@ -32,7 +38,13 @@
     <string name="beginning_date">Date de début</string>
     <string name="ending_date">Date de fin</string>
 
-    <!-- article_story_row.xml -->
+    <!-- story_row.xml -->
     <string name="doggy">Un chiot sauvé de la noyade ! Francis en dit plus</string>
+
+    <!-- article_row.xml -->
+    <string name="written_by">Écrit par\u0020</string>
+
+    <!-- header_feed_recycler_view.xml -->
+    <string name="feed_title">Le meilleur moment de ta journée commence ici.</string>
 
 </resources>
