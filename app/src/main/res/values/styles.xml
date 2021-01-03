@@ -45,5 +45,4 @@
     <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
         <item name="fontFamily">@font/louis_george_cafe</item>
     </style>
-
 </resources>

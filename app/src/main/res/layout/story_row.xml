@@ -38,7 +38,7 @@
             android:text="@string/doggy"
             android:textSize="@dimen/size_text_story_article"
             android:textColor="@android:color/white"
-            android:fontFamily="@font/gontserrat_"
+            android:fontFamily="@font/espera"
             android:gravity="bottom" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

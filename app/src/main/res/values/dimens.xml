@@ -61,7 +61,7 @@
     <dimen name="margin_end_image_feather">6dp</dimen>
     <dimen name="margin_bottom_image_feather">10dp</dimen>
     <dimen name="margin_article_writer">10dp</dimen>
-    <dimen name="size_text_article_writer">12sp</dimen>
+    <dimen name="size_text_article_writer">10sp</dimen>
     <dimen name="padding_s_e_b_icon_category">2dp</dimen>
 
     <!-- search_activity.xml -->
@@ -137,6 +137,56 @@
     <dimen name="margin_feed_title">20dp</dimen>
     <dimen name="size_text_feed_title">30sp</dimen>
     <dimen name="height_header_feed">50dp</dimen>
+
+    <!-- article.xml -->
+    <dimen name="height_article_image">280dp</dimen>
+    <dimen name="margin_start_end_article_title">17dp</dimen>
+    <dimen name="size_icon_article_info">18dp</dimen>
+    <dimen name="text_size_article_info">11sp</dimen>
+    <dimen name="text_size_title_article">22sp</dimen>
+    <dimen name="padding_bottom_title_text_view">35dp</dimen>
+    <dimen name="padding_stats_text_view">4dp</dimen>
+    <dimen name="margin_start_likes_text_view">10dp</dimen>
+    <dimen name="margin_end_likes_text_view">3dp</dimen>
+    <dimen name="margin_end_writer_text_view">10dp</dimen>
+    <dimen name="margin_top_writer_text_view">15dp</dimen>
+    <dimen name="text_size_article_category">12sp</dimen>
+    <dimen name="margin_bottom_article_stats">4dp</dimen>
+    <dimen name="size_article_left_arrow">40dp</dimen>
+    <dimen name="margin_start_left_arrow">10dp</dimen>
+    <dimen name="margin_start_shadow_left_arrow">10.4dp</dimen>
+    <dimen name="margin_top_shadow_left_arrow">0.4dp</dimen>
+    <dimen name="padding_left_arrow">9dp</dimen>
+    <dimen name="margin_bottom_end_like_layout">20dp</dimen>
+    <dimen name="margin_top_like_layout">50dp</dimen>
+    <dimen name="size_like_animation">80dp</dimen>
+    <dimen name="margin_top_minus_like_animation">-20dp</dimen>
+    <dimen name="size_text_desc_like">11sp</dimen>
+    <dimen name="size_text_like">12sp</dimen>
+    <dimen name="height_bottom_view">10dp</dimen>
+    <dimen name="columns_width_reco_grid_view">1dp</dimen>
+    <dimen name="padding_more_article_reco">14dp</dimen>
+    <dimen name="size_text_more_article_reco">14sp</dimen>
+    <dimen name="text_size_header_title_article">16sp</dimen>
+    <dimen name="height_header_article">60dp</dimen>
+    <dimen name="padding_header_article_title">12dp</dimen>
+
+    <!-- recommendation_row.xml -->
+    <dimen name="height_main_recommendation_row">140dp</dimen>
+    <dimen name="height_recommendation_row">130dp</dimen>
+    <dimen name="size_icon_category">22dp</dimen>
+    <dimen name="margin_bottom_end_icon_category">10dp</dimen>
+    <dimen name="size_icon_video_play_">30dp</dimen>
+    <dimen name="size_text_article_title_">14sp</dimen>
+    <dimen name="size_icon_clock_">11dp</dimen>
+    <dimen name="size_image_feather_">10dp</dimen>
+    <dimen name="size_text_article_date_">10sp</dimen>
+    <dimen name="size_text_article_writer_">10sp</dimen>
+    <dimen name="padding_top_reco_grid_view">18dp</dimen>
+    <dimen name="padding_bottom_reco_grid_view">10dp</dimen>
+    <dimen name="vertical_spacing_reco_grid_view">15dp</dimen>
+    <dimen name="horizontal_spacing_reco_grid_view">2dp</dimen>
+    <dimen name="margin_text_reco_title">5dp</dimen>
 
     <!-- DRAWABLE -->
 

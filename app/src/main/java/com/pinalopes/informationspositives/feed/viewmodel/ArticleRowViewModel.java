@@ -9,21 +9,23 @@ import com.pinalopes.informationspositives.categories.model.Category;
 
 public class ArticleRowViewModel extends ViewModel {
 
-    private String title;
-    private String date;
-    private String writer;
-    private Category category;
-    private long nbViews;
-    private long nbLikes;
-    private boolean isVideo;
+    protected String title;
+    protected String date;
+    protected String writer;
+    protected Category category;
+    protected long nbViews;
+    protected long nbLikes;
+    protected int imageRes;
+    protected boolean isVideo;
 
-    public ArticleRowViewModel(String title, String date, String writer, Category category, long nbViews, long nbLikes, boolean isVideo) {
+    public ArticleRowViewModel(String title, String date, String writer, Category category, long nbViews, long nbLikes, int imageRes, boolean isVideo) {
         this.title = title;
         this.date = date;
         this.writer = writer;
         this.category = category;
         this.nbViews = nbViews;
         this.nbLikes = nbLikes;
+        this.imageRes = imageRes;
         this.isVideo = isVideo;
     }
 
@@ -73,6 +75,14 @@ public class ArticleRowViewModel extends ViewModel {
 
     public void setNbLikes(long nbLikes) {
         this.nbLikes = nbLikes;
+    }
+
+    public int getImageRes() {
+        return imageRes;
+    }
+
+    public void setImageRes(int imageRes) {
+        this.imageRes = imageRes;
     }
 
     public boolean isVideo() {

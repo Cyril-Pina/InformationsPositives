@@ -33,9 +33,9 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/image_article"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/picture_economy"
-                    app:srcCompat="@drawable/picture_economy"
-                    tools:srcCompat="@drawable/picture_economy"
+                    android:src="@{articleRowViewModel.imageRes}"
+                    app:srcCompat="@{articleRowViewModel.imageRes}"
+                    tools:srcCompat="@{articleRowViewModel.imageRes}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:background="@drawable/picture_article_gradient_background" />
+                    android:background="@drawable/picture_article_row_gradient_background" />
 
                 <ImageView
                     android:layout_width="@dimen/size_icon_video_play"
@@ -174,7 +174,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_text_article_title"
-                        android:fontFamily="@font/gontserrat_"
+                        android:fontFamily="@font/espera"
                         android:text="@{articleRowViewModel.title}"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/size_text_article_title"
@@ -224,7 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_article_writer"
-                        android:text="@{@string/written_by + articleRowViewModel.writer}"
+                        android:text="@{articleRowViewModel.writer}"
                         android:textSize="@dimen/size_text_article_writer"
                         android:textColor="@android:color/darker_gray"
                         android:fontFamily="@font/made_tommy"
