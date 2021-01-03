@@ -1,6 +1,7 @@
 package com.pinalopes.informationspositives.feed.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pinalopes.informationspositives.R;
+import com.pinalopes.informationspositives.articles.model.ArticleActivity;
 import com.pinalopes.informationspositives.databinding.ArticleRowBinding;
 import com.pinalopes.informationspositives.databinding.HeaderFeedBinding;
 import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
@@ -51,14 +53,18 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
     @NonNull
     @Override
     public FeedRecyclerAdapter.FeedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context mContext = parent.getContext();
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        Context context = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         if (viewType == TYPE_HEADER) {
             HeaderFeedBinding binding = HeaderFeedBinding.inflate(layoutInflater, parent, false);
             return new FeedRecyclerAdapter.FeedViewHolder(binding);
         } else {
             ArticleRowBinding binding = ArticleRowBinding.inflate(layoutInflater, parent, false);
-            binding.getRoot().setOnClickListener(v -> v.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.item_pressed_anim)));
+            binding.getRoot().setOnClickListener(v -> {
+                v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.item_pressed_anim));
+                Intent intentArticle = new Intent(context, ArticleActivity.class);
+                context.startActivity(intentArticle);
+            });
             return new FeedRecyclerAdapter.FeedViewHolder(binding);
         }
     }

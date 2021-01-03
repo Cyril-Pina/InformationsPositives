@@ -52,10 +52,10 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
     @NonNull
     @Override
     public CategoriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context mContext = parent.getContext();
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        Context context = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         CategoryRowBinding binding = CategoryRowBinding.inflate(layoutInflater, parent, false);
-        binding.getRoot().setOnClickListener(v -> v.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.item_pressed_alpha_anim)));
+        binding.getRoot().setOnClickListener(v -> v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.item_pressed_alpha_anim)));
         return new CategoriesViewHolder(binding);
     }
 

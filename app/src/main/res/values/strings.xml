@@ -20,6 +20,7 @@
     <string name="icon_clock">Icône Date</string>
     <string name="icon_feather">Icône Plume</string>
     <string name="icon_video_play">Icône Vidéo</string>
+    <string name="image_article_header">Image Article En-tête</string>
 
     <!-- Transition Name -->
 
@@ -47,4 +48,26 @@
     <!-- header_feed_recycler_view.xml -->
     <string name="feed_title">Le meilleur moment de ta journée commence ici.</string>
 
+    <!-- article.xml -->
+    <string name="like_exclamation_mark">Liké !</string>
+    <string name="did_you_like_article">Tu as aimé cet article ?</string>
+    <string name="more_articles_reco">Quand il n\'y a plus d\'article…\nEt bah il y en a encore ♪</string>
+
+    <string name="text">
+        Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+    </string>
 </resources>

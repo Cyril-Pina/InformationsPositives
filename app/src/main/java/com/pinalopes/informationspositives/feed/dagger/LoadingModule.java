@@ -12,9 +12,9 @@ import dagger.Provides;
 @Module
 public class LoadingModule {
 
-    private Context context;
-    private RelativeLayout loadingMainLayout;
-    private ImageView loadingImageView;
+    private final Context context;
+    private final RelativeLayout loadingMainLayout;
+    private final ImageView loadingImageView;
 
     public LoadingModule(Context context, RelativeLayout loadingMainLayout, ImageView loadingImageView) {
         this.context = context;

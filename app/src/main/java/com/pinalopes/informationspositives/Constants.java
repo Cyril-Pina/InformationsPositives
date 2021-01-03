@@ -15,4 +15,8 @@ public class Constants {
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_ITEM = 1;
     public static final int FIRST_INDEX = 0;
+    public static final float START_LIKE_PROGRESS = 0.05f;
+    public static final float END_LIKE_PROGRESS = 0.5f;
+    public static final float START_DISLIKE_PROGRESS = 0.55f;
+    public static final float END_DISLIKE_PROGRESS = 1.0f;
 }

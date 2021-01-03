@@ -62,10 +62,10 @@ public class FeedFragment extends Fragment {
         Category categoryFauna = new Category("Faune", 0, R.drawable.ic_fauna_black);
         Category categoryFood = new Category("Alimentation", 0, R.drawable.ic_food_black);
 
-        test.add(new ArticleRowViewModel("Un chiot est sauver par Gaston du PMU", "18:25-12/12/2020", "Michel Jaqueson", category, 1802, 235, true));
-        test.add(new ArticleRowViewModel("Sangoku a encore sauvé la terre top", "16:10-12/12/2020", "Miky Mike", category, 36820, 13, true));
-        test.add(new ArticleRowViewModel("Macron donne 1million d'euros à un jeune sans abri", "08:02-12/12/2020", "Michel Jaqueson", categoryFauna, 36974, 13, false));
-        test.add(new ArticleRowViewModel("Oui, la news plus haute est vraie", "08:01-12/12/2020", "Brigitte Bardot", categoryFood, 1859265, 483, false));
+        test.add(new ArticleRowViewModel("Un chiot est sauver par Gaston du PMU", "18:25-12/12/2020", "Michel Jaqueson", category, 1802, 235, R.drawable.picture_economy, true));
+        test.add(new ArticleRowViewModel("Sangoku a encore sauvé la terre top", "16:10-12/12/2020", "Miky Mike", category, 36820, 13, R.drawable.picture_economy, true));
+        test.add(new ArticleRowViewModel("Macron donne 1million d'euros à un jeune sans abri", "08:02-12/12/2020", "Michel Jaqueson", categoryFauna, 36974, 13, R.drawable.picture_economy, false));
+        test.add(new ArticleRowViewModel("Oui, la news plus haute est vraie été test", "08:01-12/12/2020", "Brigitte Bardot", categoryFood, 1859265, 483, R.drawable.picture_economy,  false));
 
         feedRecyclerView.setLayoutManager(layoutManager);
         FeedRecyclerAdapter adapter = new FeedRecyclerAdapter(test);

@@ -1,4 +1,4 @@
-package com.pinalopes.informationspositives.articles;
+package com.pinalopes.informationspositives.articles.model;
 
 import com.pinalopes.informationspositives.editor.Editor;
 

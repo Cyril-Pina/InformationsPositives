@@ -34,10 +34,10 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
     @NonNull
     @Override
     public StoryRecyclerAdapter.StoriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context mContext = parent.getContext();
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        Context context = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         StoryRowBinding binding = StoryRowBinding.inflate(layoutInflater, parent, false);
-        binding.getRoot().setOnClickListener(v -> v.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.item_pressed_anim)));
+        binding.getRoot().setOnClickListener(v -> v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.item_pressed_anim)));
         return new StoryRecyclerAdapter.StoriesViewHolder(binding);
     }
 
