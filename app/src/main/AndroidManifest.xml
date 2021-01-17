@@ -42,5 +42,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".story.model.ArticleInStory"
+            android:theme="@style/AppTheme.NoActionBar.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
     </application>
 </manifest>

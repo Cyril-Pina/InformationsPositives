@@ -21,6 +21,7 @@
     <string name="icon_feather">Icône Plume</string>
     <string name="icon_video_play">Icône Vidéo</string>
     <string name="image_article_header">Image Article En-tête</string>
+    <string name="icon_cross">Icône Croix</string>
 
     <!-- Transition Name -->
 
@@ -43,7 +44,7 @@
     <string name="doggy">Un chiot sauvé de la noyade ! Francis en dit plus</string>
 
     <!-- article_row.xml -->
-    <string name="written_by">Écrit par\u0020</string>
+    <string name="written_by">Rédigé par\u0020</string>
 
     <!-- header_feed_recycler_view.xml -->
     <string name="feed_title">Le meilleur moment de ta journée commence ici.</string>
@@ -52,6 +53,10 @@
     <string name="like_exclamation_mark">Liké !</string>
     <string name="did_you_like_article">Tu as aimé cet article ?</string>
     <string name="more_articles_reco">Quand il n\'y a plus d\'article…\nEt bah il y en a encore ♪</string>
+
+    <!-- article_in_story.xml -->
+    <string name="see_full_article">Voir l\'article</string>
+    <string name="initial_count_down_value">10</string>
 
     <string name="text">
         Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
