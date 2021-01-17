@@ -188,6 +188,24 @@
     <dimen name="horizontal_spacing_reco_grid_view">2dp</dimen>
     <dimen name="margin_text_reco_title">5dp</dimen>
 
+    <!-- article_in_story.xml -->
+    <dimen name="size_text_title_article_story">24sp</dimen>
+    <dimen name="size_text_synopsis_article_story">13sp</dimen>
+    <dimen name="padding_synopsis_article_story">22dp</dimen>
+    <dimen name="padding_s_e_title_article_story">18dp</dimen>
+    <dimen name="padding_s_e_text_button_story">30dp</dimen>
+    <dimen name="size_text_button_article_story">12sp</dimen>
+    <dimen name="margin_button_article_story">26dp</dimen>
+    <dimen name="margin_bottom_title_article_story">26dp</dimen>
+    <dimen name="margin_start_writer_article_story">22dp</dimen>
+    <dimen name="size_icon_cross_article_story">60dp</dimen>
+    <dimen name="padding_icon_cross_article_story">11dp</dimen>
+    <dimen name="margin_icon_cross_article_story">10dp</dimen>
+    <dimen name="elevation_button_article_story">10dp</dimen>
+    <dimen name="size_text_count_down_story">14sp</dimen>
+    <dimen name="margin_count_down_story">16dp</dimen>
+    <dimen name="size_progress_bar_story">40dp</dimen>
+
     <!-- DRAWABLE -->
 
     <!-- rounded_border_grey_shape.xml -->
@@ -207,5 +225,11 @@
 
     <!-- article_category_background.xml -->
     <dimen name="radius_t_l_r_article_category">10dp</dimen>
+
+    <!-- bottom_article.xml -->
+    <dimen name="radius_bottom_article">12dp</dimen>
+
+    <!-- circle_progress_bar_story.xml -->
+    <dimen name="thickness_progress_bar_story">3dp</dimen>
 
 </resources>

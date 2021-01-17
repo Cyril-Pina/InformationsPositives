@@ -1,6 +1,8 @@
 package com.pinalopes.informationspositives.feed.model;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -9,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pinalopes.informationspositives.R;
+import com.pinalopes.informationspositives.story.model.ArticleInStory;
 import com.pinalopes.informationspositives.databinding.StoryRowBinding;
 
 import java.util.List;
@@ -37,7 +40,12 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         Context context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         StoryRowBinding binding = StoryRowBinding.inflate(layoutInflater, parent, false);
-        binding.getRoot().setOnClickListener(v -> v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.item_pressed_anim)));
+        binding.getRoot().setOnClickListener(v -> {
+            v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.item_pressed_anim));
+            Intent intentArticleStory = new Intent(context, ArticleInStory.class);
+            context.startActivity(intentArticleStory);
+            ((Activity) context).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
         return new StoryRecyclerAdapter.StoriesViewHolder(binding);
     }
 

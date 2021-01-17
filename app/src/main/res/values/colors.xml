@@ -5,6 +5,8 @@
     <color name="colorAccent">#FFB100</color>
     <color name="colorBlackTransparent">#60000000</color>
     <color name="colorBlackTransparentDark">#95000000</color>
+    <color name="colorAccentTransparent">#50FFB100</color>
+    <color name="colorPrimaryTransparent">#50006C67</color>
 
     <!-- Categories -->
     <color name="colorGreenNature">#009237</color>
