@@ -279,7 +279,6 @@
             android:id="@+id/headerArticle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_header_article"
-            android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -289,6 +288,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_article_header"
                 android:scaleType="centerCrop"
+                android:visibility="@{articleViewModel.headerVisible ? View.VISIBLE : View.GONE}"
                 android:src="@{articleViewModel.imageRes}"
                 app:srcCompat="@{articleViewModel.imageRes}"
                 tools:srcCompat="@{articleViewModel.imageRes}"
@@ -300,6 +300,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
+                android:visibility="@{articleViewModel.headerVisible ? View.VISIBLE : View.GONE}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -314,6 +315,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_header_title_article"
                 android:fontFamily="@font/espera"
+                android:visibility="@{articleViewModel.headerVisible ? View.VISIBLE : View.GONE}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/leftArrowButton"
@@ -353,6 +355,43 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:layout_width="@dimen/size_article_left_arrow"
+                android:layout_height="@dimen/size_article_left_arrow"
+                android:padding="@dimen/padding_left_arrow"
+                android:layout_marginTop="@dimen/margin_top_shadow_left_arrow"
+                android:layout_marginEnd="@dimen/margin_end_share_shadow"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/icon_left_arrow"
+                android:visibility="@{articleViewModel.headerVisible ? View.GONE : View.VISIBLE}"
+                android:alpha="0.9"
+                android:src="@drawable/ic_share_black"
+                app:srcCompat="@drawable/ic_share_black"
+                tools:srcCompat="@drawable/ic_share_black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageButton
+                android:id="@+id/shareArticleButton"
+                android:layout_width="@dimen/size_article_left_arrow"
+                android:layout_height="@dimen/size_article_left_arrow"
+                android:padding="@dimen/padding_left_arrow"
+                android:layout_marginEnd="@dimen/margin_end_share"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/icon_left_arrow"
+                android:visibility="@{articleViewModel.headerVisible ? View.GONE : View.VISIBLE}"
+                android:src="@drawable/share_article_selector"
+                app:srcCompat="@drawable/share_article_selector"
+                tools:srcCompat="@drawable/share_article_selector"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,9 @@ public class Constants {
     public static final String DRAWABLE = "drawable";
     public static final String PACKAGE_NAME = "com.pinalopes.informationspositives";
     public static final String FILTERS = "filters";
-    public static final String KEY_WORD_SEARCH = "keyWordSearch";
+    public static final String KEY_WORD_SEARCH = "key_word_search";
     public static final String BIG_PIC = "_big";
+    public static final String BLACK_ICON = "_black";
     public static final float START_LIKE_PROGRESS = 0.05f;
     public static final float END_LIKE_PROGRESS = 0.5f;
     public static final float START_DISLIKE_PROGRESS = 0.55f;
@@ -20,6 +21,11 @@ public class Constants {
     public static final int TYPE_ITEM = 1;
     public static final int FIRST_INDEX = 0;
     public static final int NO_ANIM = 0;
+
+    // ArticleActivity.java
+    public static final String TEXT_PLAIN = "text/plain";
+    public static final String URI_ARTICLE = "https://informationspositives?id_article=";
+    public static final String DATA_ARTICLE = "id_article";
 
     // StoryCountDownTimer.java
     public static final String ANIMATOR_PROPERTY_NAME = "progress";
@@ -38,4 +44,10 @@ public class Constants {
 
     // ArticleInStory.java
     public static final float SWIPE_MAX_PERCENT = 0.5f;
+
+    // CategoryArticle.java
+    public static final String CURRENT_CATEGORY = "current_category";
+    public static final int NO_BACKGROUND_RESOURCE = 0;
+    public static final float NO_ELEVATION = 0;
+    public static final float ELEVATION_TEN = 10;
 }

@@ -12,6 +12,16 @@
         <item>Sport</item>
     </string-array>
 
+    <string-array name="categories_desc">
+        <item>@string/nature_desc</item>
+        <item>@string/fauna_desc</item>
+        <item>@string/techno_desc</item>
+        <item>@string/humanitarian_desc</item>
+        <item>@string/food_desc</item>
+        <item>@string/economy_desc</item>
+        <item>@string/sport_desc</item>
+    </string-array>
+
     <string-array name="categories_res">
         <item>picture_nature</item>
         <item>picture_fauna</item>

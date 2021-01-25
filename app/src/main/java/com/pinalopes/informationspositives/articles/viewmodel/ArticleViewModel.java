@@ -7,11 +7,13 @@ public class ArticleViewModel extends ArticleRowViewModel {
 
     private String writtenBy;
     private boolean isLiked;
+    private boolean isHeaderVisible;
 
     public ArticleViewModel(String title, Category category, long nbViews, long nbLikes, int imageRes, boolean isVideo, String writtenBy, boolean isLiked) {
         super(title, "", "", category, nbViews, nbLikes, imageRes, isVideo);
         this.writtenBy = writtenBy;
         this.isLiked = isLiked;
+        this.isHeaderVisible = false;
     }
 
     public String getWrittenBy() {
@@ -28,5 +30,13 @@ public class ArticleViewModel extends ArticleRowViewModel {
 
     public void setLiked(boolean liked) {
         isLiked = liked;
+    }
+
+    public boolean isHeaderVisible() {
+        return isHeaderVisible;
+    }
+
+    public void setHeaderVisible(boolean headerVisible) {
+        isHeaderVisible = headerVisible;
     }
 }

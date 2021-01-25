@@ -19,6 +19,10 @@ public class CategoriesViewModel extends ViewModel {
         this.categoryEndColor = categoryEndColor;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+    
     public String getCategoryName() {
         return this.category.getCategoryName();
     }

@@ -39,6 +39,9 @@
         <activity android:name=".articles.model.ArticleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="informationspositives" />
             </intent-filter>
         </activity>
 
@@ -49,5 +52,11 @@
             </intent-filter>
         </activity>
 
-    </application>
+        <activity android:name=".categories.model.CategoryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+</application>
 </manifest>
