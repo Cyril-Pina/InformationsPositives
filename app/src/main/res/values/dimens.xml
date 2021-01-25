@@ -155,6 +155,8 @@
     <dimen name="size_article_left_arrow">40dp</dimen>
     <dimen name="margin_start_left_arrow">10dp</dimen>
     <dimen name="margin_start_shadow_left_arrow">10.4dp</dimen>
+    <dimen name="margin_end_share">10.4dp</dimen>
+    <dimen name="margin_end_share_shadow">10dp</dimen>
     <dimen name="margin_top_shadow_left_arrow">0.4dp</dimen>
     <dimen name="padding_left_arrow">9dp</dimen>
     <dimen name="margin_bottom_end_like_layout">20dp</dimen>
@@ -205,6 +207,37 @@
     <dimen name="size_text_count_down_story">14sp</dimen>
     <dimen name="margin_count_down_story">16dp</dimen>
     <dimen name="size_progress_bar_story">40dp</dimen>
+
+    <!-- category.xml -->
+    <dimen name="size_text_title_category">30sp</dimen>
+    <dimen name="size_category_icon_category">33dp</dimen>
+    <dimen name="height_category_header">250dp</dimen>
+    <dimen name="padding_t_b_category_title_layout">20dp</dimen>
+    <dimen name="margin_start_end_category_title">10dp</dimen>
+    <dimen name="margin_start_end_category_desc">50dp</dimen>
+    <dimen name="padding_top_category_desc">30dp</dimen>
+    <dimen name="padding_bottom_category_desc">20dp</dimen>
+    <dimen name="size_text_category_desc">13sp</dimen>
+    <dimen name="margin_top_category_recycler_view">50dp</dimen>
+
+    <!-- article_category_row.xml -->
+    <dimen name="height_card_view_article_category">120dp</dimen>
+    <dimen name="width_image_article_category">100dp</dimen>
+    <dimen name="height_image_article_category">120dp</dimen>
+    <dimen name="margin_end_article_views">3dp</dimen>
+    <dimen name="margin_end_article_likes">10dp</dimen>
+    <dimen name="margin_article_category_title">10dp</dimen>
+    <dimen name="size_text_article_category_title">16sp</dimen>
+    <dimen name="size_text_likes_small">12sp</dimen>
+    <dimen name="size_image_likes_small">13dp</dimen>
+    <dimen name="size_text_views_small">12sp</dimen>
+    <dimen name="size_image_views_small">14dp</dimen>
+    <dimen name="size_text_article_category_writer">10sp</dimen>
+    <dimen name="margin_start_end_article_writer">10dp</dimen>
+    <dimen name="margin_top_article_writer">4dp</dimen>
+    <dimen name="padding_text_article_time">3dp</dimen>
+    <dimen name="size_icon_clock_small">13dp</dimen>
+    <dimen name="size_text_article_category_date">10sp</dimen>
 
     <!-- DRAWABLE -->
 

@@ -42,20 +42,21 @@ public class CategoriesFragment extends Fragment {
         CategoriesRecyclerAdapter adapter = new CategoriesRecyclerAdapter(getCategoryDataList());
         categoriesRecyclerView.setAdapter(adapter);
     }
+    
     private List<CategoriesViewModel> getCategoryDataList() {
         List<CategoriesViewModel> categoryDataList = new ArrayList<>();
         String[] categoriesName = getResources().getStringArray(R.array.categories_name);
         String[] categoriesRes = getResources().getStringArray(R.array.categories_res);
         String[] categoriesIcon = getResources().getStringArray(R.array.categories_icon);
         int[] categoriesColors = getResources().getIntArray(R.array.categories_colors);
-        int j = 0;
+        int colorIndex = 0;
 
         for (int i = 0; i != categoriesName.length ; i ++) {
             String categoryName = categoriesName[i];
             String categoryRes = categoriesRes[i] + BIG_PIC;
             String categoryIcon = categoriesIcon[i];
-            int categoryStartColor = categoriesColors[j];
-            int categoryEndColor = categoriesColors[j + 1];
+            int categoryStartColor = categoriesColors[colorIndex];
+            int categoryEndColor = categoriesColors[colorIndex + 1];
 
             CategoriesViewModel category = new CategoriesViewModel(
                     new Category(categoryName,
@@ -64,7 +65,7 @@ public class CategoriesFragment extends Fragment {
                     categoryStartColor,
                     categoryEndColor);
             categoryDataList.add(category);
-            j += 2;
+            colorIndex += 2;
         }
         return categoryDataList;
     }

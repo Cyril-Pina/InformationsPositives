@@ -7,6 +7,7 @@
     <color name="colorBlackTransparentDark">#95000000</color>
     <color name="colorAccentTransparent">#50FFB100</color>
     <color name="colorPrimaryTransparent">#50006C67</color>
+    <color name="colorDefaultLayout">#FAFAFA</color>
 
     <!-- Categories -->
     <color name="colorGreenNature">#009237</color>

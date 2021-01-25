@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="categoryViewModel"
+            type="com.pinalopes.informationspositives.categories.viewmodel.CategoryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/articleCategoryScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/categoryHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_category_header"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/category_picture"
+                        android:src="@{categoryViewModel.category.categoryRes}"
+                        app:srcCompat="@{categoryViewModel.category.categoryRes}"
+                        tools:srcCompat="@{categoryViewModel.category.categoryRes}"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/zero"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@drawable/category_shadow_background" />
+
+                    <View
+                        android:id="@+id/categoryHeaderGradient"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/zero"
+                        app:layout_constraintHeight_percent="0.4"
+                        android:background="@drawable/category_gradient_background"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/categoryDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start_end_category_desc"
+                    android:layout_marginEnd="@dimen/margin_start_end_category_desc"
+                    android:paddingTop="@dimen/padding_top_category_desc"
+                    android:paddingBottom="@dimen/padding_bottom_category_desc"
+                    android:text="@{categoryViewModel.desc}"
+                    android:textSize="@dimen/size_text_category_desc"
+                    android:fontFamily="@font/espera"
+                    android:singleLine="false"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/categoryHeader"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/articleCategoryRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_top_category_recycler_view"
+                    android:overScrollMode="never" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:id="@+id/categoryTitleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_t_b_category_title_layout"
+            android:paddingBottom="@dimen/padding_t_b_category_title_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/leftArrowButton"
+                android:layout_width="@dimen/size_article_left_arrow"
+                android:layout_height="@dimen/size_article_left_arrow"
+                android:padding="@dimen/padding_left_arrow"
+                android:layout_marginStart="@dimen/margin_start_left_arrow"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/icon_left_arrow"
+                android:src="@drawable/left_arrow_selector_white"
+                app:srcCompat="@drawable/left_arrow_selector_white"
+                tools:srcCompat="@drawable/left_arrow_selector_white" />
+
+            <TextView
+                android:id="@+id/categoryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_start_end_category_title"
+                android:layout_marginEnd="@dimen/margin_start_end_category_title"
+                android:text="@{categoryViewModel.category.categoryName}"
+                android:textSize="@dimen/size_text_title_category"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/louis_george_cafe"
+                android:layout_toEndOf="@id/leftArrowButton"
+                android:layout_centerVertical="true" />
+
+            <ImageView
+                android:id="@+id/categoryIcon"
+                android:layout_width="@dimen/size_category_icon_category"
+                android:layout_height="@dimen/size_category_icon_category"
+                android:contentDescription="@string/category_icon"
+                android:src="@{categoryViewModel.category.categoryIcon}"
+                app:srcCompat="@{categoryViewModel.category.categoryIcon}"
+                tools:srcCompat="@{categoryViewModel.category.categoryIcon}"
+                android:layout_toEndOf="@id/categoryTitle"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

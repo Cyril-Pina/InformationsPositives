@@ -1,6 +1,7 @@
 package com.pinalopes.informationspositives.categories.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -8,11 +9,14 @@ import android.view.animation.AnimationUtils;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.categories.viewmodel.CategoriesViewModel;
 import com.pinalopes.informationspositives.databinding.CategoryRowBinding;
 
 import java.util.List;
+
+import static com.pinalopes.informationspositives.Constants.CURRENT_CATEGORY;
 
 public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRecyclerAdapter.CategoriesViewHolder> {
 
@@ -55,8 +59,15 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
         Context context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         CategoryRowBinding binding = CategoryRowBinding.inflate(layoutInflater, parent, false);
-        binding.getRoot().setOnClickListener(v -> v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.item_pressed_alpha_anim)));
-        return new CategoriesViewHolder(binding);
+        CategoriesViewHolder holder = new CategoriesViewHolder(binding);
+        binding.getRoot().setOnClickListener(v -> {
+            v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.item_pressed_alpha_anim));
+            Intent intentCategory = new Intent(context, CategoryActivity.class);
+            String jsonCategoryObj = new Gson().toJson(categoryDataList.get(holder.getAdapterPosition()).getCategory());
+            intentCategory.putExtra(CURRENT_CATEGORY, jsonCategoryObj);
+            context.startActivity(intentCategory);
+        });
+        return holder;
     }
 
     @Override

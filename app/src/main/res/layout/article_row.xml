@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <import type="android.view.View" />
@@ -8,13 +10,11 @@
             type="com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_article_row"
         android:minHeight="@dimen/height_article_row"
-        android:maxHeight="@dimen/height_article_row"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:maxHeight="@dimen/height_article_row">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -165,9 +165,10 @@
                     android:id="@+id/articleInfoLayout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
-                    app:layout_constraintHeight_percent=".5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".5"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
@@ -190,20 +191,20 @@
                         android:layout_marginBottom="@dimen/margin_start_bottom_icon_clock"
                         android:contentDescription="@string/icon_clock"
                         android:src="@drawable/ic_clock"
-                        app:srcCompat="@drawable/ic_clock"
-                        tools:srcCompat="@drawable/ic_clock"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/ic_clock"
+                        tools:srcCompat="@drawable/ic_clock" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_start_text_article_date"
                         android:layout_marginBottom="@dimen/margin_bottom_text_article_date"
-                        android:text="@{articleRowViewModel.date}"
-                        android:textSize="@dimen/size_text_article_date"
-                        android:textColor="@android:color/darker_gray"
                         android:fontFamily="@font/made_tommy"
+                        android:text="@{articleRowViewModel.date}"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/size_text_article_date"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/clockIcon" />
 
@@ -214,20 +215,20 @@
                         android:layout_marginBottom="@dimen/margin_bottom_image_feather"
                         android:contentDescription="@string/icon_feather"
                         android:src="@drawable/ic_feather"
-                        app:srcCompat="@drawable/ic_feather"
-                        tools:srcCompat="@drawable/ic_feather"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/writerTextView" />
+                        app:layout_constraintEnd_toStartOf="@id/writerTextView"
+                        app:srcCompat="@drawable/ic_feather"
+                        tools:srcCompat="@drawable/ic_feather" />
 
                     <TextView
                         android:id="@+id/writerTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_article_writer"
-                        android:text="@{articleRowViewModel.writer}"
-                        android:textSize="@dimen/size_text_article_writer"
-                        android:textColor="@android:color/darker_gray"
                         android:fontFamily="@font/made_tommy"
+                        android:text="@{articleRowViewModel.writer}"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/size_text_article_writer"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
