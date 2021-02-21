@@ -13,7 +13,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?attr/colorBackgroundFloating">
 
             <ImageView
                 android:id="@+id/logoImageView"
@@ -38,8 +39,8 @@
                 android:contentDescription="@string/icon_search"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/search_selector"
-                tools:src="@drawable/search_selector" />
+                android:src="?attr/searchIcon"
+                tools:src="?attr/searchIcon" />
 
         </RelativeLayout>
 
@@ -56,7 +57,7 @@
         android:id="@+id/activityMainBottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="?attr/colorBackgroundFloating"
         android:theme="@style/Widget.BottomNavigationView"
         app:itemIconSize="@dimen/bottom_navigation_view_icon_size"
         app:menu="@menu/bottom_navigation_menu"

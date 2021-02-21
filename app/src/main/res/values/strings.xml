@@ -22,6 +22,9 @@
     <string name="icon_video_play">Icône Vidéo</string>
     <string name="image_article_header">Image Article En-tête</string>
     <string name="icon_cross">Icône Croix</string>
+    <string name="icon_menu_item">Icône Item Menu</string>
+    <string name="icon_rate_us">Icône Note-nous</string>
+    <string name="image_header_about_us">Image En-tête</string>
 
     <!-- Transition Name -->
     <string name="category_icon_transition">categoryIconTransition</string>
@@ -61,6 +64,37 @@
     <!-- article_in_story.xml -->
     <string name="see_full_article">Voir l\'article</string>
     <string name="initial_count_down_value">10</string>
+
+    <!-- settings_fragment.xml -->
+    <string name="settings">Paramètres</string>
+    <string name="top_categories_title">Ton TOP 3</string>
+    <string name="top_categories_desc">Choisis les 3 catégories que tu souhaites voir en priorité dans ton fil d\'actualité.</string>
+    <string name="notifications_item">Notifications \"Quote du jour\"</string>
+    <string name="rate_us">Note-nous !</string>
+    <string name="email_ip">cyril.7he4ndroid@gmail.com</string>
+    <string name="subject_email">[Informations Positives] Bonjour ! &#x1F604;</string>
+    <string name="chooser_title_email">Envoyez-nous un e-mail ! &#x1F4DD;</string>
+    <plurals name="number_top_categories_selected">
+        <item quantity="zero">Catégorie sélectionnée : %d/3.</item>
+        <item quantity="one">Catégorie sélectionnée : %d/3.</item>
+        <item quantity="other">Catégories sélectionnées : %d/3.</item>
+    </plurals>
+
+    <!-- about_us_dialog_fragment.xml -->
+    <string name="app_name_copyright">Informations Positives ©</string>
+    <string name="about_us_desc">Pensée et développée par Cyril \"The Android\" Pina-Lopes.</string>
+
+    <!-- Notification.java / NotificationsBroadcastReceiver.java -->
+    <string name="channel_name">IPNotificationChannel</string>
+    <string name="channel_description">Notification channel principal</string>
+    <string name="notification_title">Quote du jour</string>
+    <string name="notification_desc">Pierre qui roule n\'amasse pas mousse.</string>
+
+    <!-- DataStorage.java -->
+    <string name="preference_file_key">prefsFileKey</string>
+    <string name="saved_selected_categories_key">selectedCategoriesKey</string>
+    <string name="saved_notifications_state_key">notificationsStateKey</string>
+    <string name="saved_current_theme_key">nightModeStateKey</string>
 
     <string name="text">
         Can this contain a lot of text? Can it contain \n a newline? Yes, it can.

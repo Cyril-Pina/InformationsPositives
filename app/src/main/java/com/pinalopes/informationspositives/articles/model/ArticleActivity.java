@@ -14,6 +14,7 @@ import com.pinalopes.informationspositives.articles.viewmodel.ArticleViewModel;
 import com.pinalopes.informationspositives.articles.viewmodel.RecommendationRowViewModel;
 import com.pinalopes.informationspositives.categories.model.Category;
 import com.pinalopes.informationspositives.databinding.ArticleBinding;
+import com.pinalopes.informationspositives.storage.DataStorage;
 import com.r0adkll.slidr.Slidr;
 
 import java.util.ArrayList;
@@ -30,11 +31,11 @@ import static com.pinalopes.informationspositives.Constants.URI_ARTICLE;
 public class ArticleActivity extends AppCompatActivity {
 
     private ArticleBinding binding;
-
     private boolean isLiked;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(DataStorage.getUserSettings().getCurrentTheme());
         super.onCreate(savedInstanceState);
         binding = ArticleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -105,7 +106,7 @@ public class ArticleActivity extends AppCompatActivity {
         Uri uri = intent.getData();
         if (uri != null) {
             String idArticle = uri.getQueryParameter(DATA_ARTICLE);
-            Log.d("Id article", idArticle + "");
+            Log.d("ID Article", idArticle);
         }
     }
 

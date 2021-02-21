@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pinalopes.informationspositives">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:name=".application.IPApplication"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +13,7 @@
         android:configChanges="orientation"
         android:screenOrientation="portrait"
         android:allowBackup="true"
+        android:showOnLockScreen="true"
         android:fullBackupContent="@xml/informations_positives_backup_rules"
         android:theme="@style/AppTheme.NoActionBar">
 
@@ -24,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".home.model.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -58,5 +61,7 @@
             </intent-filter>
         </activity>
 
-</application>
+        <receiver android:name=".notifications.NotificationsBroadcastReceiver" />
+
+    </application>
 </manifest>

@@ -10,8 +10,8 @@ import android.view.ViewTreeObserver;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.pinalopes.informationspositives.home.model.MainActivity;
 import com.pinalopes.informationspositives.databinding.LaunchScreenBinding;
+import com.pinalopes.informationspositives.storage.DataStorage;
 
 public class LaunchScreen extends AppCompatActivity {
 
@@ -29,6 +29,7 @@ public class LaunchScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = LaunchScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        DataStorage.initDataStorage(this);
     }
 
     @Override

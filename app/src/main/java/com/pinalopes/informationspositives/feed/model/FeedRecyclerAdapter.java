@@ -78,7 +78,7 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
+        if (position == FIRST_INDEX) {
             return TYPE_HEADER;
         }
         return TYPE_ITEM;

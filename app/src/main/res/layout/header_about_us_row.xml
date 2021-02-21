@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="headerAboutUsViewModel"
+            type="com.pinalopes.informationspositives.settings.viewmodel.HeaderAboutUsViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_image_header_about_us"
+        android:contentDescription="@string/image_header_about_us"
+        android:src="@{headerAboutUsViewModel.imageRes}"
+        app:srcCompat="@{headerAboutUsViewModel.imageRes}"
+        tools:srcCompat="@{headerAboutUsViewModel.imageRes}"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -21,7 +21,8 @@ import com.pinalopes.informationspositives.databinding.FeedFragmentBinding;
 import com.pinalopes.informationspositives.feed.dagger.DaggerFeedComponent;
 import com.pinalopes.informationspositives.feed.dagger.LoadingModule;
 import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
-
+import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.utils.ResourceUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,10 +58,14 @@ public class FeedFragment extends Fragment {
         RecyclerView feedRecyclerView = binding.feedRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         List<ArticleRowViewModel> test = new ArrayList<>();
+        int currentThemeId = DataStorage.getUserSettings().getCurrentTheme();
 
-        Category category = new Category("Nature", 0, R.drawable.ic_nature_black);
-        Category categoryFauna = new Category("Faune", 0, R.drawable.ic_fauna_black);
-        Category categoryFood = new Category("Alimentation", 0, R.drawable.ic_food_black);
+        Category category = new Category("Nature", 0,
+                ResourceUtils.getThemeCategoryIcon(context, currentThemeId, R.drawable.ic_food));
+        Category categoryFauna = new Category("Faune", 0,
+                ResourceUtils.getThemeCategoryIcon(context, currentThemeId, R.drawable.ic_fauna));
+        Category categoryFood = new Category("Alimentation", 0,
+                ResourceUtils.getThemeCategoryIcon(context, currentThemeId, R.drawable.ic_techno));
 
         test.add(new ArticleRowViewModel("Un chiot est sauver par Gaston du PMU", "18:25-12/12/2020", "Michel Jaqueson", category, 1802, 235, R.drawable.picture_economy, true));
         test.add(new ArticleRowViewModel("Sangoku a encore sauvé la terre top", "16:10-12/12/2020", "Miky Mike", category, 36820, 13, R.drawable.picture_economy, true));

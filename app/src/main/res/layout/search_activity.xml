@@ -15,6 +15,7 @@
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorOnBackground"
         android:animateLayoutChanges="true">
 
         <androidx.cardview.widget.CardView
@@ -28,7 +29,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?attr/colorBackgroundFloating">
 
                 <ImageView
                     android:id="@+id/logoImageView"
@@ -51,8 +53,8 @@
                     android:contentDescription="@string/icon_left_arrow"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/left_arrow_selector"
-                    tools:src="@drawable/left_arrow_selector"
+                    android:src="?attr/leftArrowIcon"
+                    tools:src="?attr/leftArrowIcon"
                     android:layout_toEndOf="@id/logoImageView" />
 
                 <EditText

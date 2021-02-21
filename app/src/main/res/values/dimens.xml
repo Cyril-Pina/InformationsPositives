@@ -239,6 +239,62 @@
     <dimen name="size_icon_clock_small">13dp</dimen>
     <dimen name="size_text_article_category_date">10sp</dimen>
 
+    <!-- settings_fragment.xml -->
+    <dimen name="size_text_settings_title">30sp</dimen>
+    <dimen name="padding_s_e_settings_title">15dp</dimen>
+    <dimen name="height_top_settings_view">20dp</dimen>
+    <dimen name="radius_top_settings">16dp</dimen>
+    <dimen name="size_text_categories_title">14sp</dimen>
+    <dimen name="size_text_categories_desc">12sp</dimen>
+    <dimen name="margin_top_top_categories">26dp</dimen>
+    <dimen name="columns_width_top_categories_grid_view">1dp</dimen>
+    <dimen name="spacing_top_categories_grid_view">7dp</dimen>
+    <dimen name="size_text_count_categories_selected">12sp</dimen>
+    <dimen name="margin_s_e_top_categories_title_desc">20dp</dimen>
+    <dimen name="margin_s_e_top_categories_grid_view">40dp</dimen>
+    <dimen name="margin_bottom_top_categories_grid_view">8dp</dimen>
+    <dimen name="margin_bottom_desc_top_categories">20dp</dimen>
+    <dimen name="margin_bottom_categories_selected">20dp</dimen>
+    <dimen name="size_floating_button">56dp</dimen>
+    <dimen name="margin_floating_button">20dp</dimen>
+    <dimen name="elevation_floating_button">10dp</dimen>
+    <dimen name="radius_floating_button">28dp</dimen>
+    <dimen name="padding_bottom_floating_button">10dp</dimen>
+    <dimen name="size_rate_us_icon">24dp</dimen>
+    <dimen name="size_text_rate_us">7sp</dimen>
+    <dimen name="margin_bottom_text_rate_us">2dp</dimen>
+
+    <!-- settings_menu_item.xml -->
+    <dimen name="size_settings_menu_item_icon">18dp</dimen>
+    <dimen name="size_text_settings_menu_item">17sp</dimen>
+    <dimen name="margin_start_settings_menu_icon">14dp</dimen>
+    <dimen name="margin_end_settings_menu_switch">14dp</dimen>
+    <dimen name="margin_start_settings_menu_item">6dp</dimen>
+    <dimen name="height_settings_menu_item">45dp</dimen>
+
+    <!-- settings_menu_empty_item.xml -->
+    <dimen name="height_settings_menu_empty_item">20dp</dimen>
+
+    <!-- night_mode_dialog_fragment.xml -->
+    <dimen name="margin_s_e_night_mode_anim">50dp</dimen>
+    <dimen name="size_icon_cross_pop_up">60dp</dimen>
+    <dimen name="padding_icon_cross_pop_up">11dp</dimen>
+    <dimen name="margin_icon_cross_pop_up">10dp</dimen>
+
+    <!-- about_us_dialog_fragment.xml -->
+    <dimen name="margin_start_end_about_us_text">12dp</dimen>
+    <dimen name="margin_top_about_us_text">20dp</dimen>
+    <dimen name="margin_top_about_us_desc_text">12dp</dimen>
+    <dimen name="margin_top_app_version_desc_text">30dp</dimen>
+    <dimen name="size_text_title_about_us">16sp</dimen>
+    <dimen name="size_text_desc_about_us">12sp</dimen>
+    <dimen name="padding_bottom_about_us_text">40dp</dimen>
+    <dimen name="height_header_about_us">92dp</dimen>
+    <dimen name="size_logo_header_about_us">80dp</dimen>
+
+    <!-- header_about_us_row.xml -->
+    <dimen name="height_image_header_about_us">46dp</dimen>
+
     <!-- DRAWABLE -->
 
     <!-- rounded_border_grey_shape.xml -->
@@ -264,5 +320,8 @@
 
     <!-- circle_progress_bar_story.xml -->
     <dimen name="thickness_progress_bar_story">3dp</dimen>
+
+    <!-- background_dialog_fragment.xml -->
+    <dimen name="radius_dialog_fragment">1dp</dimen>
 
 </resources>

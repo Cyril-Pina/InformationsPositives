@@ -1,7 +1,7 @@
 package com.pinalopes.informationspositives.articles.model;
 
 import com.pinalopes.informationspositives.editor.EditorModule;
-import com.pinalopes.informationspositives.home.model.MainActivity;
+import com.pinalopes.informationspositives.MainActivity;
 
 import dagger.Component;
 

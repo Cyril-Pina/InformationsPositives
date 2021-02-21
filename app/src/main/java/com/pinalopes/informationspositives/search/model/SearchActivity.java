@@ -20,21 +20,16 @@ import androidx.transition.Transition;
 
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.TransitionService;
-import com.pinalopes.informationspositives.categories.model.Category;
 import com.pinalopes.informationspositives.databinding.SearchActivityBinding;
-import com.pinalopes.informationspositives.search.viewmodel.FilterCategoriesViewModel;
 import com.pinalopes.informationspositives.search.viewmodel.SearchActivityViewModel;
+import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.utils.AdapterUtils;
 import com.pinalopes.informationspositives.utils.DateUtils;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-
-import static com.pinalopes.informationspositives.Constants.DRAWABLE;
-import static com.pinalopes.informationspositives.Constants.PACKAGE_NAME;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -49,9 +44,12 @@ public class SearchActivity extends AppCompatActivity {
     private SearchActivityBinding binding;
     private boolean isFiltersDisplayed = false;
     private Filters filters;
+    private int currentThemeId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(DataStorage.getUserSettings().getCurrentTheme());
+        currentThemeId = R.style.AppTheme_Dark_NoActionBar;
         super.onCreate(savedInstanceState);
         binding = SearchActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -109,26 +107,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initCategoriesFilterAdapter() {
-        List<FilterCategoriesViewModel> categories = new ArrayList<>();
-        String[] categoriesName = getResources().getStringArray(R.array.categories_name);
-        String[] categoriesRes = getResources().getStringArray(R.array.categories_res);
-        String[] categoriesIcon = getResources().getStringArray(R.array.categories_icon);
-
-        for (int i = 0; i != categoriesName.length ; i ++) {
-            String categoryName = categoriesName[i];
-            int categoryRes =  getResources().getIdentifier(categoriesRes[i], DRAWABLE, PACKAGE_NAME);
-            int categoryIcon =  getResources().getIdentifier(categoriesIcon[i], DRAWABLE, PACKAGE_NAME);
-
-            FilterCategoriesViewModel filterCategoriesViewModel = new FilterCategoriesViewModel(
-                    new Category(categoryName,
-                            categoryRes,
-                            categoryIcon),
-                    false
-            );
-            categories.add(filterCategoriesViewModel);
-        }
-
-        FilterCategoriesAdapter adapter = new FilterCategoriesAdapter(this, categories,
+        FilterCategoriesAdapter adapter = new FilterCategoriesAdapter(this, AdapterUtils.getFilterCategories(this),
                 binding.getSearchActivityViewModel().getClickOnCategoryMutable());
         binding.filterCategoriesGridView.setAdapter(adapter);
     }
@@ -205,9 +184,11 @@ public class SearchActivity extends AppCompatActivity {
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             int month = calendar.get(Calendar.MONTH);
             int year = calendar.get(Calendar.YEAR);
+            int alertDialogStyle = currentThemeId == R.style.AppTheme_NoActionBar ?
+                    R.style.DateFilterSpinnerStyle : R.style.DateFilterSpinnerDarkStyle;
 
             DatePickerDialog picker = new DatePickerDialog(SearchActivity.this,
-                    R.style.DateFilterSpinnerStyle,
+                    alertDialogStyle,
                     onDateSetListener,
                     year,
                     month,

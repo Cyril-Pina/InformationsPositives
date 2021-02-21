@@ -33,7 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_recommendation_row"
                 android:minHeight="@dimen/height_recommendation_row"
-                android:maxHeight="@dimen/height_recommendation_row">
+                android:maxHeight="@dimen/height_recommendation_row"
+                android:background="?attr/colorBackgroundFloating">
 
                 <ImageView
                     android:id="@+id/articleImage"
@@ -101,7 +102,6 @@
                         android:layout_margin="@dimen/margin_text_reco_title"
                         android:fontFamily="@font/espera"
                         android:text="@{recommendationRowViewModel.title}"
-                        android:textColor="@android:color/black"
                         android:textSize="@dimen/size_text_article_title_"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
