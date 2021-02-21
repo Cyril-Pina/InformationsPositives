@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorOnBackground"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
@@ -17,6 +18,7 @@
             android:id="@+id/articleCategoryScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -116,9 +118,9 @@
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/icon_left_arrow"
-                android:src="@drawable/left_arrow_selector_white"
-                app:srcCompat="@drawable/left_arrow_selector_white"
-                tools:srcCompat="@drawable/left_arrow_selector_white" />
+                android:src="@drawable/left_arrow_white_selector"
+                app:srcCompat="@drawable/left_arrow_white_selector"
+                tools:srcCompat="@drawable/left_arrow_white_selector" />
 
             <TextView
                 android:id="@+id/categoryTitle"

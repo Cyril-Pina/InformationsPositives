@@ -19,6 +19,7 @@ import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.categories.viewmodel.ArticleCategoryViewModel;
 import com.pinalopes.informationspositives.categories.viewmodel.CategoryViewModel;
 import com.pinalopes.informationspositives.databinding.CategoryBinding;
+import com.pinalopes.informationspositives.storage.DataStorage;
 import com.pinalopes.informationspositives.utils.ResourceUtils;
 import com.r0adkll.slidr.Slidr;
 
@@ -35,8 +36,12 @@ public class CategoryActivity extends AppCompatActivity {
     private CategoryBinding binding;
     private Category category;
 
+    private int currentThemeId;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        currentThemeId = DataStorage.getUserSettings().getCurrentTheme();
+        setTheme(currentThemeId);
         super.onCreate(savedInstanceState);
         binding = CategoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -72,20 +77,26 @@ public class CategoryActivity extends AppCompatActivity {
         final Bitmap iconCategoryWhite = ResourceUtils.imgResToBitmap(this, category.getCategoryIcon());
         final Bitmap iconCategoryBlack = ResourceUtils.imgResToBitmap(this,
                 ResourceUtils.getCategoryBlackIcon(this, category.getCategoryIcon()));
-        final int leftArrowWhiteRes = R.drawable.left_arrow_selector_white;
+        final int leftArrowWhiteRes = R.drawable.left_arrow_white_selector;
         final int leftArrowBlackRes = R.drawable.left_arrow_selector;
 
         binding.articleCategoryScrollView.setOnScrollChangeListener((View.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             if (scrollY <= boundaryChangeColor && oldScrollY > boundaryChangeColor) {
-                animateTextColorChanges(colorWhite, fadeInAnimation);
-                animateImageSrcChanges(iconCategoryWhite, fadeInAnimation);
-                animateImageButtonChanges(leftArrowWhiteRes, fadeInAnimation);
+                if (currentThemeId == R.style.AppTheme_NoActionBar) {
+                    animateTextColorChanges(colorWhite, fadeInAnimation);
+                    animateImageSrcChanges(iconCategoryWhite, fadeInAnimation);
+                    animateImageButtonChanges(leftArrowWhiteRes, fadeInAnimation);
+                }
                 updateHeaderBackground(NO_ELEVATION, NO_BACKGROUND_RESOURCE);
             } else if (scrollY > boundaryChangeColor && oldScrollY <= boundaryChangeColor) {
-                animateTextColorChanges(colorBlack, fadeInAnimation);
-                animateImageSrcChanges(iconCategoryBlack, fadeInAnimation);
-                animateImageButtonChanges(leftArrowBlackRes, fadeInAnimation);
-                updateHeaderBackground(ELEVATION_TEN, Color.WHITE);
+                if (currentThemeId == R.style.AppTheme_NoActionBar) {
+                    animateTextColorChanges(colorBlack, fadeInAnimation);
+                    updateHeaderBackground(ELEVATION_TEN, Color.WHITE);
+                    animateImageSrcChanges(iconCategoryBlack, fadeInAnimation);
+                    animateImageButtonChanges(leftArrowBlackRes, fadeInAnimation);
+                } else {
+                    updateHeaderBackground(ELEVATION_TEN, Color.BLACK);
+                }
             }
         });
     }

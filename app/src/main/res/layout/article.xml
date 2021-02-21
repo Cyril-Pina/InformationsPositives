@@ -19,7 +19,7 @@
             android:id="@+id/articleScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
+            android:background="?attr/colorBackgroundFloating"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,8 +103,8 @@
                         android:layout_marginEnd="@dimen/margin_start_end_article_title"
                         android:paddingBottom="@dimen/padding_bottom_title_text_view"
                         android:text="@{articleViewModel.title}"
-                        android:textColor="@android:color/white"
                         android:textSize="@dimen/text_size_title_article"
+                        android:textColor="@android:color/white"
                         android:fontFamily="@font/espera"
                         app:layout_constraintBottom_toTopOf="@id/articleStatsLayout"
                         app:layout_constraintStart_toStartOf="parent"
@@ -196,6 +196,7 @@
                     android:layout_marginTop="@dimen/margin_top_like_layout"
                     android:layout_marginEnd="@dimen/margin_bottom_end_like_layout"
                     android:layout_marginBottom="@dimen/margin_bottom_end_like_layout"
+                    android:background="?attr/colorBackgroundFloating"
                     android:layout_gravity="end">
 
                     <com.airbnb.lottie.LottieAnimationView
@@ -203,7 +204,7 @@
                         android:layout_width="@dimen/size_like_animation"
                         android:layout_height="@dimen/size_like_animation"
                         android:layout_marginTop="@dimen/margin_top_minus_like_animation"
-                        app:lottie_rawRes="@raw/like_anim"
+                        app:lottie_rawRes="?attr/likeAnim"
                         android:layout_centerHorizontal="true"
                         android:layout_below="@id/didYouLikeText" />
 
@@ -349,9 +350,9 @@
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/icon_left_arrow"
-                android:src="@drawable/left_arrow_selector_white"
-                app:srcCompat="@drawable/left_arrow_selector_white"
-                tools:srcCompat="@drawable/left_arrow_selector_white"
+                android:src="@drawable/left_arrow_white_selector"
+                app:srcCompat="@drawable/left_arrow_white_selector"
+                tools:srcCompat="@drawable/left_arrow_white_selector"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

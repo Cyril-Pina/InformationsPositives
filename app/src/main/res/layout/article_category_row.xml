@@ -9,12 +9,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/height_card_view_article_category"
-    android:maxHeight="@dimen/height_card_view_article_category"
-    android:minHeight="@dimen/height_card_view_article_category"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_card_view_article_category"
+        android:maxHeight="@dimen/height_card_view_article_category"
+        android:minHeight="@dimen/height_card_view_article_category"
+        android:background="?attr/colorOnBackground"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -28,7 +29,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?attr/colorBackgroundFloating">
 
                 <ImageView
                     android:id="@+id/articleImage"
@@ -75,7 +77,6 @@
                     android:layout_margin="@dimen/margin_article_category_title"
                     android:fontFamily="@font/espera"
                     android:text="@{articleCategoryViewModel.title}"
-                    android:textColor="@android:color/black"
                     android:textSize="@dimen/size_text_article_category_title"
                     app:layout_constraintStart_toEndOf="@id/articleImage"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -158,7 +159,6 @@
                         android:padding="@dimen/padding_text_views"
                         android:text='@{String.valueOf(articleCategoryViewModel.nbViews)}'
                         android:textSize="@dimen/size_text_views_small"
-                        android:textColor="@android:color/black"
                         android:fontFamily="@font/made_tommy_bold"/>
                 </LinearLayout>
 

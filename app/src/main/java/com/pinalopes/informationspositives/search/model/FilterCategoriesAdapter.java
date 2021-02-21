@@ -16,8 +16,8 @@ import java.util.List;
 
 public class FilterCategoriesAdapter extends BaseAdapter {
 
-    private final Context context;
-    private final List<FilterCategoriesViewModel> categories;
+    protected final Context context;
+    protected final List<FilterCategoriesViewModel> categories;
     private final MutableLiveData<Integer> clickOnCategoryMutable;
 
     public FilterCategoriesAdapter(Context context, List<FilterCategoriesViewModel> categories, MutableLiveData<Integer> clickOnCategoryMutable) {
@@ -57,7 +57,7 @@ public class FilterCategoriesAdapter extends BaseAdapter {
         return categoryFilterRow;
     }
 
-    private void updateDataRow(CategoryFilterRowBinding binding, FilterCategoriesViewModel filterCategoriesViewModel) {
+    protected void updateDataRow(CategoryFilterRowBinding binding, FilterCategoriesViewModel filterCategoriesViewModel) {
         binding.setFilterCategoriesViewModel(filterCategoriesViewModel);
     }
 }

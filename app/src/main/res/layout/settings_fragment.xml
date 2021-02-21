@@ -1,6 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="topCategoriesViewModel"
+            type="com.pinalopes.informationspositives.settings.viewmodel.TopCategoriesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorOnBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerSettings"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            app:layout_constraintHeight_percent="0.15"
+            android:background="@drawable/background_gradient"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_s_e_settings_title"
+                android:paddingEnd="@dimen/padding_s_e_settings_title"
+                android:layout_marginBottom="@dimen/height_top_settings_view"
+                android:text="@string/settings"
+                android:textSize="@dimen/size_text_settings_title"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/espera"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/roundBottomRecoView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_top_settings_view"
+                android:background="@drawable/top_settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/topCategoriesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_top_categories"
+            app:layout_constraintTop_toBottomOf="@id/headerSettings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/topCategoriesTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+                
+                <ImageView
+                    android:layout_width="@dimen/size_settings_menu_item_icon"
+                    android:layout_height="@dimen/size_settings_menu_item_icon"
+                    android:layout_marginStart="@dimen/margin_start_settings_menu_icon"
+                    android:contentDescription="@string/icon_menu_item"
+                    android:src="@drawable/ic_up_arrow"
+                    app:srcCompat="@drawable/ic_up_arrow"
+                    tools:srcCompat="@drawable/ic_up_arrow" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start_settings_menu_item"
+                    android:text="@string/top_categories_title"
+                    android:textSize="@dimen/size_text_settings_menu_item"
+                    android:fontFamily="@font/made_tommy" />
+            </LinearLayout>
+            
+            <TextView
+                android:id="@+id/topCategoriesDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_s_e_top_categories_grid_view"
+                android:layout_marginEnd="@dimen/margin_s_e_top_categories_grid_view"
+                android:layout_marginBottom="@dimen/margin_bottom_desc_top_categories"
+                android:text="@string/top_categories_desc"
+                android:textSize="@dimen/size_text_categories_desc"
+                android:textColor="@android:color/darker_gray"
+                android:fontFamily="@font/made_tommy"
+                android:layout_below="@id/topCategoriesTitle" />
+
+            <GridView
+                android:id="@+id/topCategoriesGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_s_e_top_categories_grid_view"
+                android:layout_marginEnd="@dimen/margin_s_e_top_categories_grid_view"
+                android:layout_marginBottom="@dimen/margin_bottom_top_categories_grid_view"
+                android:clipToPadding="false"
+                android:scrollbarStyle="outsideOverlay"
+                android:numColumns="4"
+                android:columnWidth="@dimen/columns_width_top_categories_grid_view"
+                android:verticalSpacing="@dimen/spacing_top_categories_grid_view"
+                android:horizontalSpacing="@dimen/spacing_top_categories_grid_view"
+                android:layout_below="@id/topCategoriesDesc" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_s_e_top_categories_grid_view"
+                    android:text="@{topCategoriesViewModel.totalTopCategoriesSelected}"
+                    android:textSize="@dimen/size_text_count_categories_selected"
+                    android:textColor="@{topCategoriesViewModel.textColor}"
+                    android:fontFamily="@font/made_tommy"
+                    android:textStyle="@{topCategoriesViewModel.textStyle}"
+                    android:gravity="end"
+                    android:layout_below="@id/topCategoriesGridView"/>
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/size_floating_button"
+            android:layout_height="@dimen/size_floating_button"
+            android:layout_margin="@dimen/margin_floating_button"
+            app:cardCornerRadius="@dimen/radius_floating_button"
+            android:elevation="@dimen/elevation_floating_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="rateUsButtonClicked"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/green_gradient_background"
+                android:paddingBottom="@dimen/padding_bottom_floating_button">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_bottom_text_rate_us"
+                    android:text="@string/rate_us"
+                    android:textSize="@dimen/size_text_rate_us"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/made_tommy"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_above="@+id/rateUsImageView"/>
+
+                <ImageView
+                    android:id="@+id/rateUsImageView"
+                    android:layout_width="@dimen/size_rate_us_icon"
+                    android:layout_height="@dimen/size_rate_us_icon"
+                    android:contentDescription="@string/icon_rate_us"
+                    android:src="@drawable/ic_rate_us"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/settingsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/topCategoriesLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -7,8 +7,15 @@
     <color name="colorBlackTransparentDark">#95000000</color>
     <color name="colorAccentTransparent">#50FFB100</color>
     <color name="colorPrimaryTransparent">#50006C67</color>
+    <color name="colorAccentLessTransparent">#90FFB100</color>
+    <color name="colorPrimaryLessTransparent">#90006C67</color>
     <color name="colorDefaultLayout">#FAFAFA</color>
+    <color name="colorLightBlack">#262626</color>
 
+    <!-- Night Mode Animation -->
+    <color name="colorSkyDayMode">#AFD8FF</color>
+    <color name="colorSkyNightMode">#38419D</color>
+    
     <!-- Categories -->
     <color name="colorGreenNature">#009237</color>
     <color name="colorGreenNatureDarker">#006426</color>

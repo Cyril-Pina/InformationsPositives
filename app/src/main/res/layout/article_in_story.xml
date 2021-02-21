@@ -79,8 +79,8 @@
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/close_cross_selector_white"
-            tools:src="@drawable/close_cross_selector_white"
+            android:src="@drawable/close_cross_white_selector"
+            tools:src="@drawable/close_cross_white_selector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

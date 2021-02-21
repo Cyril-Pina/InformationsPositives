@@ -20,4 +20,8 @@ public class FilterCategoriesViewModel extends CategoriesViewModel {
     public void changeSelection() {
         this.isSelected = !this.isSelected;
     }
+
+    public void changeSelection(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
 }

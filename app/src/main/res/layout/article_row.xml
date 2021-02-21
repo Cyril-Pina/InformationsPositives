@@ -24,7 +24,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?attr/colorBackgroundFloating">
 
                 <ImageView
                     android:id="@+id/articleImage"
@@ -156,7 +157,6 @@
                         android:paddingBottom="@dimen/padding_bottom_text_category"
                         android:text="@{articleRowViewModel.category.categoryName}"
                         android:textSize="@dimen/size_text_category"
-                        android:textColor="@android:color/black"
                         android:fontFamily="@font/louis_george_cafe" />
 
                 </LinearLayout>
@@ -177,7 +177,6 @@
                         android:layout_margin="@dimen/margin_text_article_title"
                         android:fontFamily="@font/espera"
                         android:text="@{articleRowViewModel.title}"
-                        android:textColor="@android:color/black"
                         android:textSize="@dimen/size_text_article_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

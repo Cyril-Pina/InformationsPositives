@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nightModeBackgroundContainer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageButton
+        android:id="@+id/closePopUpButton"
+        android:layout_width="@dimen/size_icon_cross_pop_up"
+        android:layout_height="@dimen/size_icon_cross_pop_up"
+        android:layout_margin="@dimen/margin_icon_cross_pop_up"
+        android:padding="@dimen/padding_icon_cross_pop_up"
+        android:contentDescription="@string/icon_cross"
+        android:background="@android:color/transparent"
+        android:src="@drawable/close_cross_white_selector"
+        app:srcCompat="@drawable/close_cross_white_selector"
+        tools:srcCompat="@drawable/close_cross_white_selector"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/nightModeAnimation"
+        android:layout_width="@dimen/zero"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/margin_s_e_night_mode_anim"
+        android:layout_marginEnd="@dimen/margin_s_e_night_mode_anim"
+        app:layout_constraintWidth_percent="0.8"
+        app:lottie_rawRes="@raw/night_mode_anim"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_speed="1.3"
+        app:layout_constraintTop_toBottomOf="@id/closePopUpButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.polyak.iconswitch.IconSwitch
+        android:id="@+id/nightModeSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/nightModeAnimation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:isw_thumb_color_right="@color/colorSkyDayMode"
+        app:isw_thumb_color_left="@color/colorSkyNightMode"
+        app:isw_inactive_tint_icon_right="@android:color/darker_gray"
+        app:isw_inactive_tint_icon_left="@android:color/darker_gray"
+        app:isw_active_tint_icon_right="@color/colorAccent"
+        app:isw_default_selection="right"
+        app:isw_icon_right="@drawable/ic_sun"
+        app:isw_icon_left="@drawable/ic_moon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
