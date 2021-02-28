@@ -12,6 +12,14 @@ android {
         versionName "0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
     }
 
     testOptions {
@@ -52,7 +60,9 @@ dependencies {
     implementation 'com.polyak:icon-switch:1.0.0'
     implementation 'androidx.datastore:datastore:1.0.0-alpha06'
     implementation 'androidx.datastore:datastore-preferences:1.0.0-alpha06'
-    implementation "androidx.datastore:datastore-core:1.0.0-alpha06"
+    implementation 'androidx.datastore:datastore-core:1.0.0-alpha06'
+    implementation 'androidx.room:room-runtime:2.2.6'
+    annotationProcessor 'androidx.room:room-compiler:2.2.6'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:rules:1.4.0-alpha04'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

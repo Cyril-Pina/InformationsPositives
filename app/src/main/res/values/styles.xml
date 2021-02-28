@@ -22,6 +22,7 @@
         <item name="searchIcon">@drawable/search_selector</item>
         <item name="leftArrowIcon">@drawable/left_arrow_selector</item>
         <item name="likeAnim">@raw/like_anim</item>
+        <item name="deleteIcon">@drawable/close_cross_selector</item>
     </style>
 
     <style name="AppTheme.Dark.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -39,6 +40,7 @@
         <item name="searchIcon">@drawable/search_white_selector</item>
         <item name="leftArrowIcon">@drawable/left_arrow_white_selector</item>
         <item name="likeAnim">@raw/black_like_anim</item>
+        <item name="deleteIcon">@drawable/close_cross_white_selector</item>
     </style>
 
     <style name="AppTheme.NoActionBar.Transparent" parent="AppTheme.NoActionBar">
@@ -59,7 +61,7 @@
         <item name="android:windowBackground">@drawable/rounded_gradient_stroke_layer_list</item>
     </style>
 
-    <style name="AlertDialogDarkCustom" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+    <style name="AlertDialogDarkCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">@font/made_tommy_bold</item>

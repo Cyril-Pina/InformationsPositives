@@ -26,6 +26,7 @@
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">11sp</dimen>
 
+
     <!-- feed_fragment.xml -->
     <dimen name="height_stories_frame_layout">170dp</dimen>
 
@@ -100,6 +101,7 @@
     <dimen name="size_down_arrow_image">20dp</dimen>
     <dimen name="default_height_data_filter">0.1dp</dimen>
     <dimen name="text_size_date_text_view">10sp</dimen>
+    <dimen name="elevation_filters_layout">1dp</dimen>
 
     <!-- category_filter_row.xml -->
     <dimen name="height_category_filter_row">32dp</dimen>
@@ -294,6 +296,20 @@
 
     <!-- header_about_us_row.xml -->
     <dimen name="height_image_header_about_us">46dp</dimen>
+
+    <!-- recent_search_row.xml -->
+    <dimen name="padding_recent_search_row">14dp</dimen>
+    <dimen name="size_text_recent_search">12sp</dimen>
+    <dimen name="padding_delete_recent_search_icon">5dp</dimen>
+    <dimen name="size_delete_recent_search_icon">24dp</dimen>
+
+    <!-- search_results_fragment.xml -->
+    <dimen name="size_text_recent_searches_text">14sp</dimen>
+    <dimen name="margin_s_e_recent_searches_text">14dp</dimen>
+    <dimen name="margin_top_recent_searches">20dp</dimen>
+    <dimen name="size_text_delete_recent_searches">12sp</dimen>
+    <dimen name="margin_top_recent_searches_layout">50dp</dimen>
+    <dimen name="padding_delete_all_searches">10dp</dimen>
 
     <!-- DRAWABLE -->
 

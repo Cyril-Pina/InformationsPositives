@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:configChanges="orientation"
-        android:screenOrientation="portrait"
         android:allowBackup="true"
         android:showOnLockScreen="true"
         android:fullBackupContent="@xml/informations_positives_backup_rules"
@@ -20,26 +19,30 @@
         <meta-data android:name="io.sentry.dsn"
             android:value="https://1b43a24a56fa463ea8554a9087cc8b2b@o472853.ingest.sentry.io/5507056" />
 
-        <activity android:name=".LaunchScreen">
+        <activity android:name=".LaunchScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".search.model.SearchActivity">
+        <activity android:name=".search.model.SearchActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".articles.model.ArticleActivity">
+        <activity android:name=".articles.model.ArticleActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -49,13 +52,15 @@
         </activity>
 
         <activity android:name=".story.model.ArticleInStory"
-            android:theme="@style/AppTheme.NoActionBar.Transparent">
+            android:theme="@style/AppTheme.NoActionBar.Transparent"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".categories.model.CategoryActivity">
+        <activity android:name=".categories.model.CategoryActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

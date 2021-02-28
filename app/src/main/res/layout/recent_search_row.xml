@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="recentSearchViewModel"
+            type="com.pinalopes.informationspositives.search.viewmodel.RecentSearchViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_recent_search_row">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:text="@{recentSearchViewModel.articleSearched}"
+            android:textSize="@dimen/size_text_recent_search"
+            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/made_tommy"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@id/deleteRecentSearchIcon"/>
+
+        <ImageButton
+            android:id="@+id/deleteRecentSearchIcon"
+            android:layout_width="@dimen/size_delete_recent_search_icon"
+            android:layout_height="@dimen/size_delete_recent_search_icon"
+            android:padding="@dimen/padding_delete_recent_search_icon"
+            android:contentDescription="@string/icon_cross"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="?attr/deleteIcon"
+            android:background="@android:color/transparent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</layout>

@@ -74,11 +74,13 @@
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/text_size__edit_text_search"
                     android:fontFamily="@font/louis_george_cafe"
-                    android:inputType="text"
+                    android:inputType="textAutoCorrect"
+                    android:maxLength="@integer/search_edit_text_limit_characters"
+                    android:imeOptions="actionSearch"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true" />
 
-                <ImageView
+                <ImageButton
                     android:layout_width="@dimen/height_width_ic_top_bar"
                     android:layout_height="@dimen/height_width_ic_top_bar"
                     android:padding="@dimen/padding_search_top_bar"
@@ -89,8 +91,9 @@
                     android:contentDescription="@string/icon_search"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_search_selected"
-                    tools:src="@drawable/ic_search_selected" />
+                    android:onClick="clearSearchEditText"
+                    android:src="@drawable/close_cross_selector"
+                    tools:src="@drawable/close_cross_selector" />
 
                 <View
                     style="@style/Divider" />
@@ -116,6 +119,9 @@
             android:paddingStart="@dimen/padding_start_end_filter_layout"
             android:paddingEnd="@dimen/padding_start_end_filter_layout"
             android:background="@drawable/rounded_border_gradient_shape"
+            android:elevation="@dimen/elevation_filters_layout"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintTop_toBottomOf="@+id/cardViewTopBar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">

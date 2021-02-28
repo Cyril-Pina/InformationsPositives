@@ -4,5 +4,6 @@
         <attr name="searchIcon" format="reference" />
         <attr name="leftArrowIcon" format="reference" />
         <attr name="likeAnim" format="reference" />
+        <attr name="deleteIcon" format="reference" />
     </declare-styleable>
 </resources>
