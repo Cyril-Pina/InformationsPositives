@@ -1,12 +1,15 @@
 package com.pinalopes.informationspositives.search.model;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.transition.Transition;
 
 import com.pinalopes.informationspositives.R;
@@ -25,11 +29,14 @@ import com.pinalopes.informationspositives.search.viewmodel.SearchActivityViewMo
 import com.pinalopes.informationspositives.storage.DataStorage;
 import com.pinalopes.informationspositives.utils.AdapterUtils;
 import com.pinalopes.informationspositives.utils.DateUtils;
+import com.pinalopes.informationspositives.utils.ViewUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import static com.pinalopes.informationspositives.Constants.MIN_SIZE;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -49,13 +56,17 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setTheme(DataStorage.getUserSettings().getCurrentTheme());
-        currentThemeId = R.style.AppTheme_Dark_NoActionBar;
+        currentThemeId = DataStorage.getUserSettings().getCurrentTheme();
         super.onCreate(savedInstanceState);
         binding = SearchActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.setSearchActivityViewModel(new ViewModelProvider(this).get(SearchActivityViewModel.class));
+
         setOnReturnButtonClickListener();
+        setOnKeyboardActionButtonClickListener();
         setOnFiltersLayoutClickListener();
+        setOnRecentSearchClickListener();
         initSearchResultsFragment();
         initCategoriesFilterAdapter();
     }
@@ -65,6 +76,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onResume();
         binding.cardViewTopBar.post(this::startTopBarViewsAnimation);
         binding.searchEditText.postDelayed(this::focusSearchEditText, DELAY_POST_KEYBOARD);
+        openSearchFragment(binding.searchEditText.getText().toString(), null);
     }
 
     @Override
@@ -74,6 +86,20 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setOnReturnButtonClickListener() {
         binding.leftArrowButton.setOnClickListener(view -> reverseTopBarViewsAnimation());
+    }
+
+    private void setOnKeyboardActionButtonClickListener() {
+        binding.searchEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_SEARCH)) {
+                ViewUtils.hideSoftKeyboard((Activity) v.getContext());
+                String recentArticleSearched = v.getText().toString();
+                if (!recentArticleSearched.isEmpty()) {
+                    DataStorage.saveRecentSearchInLocalDB(recentArticleSearched);
+                }
+                return true;
+            }
+            return false;
+        });
     }
 
     private void setOnFiltersLayoutClickListener() {
@@ -87,6 +113,15 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
         binding.validateImageButton.setOnClickListener(view -> startFiltersLayoutTransition(DEF_HEIGHT_DATA_FILTER_LAYOUT));
+    }
+
+    private void setOnRecentSearchClickListener() {
+        binding.getSearchActivityViewModel().getClickOnRecentSearchMutable().observe(this, recentSearch -> {
+            binding.searchEditText.setText(recentSearch);
+            binding.searchEditText.setSelection(recentSearch.length());
+            ViewUtils.hideSoftKeyboard(this);
+            openSearchFragment(recentSearch, filters);
+        });
     }
 
     private void startFiltersLayoutTransition(int newLayoutHeight) {
@@ -146,7 +181,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initDateFiltersMutable() {
-        binding.setSearchActivityViewModel(new SearchActivityViewModel());
         binding.getSearchActivityViewModel().getBeginningDateMutable().observe(this, date -> {
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             binding.getSearchActivityViewModel().setBeginningDate(format.format(date));
@@ -184,7 +218,8 @@ public class SearchActivity extends AppCompatActivity {
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             int month = calendar.get(Calendar.MONTH);
             int year = calendar.get(Calendar.YEAR);
-            int alertDialogStyle = currentThemeId == R.style.AppTheme_NoActionBar ?
+
+            int alertDialogStyle = (currentThemeId == R.style.AppTheme_NoActionBar) ?
                     R.style.DateFilterSpinnerStyle : R.style.DateFilterSpinnerDarkStyle;
 
             DatePickerDialog picker = new DatePickerDialog(SearchActivity.this,
@@ -211,6 +246,12 @@ public class SearchActivity extends AppCompatActivity {
             Date endingDate = DateUtils.getDateFromString(year, monthOfYear, dayOfMonth, format);
             binding.getSearchActivityViewModel().getEndingDateMutable().setValue(endingDate);
         };
+    }
+
+    public void clearSearchEditText(View view) {
+        if (binding.searchEditText.getText().length() > MIN_SIZE) {
+            binding.searchEditText.getText().clear();
+        }
     }
 
     private void focusSearchEditText() {

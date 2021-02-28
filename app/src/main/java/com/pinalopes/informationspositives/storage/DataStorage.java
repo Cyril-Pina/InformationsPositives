@@ -3,9 +3,12 @@ package com.pinalopes.informationspositives.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pinalopes.informationspositives.R;
+import com.pinalopes.informationspositives.application.IPApplication;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -78,5 +81,24 @@ public class DataStorage {
         editor.putInt(context.getString(R.string.saved_current_theme_key),
                 userSettings.getCurrentTheme());
         editor.apply();
+    }
+
+    public static void saveRecentSearchInLocalDB(String recentArticleSearched) {
+        RecentSearch recentSearch = new RecentSearch();
+        recentSearch.articleSearched = recentArticleSearched;
+        IPApplication.executorService.execute(() -> IPApplication.localDB.recentSearchesDao().insertLastSearch(recentSearch));
+    }
+
+    public static void getRecentSearchesFromLocalDB(MutableLiveData<List<RecentSearch>> recentSearchMutableLiveData) {
+        IPApplication.executorService.execute(() ->
+                recentSearchMutableLiveData.postValue(IPApplication.localDB.recentSearchesDao().getRecentSearches()));
+    }
+
+    public static void deleteAllRecentSearchesInLocalDB() {
+        IPApplication.executorService.execute(() -> IPApplication.localDB.recentSearchesDao().deleteAll());
+    }
+
+    public static void deleteRecentSearchInLocalDB(RecentSearch recentSearch) {
+        IPApplication.executorService.execute(() -> IPApplication.localDB.recentSearchesDao().deleteRecentSearch(recentSearch));
     }
 }

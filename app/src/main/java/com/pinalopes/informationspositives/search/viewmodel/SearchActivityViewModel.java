@@ -16,6 +16,7 @@ public class SearchActivityViewModel extends ViewModel {
     private MutableLiveData<Date> endingDateMutable;
     private MutableLiveData<Filters> filtersMutable;
     private MutableLiveData<Integer> clickOnCategoryMutable;
+    private MutableLiveData<String> clickOnRecentSearchMutable;
 
     public boolean isFiltersDisplayed() {
         return isFiltersDisplayed;
@@ -67,5 +68,12 @@ public class SearchActivityViewModel extends ViewModel {
             clickOnCategoryMutable = new MutableLiveData<>();
         }
         return clickOnCategoryMutable;
+    }
+
+    public MutableLiveData<String> getClickOnRecentSearchMutable() {
+        if (clickOnRecentSearchMutable == null) {
+            clickOnRecentSearchMutable = new MutableLiveData<>();
+        }
+        return clickOnRecentSearchMutable;
     }
 }

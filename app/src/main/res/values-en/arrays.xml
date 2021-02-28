@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FilterCategoriesAdapter.java -->
+    <string-array name="categories_name">
+        <item>Nature</item>
+        <item>Wildlife</item>
+        <item>Technology</item>
+        <item>Humanitarian</item>
+        <item>Food</item>
+        <item>Economy</item>
+        <item>Sport</item>
+    </string-array>
+
+    <string-array name="categories_desc">
+        <item>@string/nature_desc</item>
+        <item>@string/fauna_desc</item>
+        <item>@string/techno_desc</item>
+        <item>@string/humanitarian_desc</item>
+        <item>@string/food_desc</item>
+        <item>@string/economy_desc</item>
+        <item>@string/sport_desc</item>
+    </string-array>
+
+    <string-array name="categories_res">
+        <item>picture_nature</item>
+        <item>picture_fauna</item>
+        <item>picture_techno</item>
+        <item>picture_humanitarian</item>
+        <item>picture_food</item>
+        <item>picture_economy</item>
+        <item>picture_sport</item>
+    </string-array>
+
+    <string-array name="categories_icon">
+        <item>ic_nature</item>
+        <item>ic_fauna</item>
+        <item>ic_techno</item>
+        <item>ic_humanitarian</item>
+        <item>ic_food</item>
+        <item>ic_economy</item>
+        <item>ic_sport</item>
+    </string-array>
+
+    <array name="categories_colors">
+        <item>0xFF009237</item>
+        <item>0xFF004119</item>
+        <item>0xFF783201</item>
+        <item>0xFF381700</item>
+        <item>0xFF3b83bd</item>
+        <item>0xFF1d405c</item>
+        <item>0xFFfcce0c</item>
+        <item>0xFF8f7407</item>
+        <item>0xFFda0600</item>
+        <item>0xFF690300</item>
+        <item>0xFFcccccc</item>
+        <item>0xFF4e4e4e</item>
+        <item>0xFF84258e</item>
+        <item>0xFF340e38</item>
+    </array>
+
+    <array name="settings_menu_items">
+        <item/>
+        <item>Notifications \"Quote of the day\"</item>
+        <item>Night Mode</item>
+        <item>Contact us</item>
+        <item>Other apps</item>
+        <item>About us</item>
+    </array>
+
+    <array name="settings_menu_icons">
+        <item/>
+        <item>ic_notifications</item>
+        <item>ic_night_mode</item>
+        <item>ic_contact_us</item>
+        <item>ic_apps</item>
+        <item>ic_about_us</item>
+    </array>
+
+</resources>

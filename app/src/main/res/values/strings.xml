@@ -2,6 +2,7 @@
     <!-- All -->
     <string name="app_name">Informations Positives</string>
     <string name="api_weather_token">e61315eb20b99a43c33db56da2431e0e</string>
+    <string name="local_db_name">info-positives-database</string>
 
     <!-- Image Content Description -->
     <string name="logo_informations_positives">Logo Informations Positives</string>
@@ -41,17 +42,14 @@
     <!-- search_activity.xml -->
     <string name="hint_edit_text_search">Ne sois pas timide, que recherches-tu ?</string>
     <string name="title_filters">Gérer les filtres</string>
-    <string name="beginning_date">Date de début</string>
-    <string name="ending_date">Date de fin</string>
+    <string name="beginning_date">À partir de</string>
+    <string name="ending_date">jusqu\'à</string>
 
     <!-- story_row.xml -->
     <string name="doggy">Un chiot sauvé de la noyade ! Francis en dit plus</string>
 
     <!-- article_row.xml -->
     <string name="written_by">Rédigé par\u0020</string>
-
-    <!-- header_feed_recycler_view.xml -->
-    <string name="feed_title">Le meilleur moment de ta journée commence ici.</string>
 
     <!-- article.xml -->
     <string name="like_exclamation_mark">Liké !</string>
@@ -79,6 +77,10 @@
         <item quantity="one">Catégorie sélectionnée : %d/3.</item>
         <item quantity="other">Catégories sélectionnées : %d/3.</item>
     </plurals>
+
+    <!-- search_results_fragment.xml -->
+    <string name="recent_searches">Recherches récentes</string>
+    <string name="delete_all_recent_searches"><u>Effacer les recherches</u></string>
 
     <!-- about_us_dialog_fragment.xml -->
     <string name="app_name_copyright">Informations Positives ©</string>

@@ -84,4 +84,9 @@ public class Constants {
 
     // DataStorage.java
     public static final int INDEX_OF_FAILURE = -1;
+
+    // SearchActivity.java
+    public static final int LENGTH_EMPTY_KEYWORD_SEARCH = 2;
+    public static final int SIZE_EMPTY_LIST = 0;
+    public static final int MIN_SIZE = 0;
 }

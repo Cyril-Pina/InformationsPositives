@@ -11,6 +11,8 @@
     <color name="colorPrimaryLessTransparent">#90006C67</color>
     <color name="colorDefaultLayout">#FAFAFA</color>
     <color name="colorLightBlack">#262626</color>
+    <color name="colorBlueLink">#00578A</color>
+    <color name="colorBlueLinkLight">#99DAFF</color>
 
     <!-- Night Mode Animation -->
     <color name="colorSkyDayMode">#AFD8FF</color>

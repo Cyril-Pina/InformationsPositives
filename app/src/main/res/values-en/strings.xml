@@ -1,0 +1,128 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- All -->
+    <string name="app_name">Informations Positives</string>
+    <string name="api_weather_token">e61315eb20b99a43c33db56da2431e0e</string>
+    <string name="local_db_name">info-positives-database</string>
+
+    <!-- Image Content Description -->
+    <string name="logo_informations_positives">Logo Informations Positives</string>
+    <string name="loading_image">Loading Image</string>
+    <string name="logo_informations_positives_transparent">Logo Informations Positives Transparent</string>
+    <string name="icon_search">Icon Searching</string>
+    <string name="icon_left_arrow">Icon Left Arrow</string>
+    <string name="icon_filter_white">Icon Filter</string>
+    <string name="category_picture">Image Category</string>
+    <string name="icon_validate">Icon Validation</string>
+    <string name="icon_down_arrow">Icon Bottom Arrow</string>
+    <string name="category_icon">Icon Category</string>
+    <string name="image_article">Image Article</string>
+    <string name="icon_views">Icon Views</string>
+    <string name="icon_likes">Icon Like</string>
+    <string name="icon_clock">Icon Date</string>
+    <string name="icon_feather">Icon Plume</string>
+    <string name="icon_video_play">Icon Video</string>
+    <string name="image_article_header">Image Article Header</string>
+    <string name="icon_cross">Icon Cross</string>
+    <string name="icon_menu_item">Icon Item Menu</string>
+    <string name="icon_rate_us">Icon Rate us</string>
+    <string name="image_header_about_us">Image Header</string>
+
+    <!-- Transition Name -->
+    <string name="category_icon_transition">categoryIconTransition</string>
+
+    <!-- Bottom Navigation Menu -->
+    <string name="bottom_navigation_menu_categories">Categories</string>
+    <string name="bottom_navigation_menu_feed">Feed</string>
+    <string name="bottom_navigation_menu_settings">Settings</string>
+
+    <!-- feed_fragment.xml -->
+    <string name="loading_articles">Be patient, your wonderful articles are on their way…</string>
+
+    <!-- search_activity.xml -->
+    <string name="hint_edit_text_search">Don\'t be shy, what are you looking for?</string>
+    <string name="title_filters">Add filters</string>
+    <string name="beginning_date">from</string>
+    <string name="ending_date">to</string>
+
+    <!-- story_row.xml -->
+    <string name="doggy">A dog saved by the seller Francis</string>
+
+    <!-- article_row.xml -->
+    <string name="written_by">Written by\u0020</string>
+
+    <!-- article.xml -->
+    <string name="like_exclamation_mark">Liked!</string>
+    <string name="did_you_like_article">Did you enjoy it?</string>
+    <string name="more_articles_reco">You can find other articles, don\'t worry (be happy ♪)</string>
+    <string name="shared_article_subject">Look this awesome article read in the \"Informations Positives\" app! &#128525;</string>
+    <string name="chooser_message">&#x1F680; Send this amazing article…</string>
+    <string name="written_by_sample">Written by X the 25th of December 2020, 12h18</string>
+
+    <!-- article_in_story.xml -->
+    <string name="see_full_article">See article</string>
+    <string name="initial_count_down_value">10</string>
+
+    <!-- settings_fragment.xml -->
+    <string name="settings">Settins</string>
+    <string name="top_categories_title">TOP 3</string>
+    <string name="top_categories_desc">Choose your 3 favorites categories to see them in your feed.</string>
+    <string name="notifications_item">Notifications \"Day Quote\"</string>
+    <string name="rate_us">Rate us!</string>
+    <string name="email_ip">cyril.7he4ndroid@gmail.com</string>
+    <string name="subject_email">[Informations Positives] Hi! &#x1F604;</string>
+    <string name="chooser_title_email">Send us an email! &#x1F4DD;</string>
+    <plurals name="number_top_categories_selected" tools:ignore="UnusedQuantity">
+        <item quantity="zero">Selected category : %d/3.</item>
+        <item quantity="one">Selected category : %d/3.</item>
+        <item quantity="other">Selected categories : %d/3.</item>
+    </plurals>
+
+    <!-- search_results_fragment.xml -->
+    <string name="recent_searches">Recent search</string>
+    <string name="delete_all_recent_searches"><u>Delete all</u></string>
+
+    <!-- about_us_dialog_fragment.xml -->
+    <string name="app_name_copyright">Informations Positives ©</string>
+    <string name="about_us_desc">Designed and developed by Cyril \"The Android\" Pina-Lopes.</string>
+
+    <!-- Notification.java / NotificationsBroadcastReceiver.java -->
+    <string name="channel_name">IPNotificationChannel</string>
+    <string name="channel_description">Notification channel principal</string>
+
+    <!-- Notification.java / NotificationsBroadcastReceiver.java -->
+    <string name="notification_title">Quote of the Day</string>
+    <string name="notification_desc">Pierre qui roule n\'amasse pas mousse.</string>
+
+    <!-- DataStorage.java -->
+    <string name="preference_file_key">prefsFileKey</string>
+    <string name="saved_selected_categories_key">selectedCategoriesKey</string>
+    <string name="saved_notifications_state_key">notificationsStateKey</string>
+    <string name="saved_current_theme_key">nightModeStateKey</string>
+
+    <string name="text">
+        Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+    </string>
+
+6    <!--Category description -->
+    <string name="nature_desc">Discover the best news that will delight Mother Nature. &#x1F333;</string>
+    <string name="fauna_desc">Did you know that bats always turn left when leaving a cave? No ? So you have come to the right place. &#x1F987;</string>
+    <string name="techno_desc">The lair for new tech enthusiasts who try to transfer their brains to a supercomputer (or learn C ++, your choice). &#x1F4BB;</string>
+    <string name="humanitarian_desc">Amazing anecdotes that prove that the good guys always win at the end. &#x1F493;</string>
+    <string name="food_desc">Your annoying vegan buddy as articles. &#x1F34E;</string>
+    <string name="economy_desc">Does money make you happy? You will certainly never have the answer but take comfort with these enriching articles. &#x1F4B8;</string>
+    <string name="sport_desc">A renewed motivation to renew your subscription to this gym that you have left for 1 year after 3 sessions. &#x1F3CB;</string>
+</resources>
