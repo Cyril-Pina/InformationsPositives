@@ -45,9 +45,6 @@
     <string name="beginning_date">À partir de</string>
     <string name="ending_date">jusqu\'à</string>
 
-    <!-- story_row.xml -->
-    <string name="doggy">Un chiot sauvé de la noyade ! Francis en dit plus</string>
-
     <!-- article_row.xml -->
     <string name="written_by">Rédigé par\u0020</string>
 
@@ -57,7 +54,7 @@
     <string name="more_articles_reco">Quand il n\'y a plus d\'article…\nEt bah il y en a encore ♪</string>
     <string name="shared_article_subject">Regarde ce super article positif lu sur l\'app \"Informations Positives\" ! &#128525;</string>
     <string name="chooser_message">&#x1F680; Envoyer cet article incroyable…</string>
-    <string name="written_by_sample">Redigé par X le 25 décembre 2020 à 12h18</string>
+    <string name="written_by_sample">Redigé par Michaël Doe le 06 janvier 2020 à 16h25</string>
 
     <!-- article_in_story.xml -->
     <string name="see_full_article">Voir l\'article</string>
@@ -99,21 +96,16 @@
     <string name="saved_current_theme_key">nightModeStateKey</string>
 
     <string name="text">
-        Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
-        Adding a 2nd line like this should work.
-        It should not cause parsing errors.
-                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
-        Adding a 2nd line like this should work.
-        It should not cause parsing errors.
-                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
-        Adding a 2nd line like this should work.
-        It should not cause parsing errors.
-                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
-        Adding a 2nd line like this should work.
-        It should not cause parsing errors.
-                Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
-        Adding a 2nd line like this should work.
-        It should not cause parsing errors.
+        Samedi après-midi, John Doe est intervenu à Albi pour secourir un chiot tombé dans le Tarn. Sans son intervention, celui-ci se serait peut-être noyé.
+        « C’est une jeune du club d’aviron qui est venu m’alerter,
+        se souvient Alexis, lui aussi pratiquant de ce sport. Elle m’a dit qu’il y avait un petit chien qui était en train de se noyer.
+        Je suis allé voir, on l’a cherché, on a eu du mal à le trouver. Il avait dû tomber dans le Tarn, peut-être en voulant boire,
+        raconte le jeune homme de 20 ans. Le Tarn a baissé, il y avait environ 50 cm entre la berge et l’eau, et il ne pouvait pas
+        remonter. »
+        Sur le quai, un autre chien, probablement la mère du chiot, est présent et essaie de le secourir. En vain.
+        « On a utilisé une rame d’aviron pour le soulever et le donner à sa mère, mais elle avait plus peur de nous qu’autre chose », détaille le jeune sportif. Au final, avec un autre membre du club, ils parviennent à le récupérer et le mettre dans le bateau. « Le maître est arrivé entre-temps et le chiot est remonté en haut jusqu’au terrain », précise Alexis.
+        L’animal est reparti en gambadant, presque comme si rien ne s’était passé, finalement pas plus perturbé que ça par la baignade inattendue.
+        Sur les berges, Pierre a assisté à la scène: « Il a aussitôt volé au secours du petit chien, l’a remis sur la berge et est reparti sans que personne ne remarque rien. C’est un acte d’amour envers les animaux. J’ai personnellement été ému par ce geste », témoigne le promeneur.
     </string>
 
     <!--Category description -->

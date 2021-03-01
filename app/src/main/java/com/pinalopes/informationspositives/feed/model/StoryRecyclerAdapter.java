@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pinalopes.informationspositives.R;
+import com.pinalopes.informationspositives.feed.viewmodel.StoryViewModel;
 import com.pinalopes.informationspositives.story.model.ArticleInStory;
 import com.pinalopes.informationspositives.databinding.StoryRowBinding;
 
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdapter.StoriesViewHolder> {
 
-    private final List<String> storyArticleDataList;
+    private final List<StoryViewModel> storyArticleDataList;
 
     public static class StoriesViewHolder extends RecyclerView.ViewHolder {
 
@@ -28,9 +29,13 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             super(binding.getRoot());
             this.binding = binding;
         }
+
+        public void bind(StoryViewModel storyViewModel) {
+            binding.setStoryViewModel(storyViewModel);
+        }
     }
 
-    public StoryRecyclerAdapter(List<String> storyArticleDataList) {
+    public StoryRecyclerAdapter(List<StoryViewModel> storyArticleDataList) {
         this.storyArticleDataList = storyArticleDataList;
     }
 
@@ -51,7 +56,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull StoriesViewHolder holder, int position) {
-        // onBindViewHolder ignored for now
+        holder.bind(storyArticleDataList.get(position));
     }
 
     @Override

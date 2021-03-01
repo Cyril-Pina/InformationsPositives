@@ -44,9 +44,6 @@
     <string name="beginning_date">from</string>
     <string name="ending_date">to</string>
 
-    <!-- story_row.xml -->
-    <string name="doggy">A dog saved by the seller Francis</string>
-
     <!-- article_row.xml -->
     <string name="written_by">Written by\u0020</string>
 

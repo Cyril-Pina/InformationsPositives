@@ -60,6 +60,8 @@
                     android:layout_height="@dimen/size_category_icon_row"
                     android:layout_marginStart="@dimen/margin_start_category_icon_row"
                     android:contentDescription="@string/category_icon"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
                     android:src="@{filterCategoriesViewModel.categoryIcon}"
                     app:srcCompat="@{filterCategoriesViewModel.categoryIcon}"
                     tools:srcCompat="@{filterCategoriesViewModel.categoryIcon}"
