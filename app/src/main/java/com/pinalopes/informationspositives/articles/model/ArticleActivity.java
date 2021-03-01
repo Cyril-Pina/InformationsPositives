@@ -96,9 +96,9 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void initArticleView() {
-        Category category = new Category("Nature", 0, R.drawable.ic_nature);
-        binding.setArticleViewModel(new ArticleViewModel("Un chiot est sauver par Gaston du PMU",
-                category, 35026, 360, R.drawable.picture_fauna, false, getString(R.string.written_by_sample),isLiked));
+        Category category = new Category("Faune", 0, R.drawable.ic_fauna);
+        binding.setArticleViewModel(new ArticleViewModel("Un chiot sauvé miraculeusement par un jeune homme dans le département de Tarn", getString(R.string.text),
+                category, 35026, 360, R.drawable.puppy, false, getString(R.string.written_by_sample), isLiked));
     }
 
     private void fetchIntentFromUri() {

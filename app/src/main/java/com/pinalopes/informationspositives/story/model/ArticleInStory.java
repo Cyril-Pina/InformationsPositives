@@ -74,8 +74,8 @@ public class ArticleInStory extends AppCompatActivity {
 
     private void initArticleInStoryView() {
         Category category = new Category("Faune", 0, R.drawable.ic_fauna);
-        binding.setArticleInStoryViewModel(new ArticleInStoryViewModel("Un chiot est sauver par Gaston du PMU",
-                category, R.drawable.picture_fauna,"Michale HIHI"));
+        binding.setArticleInStoryViewModel(new ArticleInStoryViewModel("Un chiot sauvé miraculeusement par un jeune homme dans le département de Tarn",
+                getString(R.string.text), category, R.drawable.puppy,"Michaël Doe"));
     }
 
     private void setOnClickStoryButtons() {

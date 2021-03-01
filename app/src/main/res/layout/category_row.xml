@@ -32,6 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/category_picture"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
                 android:src="@{categoriesViewModel.categoryRes}"
                 app:srcCompat="@{categoriesViewModel.categoryRes}"
                 tools:srcCompat="@{categoriesViewModel.categoryRes}" />

@@ -178,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_synopsis_article_story"
-                android:text="@string/text"
+                android:text="@{articleInStoryViewModel.text}"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/size_text_synopsis_article_story"
                 android:fontFamily="@font/made_tommy"

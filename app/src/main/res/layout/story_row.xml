@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="storyViewModel"
+            type="com.pinalopes.informationspositives.feed.viewmodel.StoryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="@dimen/width_story_row"
     android:maxWidth="@dimen/width_story_row"
     android:minWidth="@dimen/width_story_row"
@@ -24,7 +33,9 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/image_article"
             android:scaleType="centerCrop"
-            android:src="@drawable/picture_economy" />
+            android:src="@{storyViewModel.imageRes}"
+            app:srcCompat="@{storyViewModel.imageRes}"
+            tools:srcCompat="@{storyViewModel.imageRes}" />
 
         <View
             android:layout_width="match_parent"
@@ -35,10 +46,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_text_story_row"
-            android:text="@string/doggy"
+            android:text="@{storyViewModel.title}"
             android:textSize="@dimen/size_text_story_article"
             android:textColor="@android:color/white"
             android:fontFamily="@font/espera"
             android:gravity="bottom" />
+
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
