@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             newFragment.setArguments(getSettingsBundle());
             isRecreated = false;
         }
-        fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, newFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, newFragment).addToBackStack(null).commit();
         return true;
     }
 

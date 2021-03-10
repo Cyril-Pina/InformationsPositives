@@ -9,7 +9,6 @@ import android.view.ViewTreeObserver;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.pinalopes.informationspositives.databinding.LaunchScreenBinding;
 import com.pinalopes.informationspositives.storage.DataStorage;
 
@@ -40,7 +39,13 @@ public class LaunchScreen extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 binding.circleView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                startAnimation();
+                DataStorage.getSavedSentimentsModelFromDatabase(LaunchScreen.this, isSuccess -> {
+                    if (isSuccess) {
+                        startAnimation();
+                    } else {
+                        finishAffinity();
+                    }
+                });
             }
         });
     }
