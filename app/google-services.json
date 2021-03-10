@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "504614918866",
+    "project_id": "informations-positives",
+    "storage_bucket": "informations-positives.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504614918866:android:1cee1a8d393dbd09b6ab0b",
+        "android_client_info": {
+          "package_name": "com.pinalopes.informationspositives"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504614918866-o33f61r7macb29smp7lmrjulsrhciu3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjym44lAXdYkLvFruFAOID-Sih6yb4zuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504614918866-o33f61r7macb29smp7lmrjulsrhciu3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

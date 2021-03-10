@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -22,11 +23,9 @@ android {
             }
         }
     }
-
     testOptions {
         unitTests.returnDefaultValues = true
     }
-
     buildFeatures {
         viewBinding true
         dataBinding true
@@ -48,6 +47,7 @@ android {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:26.6.0')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -64,8 +64,13 @@ dependencies {
     implementation 'com.r0adkll:slidableactivity:2.1.0'
     implementation 'com.polyak:icon-switch:1.0.0'
     implementation 'androidx.room:room-runtime:2.2.6'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'org.tensorflow:tensorflow-lite-task-text:0.1.0'
+    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.4'
+    implementation 'org.tensorflow:tensorflow-lite-task-text:0.1.0'
     annotationProcessor 'androidx.room:room-compiler:2.2.6'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:rules:1.4.0-alpha04'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test:rules:1.3.0'

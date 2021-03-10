@@ -24,6 +24,9 @@ public class Constants {
     public static final int FIRST_INDEX = 0;
     public static final int NO_ANIM = 0;
 
+    // LaunchScreen.java
+    public static final int NB_DAYS_BEFORE_DOWNLOAD_MODEL = 7;
+
     // MainActivity.java
     public static final String IS_ACTIVITY_RECREATED = "isActivityRecreated";
     public static final String UPDATE_THEME_EXTRA = "updateThemeExtra";
@@ -83,10 +86,15 @@ public class Constants {
     public static final int TOTAL_IMAGE_HEADER_ABOUT_US = 12;
 
     // DataStorage.java
+    public static final String MODEL_FILE_NAME = "sentiment_analysis";
     public static final int INDEX_OF_FAILURE = -1;
 
     // SearchActivity.java
     public static final int LENGTH_EMPTY_KEYWORD_SEARCH = 2;
     public static final int SIZE_EMPTY_LIST = 0;
     public static final int MIN_SIZE = 0;
+
+    // TextRecognition.java
+    public static final String NEGATIVE_CATEGORY = "negative";
+    public static final float MAX_NEGATIVE_SCORE = 0.4f;
 }
