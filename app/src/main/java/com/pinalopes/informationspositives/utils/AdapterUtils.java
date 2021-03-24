@@ -5,8 +5,9 @@ import android.content.Context;
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.categories.model.Category;
 import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
+import com.pinalopes.informationspositives.feed.viewmodel.StoryViewModel;
+import com.pinalopes.informationspositives.newsapi.responsebody.Article;
 import com.pinalopes.informationspositives.search.viewmodel.FilterCategoriesViewModel;
-import com.pinalopes.informationspositives.storage.DataStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,23 +43,32 @@ public class AdapterUtils {
         return categories;
     }
 
-    public static List<ArticleRowViewModel> getArticleRowViewModelList(Context context) {
-        List<ArticleRowViewModel> test = new ArrayList<>();
-        int currentThemeId = DataStorage.getUserSettings().getCurrentTheme();
+    public static Category getFeedGeneralCategory(Context context, int currentThemeId) {
+        String generalCategory = context.getString(R.string.general_category);
+        int generalCategoryIcon = ResourceUtils.getThemeCategoryIcon(context, currentThemeId, R.drawable.ic_general);
+        return new Category(generalCategory, 0, generalCategoryIcon);
+    }
 
-        Category categoryFauna = new Category("Faune", 0,
-                ResourceUtils.getThemeCategoryIcon(context, currentThemeId, R.drawable.ic_fauna));
-        Category categoryFood = new Category("Alimentation", 0,
-                ResourceUtils.getThemeCategoryIcon(context, currentThemeId, R.drawable.ic_food));
-        Category categoryHuma = new Category("Humanitaire", 0,
-                ResourceUtils.getThemeCategoryIcon(context, currentThemeId, R.drawable.ic_food));
+    public static boolean isArticleValid(Article article) {
+        return article.getTitle() != null && article.getContent() != null
+                && article.getDescription() != null && article.getPublishedAt() != null
+                && article.getUrl() != null && article.getUrlToImage() != null
+                && (article.getAuthor() != null || (article.getSource() != null && article.getSource().getName() != null));
+    }
 
-        String writer = "Michaël Doe";
+    public static boolean isArticleNonDuplicate(List<?> list, String articleTitle) {
+        for (Object object: list) {
+            if ((object instanceof StoryViewModel
+            && ((StoryViewModel) object).getTitle().equals(articleTitle))
+            || (object instanceof ArticleRowViewModel
+                    && ((ArticleRowViewModel) object).getTitle().equals(articleTitle))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-        test.add(new ArticleRowViewModel("Un chiot sauvé miraculeusement par un jeune homme dans le département de Tarn", "18:25-06/01/2020", writer, categoryFauna, 1802, 235, R.drawable.puppy, false));
-        test.add(new ArticleRowViewModel("La mairie de Nice fait signé un contrat de travail à un sans-abri bienfaiteur", "10:12-01/12/2020",  writer, categoryHuma, 36820, 13, R.drawable.homeless, false));
-        test.add(new ArticleRowViewModel("Macron donne 1million d'euros à un jeune sans abri", "08:02-12/12/2020", writer, categoryFauna, 36974, 13, R.drawable.picture_economy, false));
-        test.add(new ArticleRowViewModel("Oui, la news plus haute est vraie été test", "08:01-12/12/2020", writer, categoryFood, 1859265, 483, R.drawable.picture_economy,  false));
-        return test;
+    public static String getArticleWriter(Article article) {
+        return article.getAuthor() != null ? article.getAuthor() : article.getSource().getName();
     }
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="networkErrorViewModel"
+            type="com.pinalopes.informationspositives.network.viewmodel.NetworkErrorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/feedAnimation"
+            android:layout_width="@dimen/size_network_error_animation"
+            android:layout_height="@dimen/size_network_error_animation"
+            app:lottie_rawRes="@raw/network_error_anim"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/feedAnimationDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{networkErrorViewModel.cause}"
+            android:textSize="@dimen/text_size_loading"
+            android:fontFamily="@font/made_tommy"
+            app:layout_constraintTop_toBottomOf="@id/feedAnimation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/refreshDataButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_bottom_refresh_button"
+            android:paddingStart="@dimen/padding_s_e_text_button_story"
+            android:paddingEnd="@dimen/padding_s_e_text_button_story"
+            android:visibility="@{networkErrorViewModel.reloadDataEnabled ? View.VISIBLE : View.GONE}"
+            android:text="@string/refresh_data"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size_text_button_article_story"
+            android:fontFamily="@font/louis_george_cafe"
+            android:elevation="@dimen/elevation_button_article_story"
+            android:textAllCaps="false"
+            android:background="@drawable/article_story_button_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

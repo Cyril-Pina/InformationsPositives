@@ -11,7 +11,7 @@ public class ArticleViewModel extends ArticleRowViewModel {
     private boolean isHeaderVisible;
 
     public ArticleViewModel(String title, String text, Category category, long nbViews, long nbLikes, int imageRes, boolean isVideo, String writtenBy, boolean isLiked) {
-        super(title, "", "", category, nbViews, nbLikes, imageRes, isVideo);
+        super(title, "", "", category, nbViews, nbLikes, imageRes, "", isVideo);
         this.text = text;
         this.writtenBy = writtenBy;
         this.isLiked = isLiked;

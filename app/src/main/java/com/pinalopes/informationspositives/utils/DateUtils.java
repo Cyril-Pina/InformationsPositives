@@ -8,11 +8,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.pinalopes.informationspositives.Constants.ARTICLE_DATE_FORMAT;
+import static com.pinalopes.informationspositives.Constants.DATE_FORMAT_FILTER;
+import static com.pinalopes.informationspositives.Constants.DEFAULT_TIMESTAMP_FORMAT;
+import static com.pinalopes.informationspositives.Constants.MILLIS_IN_A_DAY;
+import static com.pinalopes.informationspositives.Constants.NEWS_RESULTS_DATE_FORMAT;
+import static com.pinalopes.informationspositives.Constants.NEWS_SEARCHES_DATE_FORMAT;
+
 public class DateUtils {
 
     private static final String TAG = "DateUtils";
-
-    private static final String DEFAULT_TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
     private DateUtils() {
         throw new AssertionError();
@@ -53,5 +58,35 @@ public class DateUtils {
 
     public static Date timestampToDate(String timestamp) throws ParseException {
         return new SimpleDateFormat(DEFAULT_TIMESTAMP_FORMAT, Locale.getDefault()).parse(timestamp);
+    }
+
+    public static String getActualDate() {
+        return new SimpleDateFormat(NEWS_SEARCHES_DATE_FORMAT, Locale.getDefault()).format(new Date().getTime());
+    }
+
+    public static String getDateToSearch(String initialDate) {
+        try {
+            Date date = new SimpleDateFormat(DATE_FORMAT_FILTER, Locale.getDefault()).parse(initialDate);
+            return new SimpleDateFormat(NEWS_SEARCHES_DATE_FORMAT, Locale.getDefault()).format(date);
+        } catch (ParseException pe) {
+            Log.e(TAG, pe.toString());
+        }
+        return "";
+    }
+
+    public static String getPreviousDate() {
+        return new SimpleDateFormat(NEWS_SEARCHES_DATE_FORMAT, Locale.getDefault()).format(new Date().getTime() - MILLIS_IN_A_DAY);
+    }
+
+    public static String formatArticlePublishedDate(String publishedDate) {
+        SimpleDateFormat articleDateFormat = new SimpleDateFormat(ARTICLE_DATE_FORMAT, Locale.getDefault());
+        try {
+            Date date = new SimpleDateFormat(NEWS_RESULTS_DATE_FORMAT, Locale.getDefault()).parse(publishedDate);
+            assert date != null;
+            return articleDateFormat.format(date);
+        } catch (ParseException pe) {
+            Log.e(TAG, pe.toString());
+        }
+        return articleDateFormat.format(new Date());
     }
 }

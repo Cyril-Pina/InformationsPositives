@@ -1,7 +1,6 @@
 package com.pinalopes.informationspositives.search.model;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -45,10 +44,8 @@ public class RecentSearchesAdapter extends RecyclerView.Adapter<RecentSearchesAd
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         RecentSearchRowBinding binding = RecentSearchRowBinding.inflate(layoutInflater);
         RecentSearchesViewHolder holder = new RecentSearchesViewHolder(binding);
-        binding.getRoot().setOnClickListener(v -> {
-            Log.wtf("adapter postiopn", holder.getAdapterPosition() + "");
-            listener.setOnRecentSearchClick(recentSearches.get(holder.getAdapterPosition()));
-        });
+        binding.getRoot().setOnClickListener(v ->
+                listener.setOnRecentSearchClick(recentSearches.get(holder.getAdapterPosition())));
         return holder;
     }
 

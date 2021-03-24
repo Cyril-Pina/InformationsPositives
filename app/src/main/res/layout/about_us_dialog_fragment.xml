@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -15,30 +15,30 @@
         android:background="@drawable/background_dialog_fragment">
 
         <RelativeLayout
-        android:id="@+id/headerAboutUsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <GridView
-            android:id="@+id/headerAboutUsGridView"
+            android:id="@+id/headerAboutUsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:scrollbarStyle="outsideOverlay"
-            android:numColumns="6"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="@dimen/zero"
-            android:horizontalSpacing="@dimen/zero"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_header_about_us"
-            android:background="@drawable/background_gradient_transparent"/>
+            <GridView
+                android:id="@+id/headerAboutUsGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:scrollbarStyle="outsideOverlay"
+                android:numColumns="6"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="@dimen/zero"
+                android:horizontalSpacing="@dimen/zero"/>
 
-    </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_header_about_us"
+                android:background="@drawable/background_gradient_transparent"/>
+
+        </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -49,56 +49,93 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/logoImageView"
-            android:layout_width="@dimen/size_logo_header_about_us"
-            android:layout_height="@dimen/size_logo_header_about_us"
-            android:contentDescription="@string/logo_informations_positives_transparent"
-            android:src="@drawable/logo_transparent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <ImageView
+                android:id="@+id/logoImageView"
+                android:layout_width="@dimen/size_logo_header_about_us"
+                android:layout_height="@dimen/size_logo_header_about_us"
+                android:contentDescription="@string/logo_informations_positives_transparent"
+                android:src="@drawable/logo_transparent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/appNameCopyrightText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_top_about_us_text"
-            android:layout_marginStart="@dimen/margin_start_end_about_us_text"
-            android:layout_marginEnd="@dimen/margin_start_end_about_us_text"
-            android:text="@string/app_name_copyright"
-            android:textSize="@dimen/size_text_title_about_us"
-            android:textColor="@android:color/black"
-            android:fontFamily="@font/espera"
-            app:layout_constraintTop_toBottomOf="@id/logoImageView"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/appNameCopyrightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_about_us_text"
+                android:layout_marginStart="@dimen/margin_start_end_about_us_text"
+                android:layout_marginEnd="@dimen/margin_start_end_about_us_text"
+                android:text="@string/app_name_copyright"
+                android:textSize="@dimen/size_text_title_about_us"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/espera"
+                app:layout_constraintTop_toBottomOf="@id/logoImageView"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/aboutUsDescText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_top_about_us_desc_text"
-            android:layout_marginStart="@dimen/margin_start_end_about_us_text"
-            android:layout_marginEnd="@dimen/margin_start_end_about_us_text"
-            android:text="@string/about_us_desc"
-            android:textSize="@dimen/size_text_desc_about_us"
-            android:textColor="@android:color/darker_gray"
-            android:fontFamily="@font/made_tommy"
-            app:layout_constraintTop_toBottomOf="@id/appNameCopyrightText"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/aboutUsDescText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_about_us_desc_text"
+                android:layout_marginStart="@dimen/margin_start_end_about_us_text"
+                android:layout_marginEnd="@dimen/margin_start_end_about_us_text"
+                android:text="@string/about_us_desc"
+                android:textSize="@dimen/size_text_desc_about_us"
+                android:textColor="@android:color/darker_gray"
+                android:fontFamily="@font/made_tommy"
+                app:layout_constraintTop_toBottomOf="@id/appNameCopyrightText"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_start_end_about_us_text"
-            android:layout_marginEnd="@dimen/margin_start_end_about_us_text"
-            android:text="@{aboutUseViewModel.appVersion}"
-            android:textSize="@dimen/size_text_desc_about_us"
-            android:textColor="@android:color/darker_gray"
-            android:fontFamily="@font/made_tommy"
-            app:layout_constraintTop_toBottomOf="@id/aboutUsDescText"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/appVersionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_start_end_about_us_text"
+                android:layout_marginEnd="@dimen/margin_start_end_about_us_text"
+                android:text="@{aboutUseViewModel.appVersion}"
+                android:textSize="@dimen/size_text_desc_about_us"
+                android:textColor="@android:color/darker_gray"
+                android:fontFamily="@font/made_tommy"
+                app:layout_constraintTop_toBottomOf="@id/aboutUsDescText"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/newsApiLogo"
+                android:layout_width="@dimen/width_logo_news_api"
+                android:layout_height="@dimen/height_logo_news_api"
+                android:layout_marginStart="@dimen/margin_start_end_about_us_text"
+                android:layout_marginTop="@dimen/margin_top_newsapi_logo"
+                android:contentDescription="@string/image_logo_news_api"
+                android:src="@drawable/newsapi_logo"
+                app:srcCompat="@drawable/newsapi_logo"
+                tools:srcCompat="@drawable/newsapi_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appVersionTextView" />
+
+            <TextView
+                android:id="@+id/poweredByTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_start_end_about_us_text"
+                android:text="@string/powered_by"
+                android:textSize="@dimen/size_text_desc_about_us"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/made_tommy"
+                app:layout_constraintTop_toBottomOf="@id/newsApiLogo"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/newsapi_url"
+                android:textSize="@dimen/size_text_desc_about_us"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/made_tommy"
+                android:autoLink="web"
+                app:layout_constraintStart_toEndOf="@id/poweredByTextView"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

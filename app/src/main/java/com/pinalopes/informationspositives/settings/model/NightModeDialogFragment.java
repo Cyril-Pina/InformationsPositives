@@ -13,7 +13,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.databinding.NightModeAlertFragmentBinding;
-import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.storage.DataStorageHelper;
 
 import static com.pinalopes.informationspositives.Constants.DAY_MODE;
 import static com.pinalopes.informationspositives.Constants.DAY_MODE_INITIAL_FRAME;
@@ -45,7 +45,7 @@ public class NightModeDialogFragment extends DialogFragment {
     }
 
     private void initNightModeIconSwitch() {
-        int currentThemeId = DataStorage.getUserSettings().getCurrentTheme();
+        int currentThemeId = DataStorageHelper.getUserSettings().getCurrentTheme();
         if (currentThemeId == R.style.AppTheme_Dark_NoActionBar) {
             binding.nightModeSwitch.setChecked(NIGHT_MODE);
             binding.nightModeAnimation.setFrame(NIGHT_MODE_MAX_FRAME);
@@ -65,9 +65,9 @@ public class NightModeDialogFragment extends DialogFragment {
                 binding.nightModeAnimation.setMinFrame(DAY_MODE_INITIAL_FRAME);
                 binding.nightModeAnimation.playAnimation();
             }
-            DataStorage.updateCurrentTheme(binding.getRoot().getContext());
-            getActivity().getIntent().putExtra(UPDATE_THEME_EXTRA, "");
-            getActivity().recreate();
+            DataStorageHelper.updateCurrentTheme(binding.getRoot().getContext());
+            requireActivity().getIntent().putExtra(UPDATE_THEME_EXTRA, "");
+            requireActivity().recreate();
         });
     }
 

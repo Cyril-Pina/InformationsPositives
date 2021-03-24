@@ -5,22 +5,12 @@ import android.widget.ImageView;
 import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.ViewModel;
 
+import com.squareup.picasso.Picasso;
+
 public class StoryViewModel extends ViewModel {
-    private int imageRes;
+
     private String title;
-
-    public StoryViewModel(int imageRes, String title) {
-        this.imageRes = imageRes;
-        this.title = title;
-    }
-
-    public int getImageRes() {
-        return imageRes;
-    }
-
-    public void setImageRes(int imageRes) {
-        this.imageRes = imageRes;
-    }
+    private String imageUrl;
 
     public String getTitle() {
         return title;
@@ -30,18 +20,18 @@ public class StoryViewModel extends ViewModel {
         this.title = title;
     }
 
-    @BindingAdapter({"android:src"})
-    public static void setImageViewResource(ImageView imageView, int resource) {
-        imageView.setImageResource(resource);
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    @BindingAdapter({"app:srcCompat"})
-    public static void setImageViewResourceApp(ImageView imageView, int resource) {
-        imageView.setImageResource(resource);
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    @BindingAdapter({"tools:srcCompat"})
-    public static void setImageViewResourceTools(ImageView imageView, int resource) {
-        imageView.setImageResource(resource);
+    @BindingAdapter({"imageUrl"})
+    public static void setImageUrl(ImageView view, String imageUrl){
+        if (imageUrl != null && !imageUrl.equals("")) {
+            Picasso.get().load(imageUrl).into(view);
+        }
     }
 }

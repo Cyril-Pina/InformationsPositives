@@ -15,7 +15,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.pinalopes.informationspositives.databinding.AboutUsDialogFragmentBinding;
 import com.pinalopes.informationspositives.settings.viewmodel.AboutUsViewModel;
-import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.storage.DataStorageHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class AboutUsDialogFragment extends DialogFragment {
         List<Integer> headerImages = new ArrayList<>();
 
         while (headerImages.size() < TOTAL_IMAGE_HEADER_ABOUT_US) {
-            int imageIndex = DataStorage.rand.nextInt(TOTAL_IMAGE_HEADER_ABOUT_US);
+            int imageIndex = DataStorageHelper.rand.nextInt(TOTAL_IMAGE_HEADER_ABOUT_US);
             String imageFileName = String.format(Locale.getDefault(), "%s%d", PREFIX_HEADER_IMAGE, imageIndex);
             int imageRes =  getResources().getIdentifier(imageFileName, DRAWABLE, PACKAGE_NAME);
             if (!headerImages.contains(imageRes)) {
