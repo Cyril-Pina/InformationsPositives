@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.ViewModel;
 
 import com.pinalopes.informationspositives.categories.model.Category;
+import com.squareup.picasso.Picasso;
 
 public class ArticleRowViewModel extends ViewModel {
 
@@ -16,9 +17,12 @@ public class ArticleRowViewModel extends ViewModel {
     protected long nbViews;
     protected long nbLikes;
     protected int imageRes;
+    protected String imageUrl;
     protected boolean isVideo;
 
-    public ArticleRowViewModel(String title, String date, String writer, Category category, long nbViews, long nbLikes, int imageRes, boolean isVideo) {
+    public ArticleRowViewModel() {}
+
+    public ArticleRowViewModel(String title, String date, String writer, Category category, long nbViews, long nbLikes, int imageRes, String imageUrl, boolean isVideo) {
         this.title = title;
         this.date = date;
         this.writer = writer;
@@ -26,6 +30,7 @@ public class ArticleRowViewModel extends ViewModel {
         this.nbViews = nbViews;
         this.nbLikes = nbLikes;
         this.imageRes = imageRes;
+        this.imageUrl = imageUrl;
         this.isVideo = isVideo;
     }
 
@@ -85,12 +90,25 @@ public class ArticleRowViewModel extends ViewModel {
         this.imageRes = imageRes;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public boolean isVideo() {
         return isVideo;
     }
 
     public void setVideo(boolean video) {
         isVideo = video;
+    }
+
+    @BindingAdapter({"imageUrl"})
+    public static void setImageUrl(ImageView view, String imageUrl){
+        Picasso.get().load(imageUrl).into(view);
     }
 
     @BindingAdapter({"android:src"})

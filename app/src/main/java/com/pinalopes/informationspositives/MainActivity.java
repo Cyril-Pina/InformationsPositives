@@ -12,23 +12,30 @@ import android.view.animation.AnimationUtils;
 import com.pinalopes.informationspositives.categories.model.CategoriesFragment;
 import com.pinalopes.informationspositives.databinding.ActivityMainBinding;
 import com.pinalopes.informationspositives.feed.model.FeedFragment;
+import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 import com.pinalopes.informationspositives.search.model.SearchActivity;
 import com.pinalopes.informationspositives.settings.model.SettingsFragment;
-import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.storage.DataStorageHelper;
 
+import java.util.List;
+
+import static com.pinalopes.informationspositives.Constants.DEFAULT_PAGINATION_VALUE;
 import static com.pinalopes.informationspositives.Constants.IS_ACTIVITY_RECREATED;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FeedFragment.OnFeedFragmentEventListener {
 
     private ActivityMainBinding binding;
-    private Fragment firstFragment = new FeedFragment();
+    private Fragment currentFragment;
     private int fragmentId = R.id.action_feed;
     private boolean isRecreated = false;
     private int currentItemId;
 
+    private List<ArticleRowViewModel> feedArticleDataList;
+    private int feedPage = DEFAULT_PAGINATION_VALUE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(DataStorage.getUserSettings().getCurrentTheme());
+        setTheme(DataStorageHelper.getUserSettings().getCurrentTheme());
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -37,15 +44,24 @@ public class MainActivity extends AppCompatActivity {
         setOnSearchClickListener();
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
     private void initBottomNavigationMenu() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.activityMainFrameLayout, firstFragment).commit();
+        currentFragment = new FeedFragment();
+        ((FeedFragment) currentFragment).setOnFeedFragmentEventListener(this, feedArticleDataList, feedPage);
+        fragmentManager.beginTransaction().add(R.id.activityMainFrameLayout, currentFragment).addToBackStack(null).commit();
 
         binding.activityMainBottomNavigation.setItemIconTintList(null);
         binding.activityMainBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() != currentItemId) {
                 currentItemId = item.getItemId();
                 return updateMainFragment(item.getItemId());
+            } else if (item.getItemId() == currentItemId) {
+                ((FeedFragment)currentFragment).scrollUpToTopOfList();
             }
             return false;
         });
@@ -54,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void recreateAfterThemeUpdate() {
         if (getIntent() != null && getIntent().getExtras() != null) {
-            firstFragment = new SettingsFragment();
+            currentFragment = new SettingsFragment();
             fragmentId = R.id.action_settings;
             isRecreated = true;
         }
@@ -78,19 +94,20 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean updateMainFragment(Integer itemId) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment newFragment = new CategoriesFragment();
         if (itemId == R.id.action_categories) {
+            currentFragment = new CategoriesFragment();
             setTopBarVisibility(View.VISIBLE);
         } else if (itemId == R.id.action_feed) {
             setTopBarVisibility(View.VISIBLE);
-            newFragment = new FeedFragment();
+            currentFragment = new FeedFragment();
+            ((FeedFragment) currentFragment).setOnFeedFragmentEventListener(this, this.feedArticleDataList, feedPage);
         } else if (itemId == R.id.action_settings) {
             setTopBarVisibility(View.GONE);
-            newFragment = new SettingsFragment();
-            newFragment.setArguments(getSettingsBundle());
+            currentFragment = new SettingsFragment();
+            currentFragment.setArguments(getSettingsBundle());
             isRecreated = false;
         }
-        fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, newFragment).addToBackStack(null).commit();
+        fragmentManager.beginTransaction().replace(R.id.activityMainFrameLayout, currentFragment).addToBackStack(null).commit();
         return true;
     }
 
@@ -100,5 +117,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void rateUsButtonClicked(View rateUsButton) {
         rateUsButton.startAnimation(AnimationUtils.loadAnimation(rateUsButton.getContext(), R.anim.item_pressed_anim));
+    }
+
+    @Override
+    public void onFeedArticleUpdated(List<ArticleRowViewModel> feedArticleDataList, int page) {
+        this.feedArticleDataList = feedArticleDataList;
+        this.feedPage = page;
     }
 }

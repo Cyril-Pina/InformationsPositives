@@ -10,7 +10,7 @@ import android.view.ViewTreeObserver;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.pinalopes.informationspositives.databinding.LaunchScreenBinding;
-import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.storage.DataStorageHelper;
 
 public class LaunchScreen extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class LaunchScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = LaunchScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        DataStorage.initDataStorage(this);
+        DataStorageHelper.initDataStorage(this);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class LaunchScreen extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 binding.circleView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                DataStorage.getSavedSentimentsModelFromDatabase(LaunchScreen.this, isSuccess -> {
+                DataStorageHelper.getSavedSentimentsModelFromDatabase(LaunchScreen.this, isSuccess -> {
                     if (isSuccess) {
                         startAnimation();
                     } else {

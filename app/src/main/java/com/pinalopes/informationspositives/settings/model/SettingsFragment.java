@@ -24,7 +24,7 @@ import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.databinding.SettingsFragmentBinding;
 import com.pinalopes.informationspositives.settings.viewmodel.SettingsMenuItemViewModel;
 import com.pinalopes.informationspositives.settings.viewmodel.TopCategoriesViewModel;
-import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.storage.DataStorageHelper;
 import com.pinalopes.informationspositives.utils.AdapterUtils;
 
 import java.util.ArrayList;
@@ -101,7 +101,7 @@ public class SettingsFragment extends Fragment {
     private OnCategoriesClickListener getOnCategoriesSelectedListener(Context context, int savedTotalCategoriesSelected) {
         binding.setTopCategoriesViewModel(getTopCategoriesViewModelInstance(savedTotalCategoriesSelected));
         return (idCategory, isSelected, totalCategoriesSelected) -> {
-            DataStorage.updateSelectedCategories(context, idCategory, isSelected);
+            DataStorageHelper.updateSelectedCategories(context, idCategory, isSelected);
             binding.setTopCategoriesViewModel(getTopCategoriesViewModelInstance(totalCategoriesSelected));
         };
     }
@@ -109,7 +109,7 @@ public class SettingsFragment extends Fragment {
     private CompoundButton.OnCheckedChangeListener getOnCheckedChangeListener(Context context) {
         return (notificationSwitch, isChecked) -> {
             notificationsManager(context, (SwitchCompat) notificationSwitch, isChecked);
-            DataStorage.updateNotificationsState(context);
+            DataStorageHelper.updateNotificationsState(context);
         };
     }
 
@@ -119,7 +119,7 @@ public class SettingsFragment extends Fragment {
                 case ITEM_NOTIFICATIONS_INDEX:
                     boolean isNotificationEnabled = !notificationSwitch.isChecked();
                     notificationsManager(context, notificationSwitch, isNotificationEnabled);
-                    DataStorage.updateNotificationsState(context);
+                    DataStorageHelper.updateNotificationsState(context);
                     break;
                 case ITEM_NIGHT_MODE_INDEX:
                     showNightModePopUp();
@@ -140,11 +140,11 @@ public class SettingsFragment extends Fragment {
     }
 
     private List<Integer> getSavedSelectedCategories() {
-        return DataStorage.getUserSettings().getCategoriesSelected();
+        return DataStorageHelper.getUserSettings().getCategoriesSelected();
     }
 
     private boolean isSavedNotificationsEnabled() {
-        return DataStorage.getUserSettings().isNotificationsEnabled();
+        return DataStorageHelper.getUserSettings().isNotificationsEnabled();
     }
 
     private void notificationsManager(Context context, SwitchCompat notificationSwitch, boolean isNotificationEnable) {

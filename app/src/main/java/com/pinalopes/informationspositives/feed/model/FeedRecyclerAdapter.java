@@ -18,6 +18,7 @@ import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 import java.util.List;
 
 import static com.pinalopes.informationspositives.Constants.FIRST_INDEX;
+import static com.pinalopes.informationspositives.Constants.MIN_SIZE;
 import static com.pinalopes.informationspositives.Constants.TYPE_HEADER;
 import static com.pinalopes.informationspositives.Constants.TYPE_ITEM;
 
@@ -47,7 +48,10 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
 
     public FeedRecyclerAdapter(List<ArticleRowViewModel> feedArticleDataList) {
         this.feedArticleDataList = feedArticleDataList;
-        this.feedArticleDataList.add(FIRST_INDEX, null);
+        if (feedArticleDataList != null && feedArticleDataList.size() > MIN_SIZE
+            && feedArticleDataList.get(FIRST_INDEX) != null) {
+            this.feedArticleDataList.add(FIRST_INDEX, null); // For header part
+        }
     }
 
     @NonNull

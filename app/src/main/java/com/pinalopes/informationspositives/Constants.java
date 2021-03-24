@@ -90,11 +90,55 @@ public class Constants {
     public static final int INDEX_OF_FAILURE = -1;
 
     // SearchActivity.java
+    public static final String DATE_FORMAT_FILTER = "dd/MM/yyyy";
     public static final int LENGTH_EMPTY_KEYWORD_SEARCH = 2;
     public static final int SIZE_EMPTY_LIST = 0;
     public static final int MIN_SIZE = 0;
 
+    // SearchResultsFragment.java
+    public static final String AND_SUFFIX = " AND (";
+    public static final String OR_SUFFIX = " OR ";
+    public static final String PARENTHESIS_REGEX = ")";
+    public static final String DOUBLE_QUOTE_REGEX = "\"";
+    public static final int DEFAULT_VALUE_CATEGORIES_ADDED = 0;
+    public static final int ADD_CATEGORY = 1;
+
     // TextRecognition.java
     public static final String NEGATIVE_CATEGORY = "negative";
     public static final float MAX_NEGATIVE_SCORE = 0.4f;
+
+    // NewsApi.java
+    public static final String BASE_URL = " https://newsapi.org";
+    public static final String NEWS_API_TOKEN = "dd641eb4db424a0b9dcfbeb918dc94e1";
+    public static final long MILLIS_IN_A_DAY = (long) 1000 * 60 * 60 * 24;
+    public static final int NO_ARTICLE = 0;
+    public static final int DEFAULT_PAGINATION_VALUE = 1;
+    public static final int NEXT_PAGE = 1;
+    public static final int FAILURE_ITERATION_INIT_VALUE = 0;
+    public static final int FAILURE_VALUE = 1;
+    public static final int MAX_FAILURE_ITERATION = 2;
+
+    // NetworkErrorFragment.java
+    public static final String NETWORK_ERROR_CAUSE = "networkErrorCause";
+    public static final String IS_RELOAD_DATA_ENABLED = "isReloadDataEnabled";
+    public static final int NETWORK_ERR_ANIM_MAX_FRAME = 40;
+    public static final int NETWORK_ERR_ANIM_REVERSE_FRAME = 110;
+    public static final int NETWORK_ERR_ANIM_REVERSE_MAX_FRAME = 150;
+    public static final int ANIM_NO_REPEAT = 0;
+
+    // FeedFragment.java
+    public static final int TOP_SCROLL_POSITION = 0;
+    public static final int NO_ELEMENT_ADDED = 0;
+    public static final int INITIAL_VALUE_NB_ELEMENTS_ADDED = 0;
+    public static final int ADD_NEW_ELEMENT = 1;
+    public static final int DELAY_BEFORE_RELOAD_FEED_ARTICLES = 200;
+
+    // ArticlesFragment.java
+    public static final int DIRECTION_SCROLL_VERTICALLY = 1;
+
+    // DateUtils.java
+    public static final String DEFAULT_TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+    public static final String NEWS_SEARCHES_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String NEWS_RESULTS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+    public static final String ARTICLE_DATE_FORMAT = "HH:mm:ss-dd/MM/yyyy";
 }

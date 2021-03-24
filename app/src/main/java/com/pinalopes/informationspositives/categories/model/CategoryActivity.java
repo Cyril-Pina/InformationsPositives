@@ -19,7 +19,7 @@ import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.categories.viewmodel.ArticleCategoryViewModel;
 import com.pinalopes.informationspositives.categories.viewmodel.CategoryViewModel;
 import com.pinalopes.informationspositives.databinding.CategoryBinding;
-import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.storage.DataStorageHelper;
 import com.pinalopes.informationspositives.utils.ResourceUtils;
 import com.r0adkll.slidr.Slidr;
 
@@ -40,7 +40,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        currentThemeId = DataStorage.getUserSettings().getCurrentTheme();
+        currentThemeId = DataStorageHelper.getUserSettings().getCurrentTheme();
         setTheme(currentThemeId);
         super.onCreate(savedInstanceState);
         binding = CategoryBinding.inflate(getLayoutInflater());

@@ -64,5 +64,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/articlesFragmentLayout"
+            android:layout_width="@dimen/zero"
+            android:layout_height="@dimen/zero"
+            android:layout_marginTop="@dimen/margin_top_recent_searches"
+            android:visibility="@{searchResultsViewModel.searchResultOk ?  View.VISIBLE : View.GONE}"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/title_recent_searches_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/networkErrorFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{searchResultsViewModel.searchResultOk ?  View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

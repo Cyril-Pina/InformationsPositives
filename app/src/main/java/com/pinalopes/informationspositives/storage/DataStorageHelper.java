@@ -28,9 +28,9 @@ import static com.pinalopes.informationspositives.Constants.NB_DAYS_BEFORE_DOWNL
 import static com.pinalopes.informationspositives.Constants.SIZE_EMPTY_LIST;
 import static com.pinalopes.informationspositives.application.IPApplication.localDB;
 
-public class DataStorage {
+public class DataStorageHelper {
 
-    private static final String TAG = "DataStorage";
+    private static final String TAG = "DataStorageHelper";
 
     private static SharedPreferences sharedPref;
     private static Gson gson;
@@ -38,7 +38,7 @@ public class DataStorage {
     private static File modelFile;
     public static final Random rand = new Random();
 
-    private DataStorage() {
+    private DataStorageHelper() {
         throw new AssertionError();
     }
 
@@ -123,7 +123,7 @@ public class DataStorage {
                 modelUnsaved(listener);
             }
         });
-        DataStorage.getModel(modelMutableLiveData);
+        DataStorageHelper.getModel(modelMutableLiveData);
     }
 
     private static Date getLastModifiedDate(String timestamp) {

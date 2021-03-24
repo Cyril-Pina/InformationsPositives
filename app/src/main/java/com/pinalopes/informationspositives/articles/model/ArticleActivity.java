@@ -14,7 +14,7 @@ import com.pinalopes.informationspositives.articles.viewmodel.ArticleViewModel;
 import com.pinalopes.informationspositives.articles.viewmodel.RecommendationRowViewModel;
 import com.pinalopes.informationspositives.categories.model.Category;
 import com.pinalopes.informationspositives.databinding.ArticleBinding;
-import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.storage.DataStorageHelper;
 import com.r0adkll.slidr.Slidr;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class ArticleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(DataStorage.getUserSettings().getCurrentTheme());
+        setTheme(DataStorageHelper.getUserSettings().getCurrentTheme());
         super.onCreate(savedInstanceState);
         binding = ArticleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

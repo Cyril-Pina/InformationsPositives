@@ -26,7 +26,7 @@ import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.TransitionService;
 import com.pinalopes.informationspositives.databinding.SearchActivityBinding;
 import com.pinalopes.informationspositives.search.viewmodel.SearchActivityViewModel;
-import com.pinalopes.informationspositives.storage.DataStorage;
+import com.pinalopes.informationspositives.storage.DataStorageHelper;
 import com.pinalopes.informationspositives.utils.AdapterUtils;
 import com.pinalopes.informationspositives.utils.DateUtils;
 import com.pinalopes.informationspositives.utils.ViewUtils;
@@ -36,6 +36,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.pinalopes.informationspositives.Constants.DATE_FORMAT_FILTER;
 import static com.pinalopes.informationspositives.Constants.MIN_SIZE;
 
 public class SearchActivity extends AppCompatActivity {
@@ -55,8 +56,8 @@ public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(DataStorage.getUserSettings().getCurrentTheme());
-        currentThemeId = DataStorage.getUserSettings().getCurrentTheme();
+        setTheme(DataStorageHelper.getUserSettings().getCurrentTheme());
+        currentThemeId = DataStorageHelper.getUserSettings().getCurrentTheme();
         super.onCreate(savedInstanceState);
         binding = SearchActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -94,7 +95,7 @@ public class SearchActivity extends AppCompatActivity {
                 ViewUtils.hideSoftKeyboard((Activity) v.getContext());
                 String recentArticleSearched = v.getText().toString();
                 if (!recentArticleSearched.isEmpty()) {
-                    DataStorage.saveRecentSearchInLocalDB(recentArticleSearched);
+                    DataStorageHelper.saveRecentSearchInLocalDB(recentArticleSearched);
                 }
                 return true;
             }
@@ -182,7 +183,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void initDateFiltersMutable() {
         binding.getSearchActivityViewModel().getBeginningDateMutable().observe(this, date -> {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT_FILTER, Locale.getDefault());
             binding.getSearchActivityViewModel().setBeginningDate(format.format(date));
             binding.invalidateAll();
 
@@ -197,7 +198,7 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         binding.getSearchActivityViewModel().getEndingDateMutable().observe(this, date -> {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT_FILTER, Locale.getDefault());
             binding.getSearchActivityViewModel().setEndingDate(format.format(date));
             binding.invalidateAll();
 

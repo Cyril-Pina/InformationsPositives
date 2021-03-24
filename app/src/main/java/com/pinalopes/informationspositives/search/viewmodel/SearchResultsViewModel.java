@@ -11,6 +11,7 @@ public class SearchResultsViewModel extends ViewModel {
     private MutableLiveData<List<RecentSearch>> recentSearchMutableLiveData;
 
     private boolean isSearchEditTextEmpty;
+    private boolean isSearchResultOk;
 
     public MutableLiveData<List<RecentSearch>> getRecentSearchMutableLiveData() {
         if (recentSearchMutableLiveData == null) {
@@ -25,5 +26,17 @@ public class SearchResultsViewModel extends ViewModel {
 
     public void setSearchEditTextEmpty(boolean searchEditTextEmpty) {
         isSearchEditTextEmpty = searchEditTextEmpty;
+    }
+
+    public void setRecentSearchMutableLiveData(MutableLiveData<List<RecentSearch>> recentSearchMutableLiveData) {
+        this.recentSearchMutableLiveData = recentSearchMutableLiveData;
+    }
+
+    public boolean isSearchResultOk() {
+        return isSearchResultOk;
+    }
+
+    public void setSearchResultOk(boolean searchResultOk) {
+        isSearchResultOk = searchResultOk;
     }
 }
