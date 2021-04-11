@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.databinding.SearchResultsFragmentBinding;
 import com.pinalopes.informationspositives.feed.model.ArticlesFragment;
+import com.pinalopes.informationspositives.feed.model.OnArticleEventListener;
 import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 import com.pinalopes.informationspositives.feed.viewmodel.NewsViewModel;
 import com.pinalopes.informationspositives.network.model.NetworkErrorFragment;
@@ -42,12 +43,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.pinalopes.informationspositives.Constants.ADD_CATEGORY;
 import static com.pinalopes.informationspositives.Constants.ADD_NEW_ELEMENT;
 import static com.pinalopes.informationspositives.Constants.AND_SUFFIX;
 import static com.pinalopes.informationspositives.Constants.DEFAULT_PAGINATION_VALUE;
 import static com.pinalopes.informationspositives.Constants.DEFAULT_VALUE_CATEGORIES_ADDED;
+import static com.pinalopes.informationspositives.Constants.DELAY_BEFORE_SET_FEED_ADAPTER;
 import static com.pinalopes.informationspositives.Constants.DOUBLE_QUOTE_REGEX;
 import static com.pinalopes.informationspositives.Constants.FAILURE_ITERATION_INIT_VALUE;
 import static com.pinalopes.informationspositives.Constants.FAILURE_VALUE;
@@ -72,6 +76,9 @@ public class SearchResultsFragment extends Fragment {
     private SearchActivityViewModel searchActivityViewModel;
     private ArticlesFragment articlesFragment;
     private List<ArticleRowViewModel> feedArticleDataList;
+    private OnArticleEventListener listener;
+    private Filters filters;
+    private String keyWordSearch;
 
     private int page = DEFAULT_PAGINATION_VALUE;
     private int failureIteration = FAILURE_ITERATION_INIT_VALUE;
@@ -87,10 +94,16 @@ public class SearchResultsFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
         rootView.setOnClickListener(v -> ViewUtils.hideSoftKeyboard((Activity) rootView.getContext()));
         initArticlesFragment();
-        initNewsMutableLiveData(getContext());
-        runSearchRequestWithFilter(rootView.getContext());
-        initOnDeleteAllRecentSearchesClick();
-        feedArticleDataList = new ArrayList<>();
+        if (feedArticleDataList == null || feedArticleDataList.size() <= MIN_SIZE) {
+            feedArticleDataList = new ArrayList<>();
+            initNewsMutableLiveData(getContext());
+            initKeyWordsAndFilters(savedInstanceState);
+            runSearchRequestWithFilter(rootView.getContext());
+            initOnDeleteAllRecentSearchesClick();
+        } else {
+            updateArticlesLayoutVisibility(true);
+            new Timer().schedule(getPreviousArticlesRunnable(), DELAY_BEFORE_SET_FEED_ADAPTER);
+        }
         return binding.getRoot();
     }
 
@@ -126,9 +139,10 @@ public class SearchResultsFragment extends Fragment {
             if (news != null && news.getTotalResults() > NO_ARTICLE) {
                 updateArticlesLayoutVisibility(true);
                 int nbElementsAdded = updateFeedArticleDataList(news);
-                updateArticlesFragment(this.feedArticleDataList, nbElementsAdded, new LinearLayoutManager(context));
+                updateArticlesFragment(this.feedArticleDataList, nbElementsAdded);
                 failureIteration = FAILURE_ITERATION_INIT_VALUE;
                 page += NEXT_PAGE;
+                listener.onArticleUpdated(this.feedArticleDataList, page);
                 return;
             } else if (failureIteration < MAX_FAILURE_ITERATION && getActivity() != null) {
                 NewsRequestsApi.getInstance().getLatestNews(
@@ -137,10 +151,21 @@ public class SearchResultsFragment extends Fragment {
                         DateUtils.getPreviousDate(),
                         page);
             } else if (feedArticleDataList.size() <= MIN_SIZE) {
-                    showNetworkErrorFragment(getNetworkErrorCause(context));
+                showNetworkErrorFragment(getNetworkErrorCause(context));
             }
             failureIteration += FAILURE_VALUE;
         });
+    }
+
+    private void initKeyWordsAndFilters(Bundle savedInstanceState) {
+        Gson gson = new Gson();
+        if (savedInstanceState != null) {
+            filters = gson.fromJson(savedInstanceState.getString(FILTERS), Filters.class);
+            keyWordSearch = savedInstanceState.getString(KEY_WORD_SEARCH);
+        } else if (getArguments() != null) {
+            filters = gson.fromJson(getArguments().getString(FILTERS, ""), Filters.class);
+            keyWordSearch = getArguments().getString(KEY_WORD_SEARCH, "");
+        }
     }
 
     private String getNetworkErrorCause(Context context) {
@@ -150,8 +175,20 @@ public class SearchResultsFragment extends Fragment {
         return "";
     }
 
-    private void updateArticlesFragment(List<ArticleRowViewModel> feedArticleDataList, int nbElementsAdded, LinearLayoutManager layoutManager) {
-        articlesFragment.initFeedRecyclerViewAdapter(feedArticleDataList, nbElementsAdded, layoutManager);
+    private TimerTask getPreviousArticlesRunnable() {
+        Runnable runnable = () -> updateArticlesFragment(feedArticleDataList, feedArticleDataList.size());
+        return new TimerTask() {
+            @Override
+            public void run() {
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(runnable);
+                }
+            }
+        };
+    }
+
+    private void updateArticlesFragment(List<ArticleRowViewModel> feedArticleDataList, int nbElementsAdded) {
+        articlesFragment.initFeedRecyclerViewAdapter(feedArticleDataList, nbElementsAdded);
     }
 
     private int updateFeedArticleDataList(News news) {
@@ -164,6 +201,9 @@ public class SearchResultsFragment extends Fragment {
                 articleRowViewModel.setImageUrl(article.getUrlToImage());
                 articleRowViewModel.setWriter(AdapterUtils.getArticleWriter(article));
                 articleRowViewModel.setDate(DateUtils.formatArticlePublishedDate(article.getPublishedAt()));
+                articleRowViewModel.setText(article.getContent());
+                articleRowViewModel.setDescription(article.getDescription());
+                articleRowViewModel.setLinkToArticle(article.getUrl());
                 if (binding != null) {
                     articleRowViewModel.setCategory(AdapterUtils.getFeedGeneralCategory(binding.getRoot().getContext(),
                             DataStorageHelper.getUserSettings().getCurrentTheme()));
@@ -255,32 +295,28 @@ public class SearchResultsFragment extends Fragment {
         SearchResultsFragment searchResultsFragment = new SearchResultsFragment();
         Bundle args = new Bundle();
         args.putString(FILTERS, new Gson().toJson(filters));
-        args.putString(KEY_WORD_SEARCH, new Gson().toJson(keyWordSearch));
+        args.putString(KEY_WORD_SEARCH, keyWordSearch);
         searchResultsFragment.setArguments(args);
         return searchResultsFragment;
     }
 
     private void runSearchRequestWithFilter(Context context) {
-        if (getArguments() != null) {
-            Filters filters = new Gson().fromJson(getArguments().getString(FILTERS, ""), Filters.class);
-            String keyWordSearch = getArguments().getString(KEY_WORD_SEARCH, "");
-            if (keyWordSearch != null) {
-                if (keyWordSearch.length() > LENGTH_EMPTY_KEYWORD_SEARCH) {
-                    updateHeaderSearchResultsLayout(false);
-                    searchNewsFromDateFilters(filters, keyWordSearch.replace(DOUBLE_QUOTE_REGEX, ""));
-                } else {
-                    initRecentSearchesMutableLiveData(context);
-                }
+        if (keyWordSearch != null && filters != null) {
+            if (keyWordSearch.length() > LENGTH_EMPTY_KEYWORD_SEARCH) {
+                updateHeaderSearchResultsLayout(false);
+                searchNewsFromDateFilters(filters, keyWordSearch.replace(DOUBLE_QUOTE_REGEX, ""));
+            } else {
+                initRecentSearchesMutableLiveData(context);
             }
         }
     }
 
     private void searchNewsFromDateFilters(Filters filters, String keyWordSearch) {
-        Boolean[] isCategorySearchedList = filters.getCategories();
+        Boolean[] isCategorySearchedList = filters != null ? filters.getCategories() : new Boolean[] { false, false, false, false, false, false, false };
         if (Arrays.asList(isCategorySearchedList).contains(true)) {
             keyWordSearch = generateKeywordsField(keyWordSearch, isCategorySearchedList);
         }
-        if (filters.getBeginningDate() != null && filters.getEndingDate() != null) {
+        if (filters != null && filters.getBeginningDate() != null && filters.getEndingDate() != null) {
             NewsRequestsApi.getInstance().getFilteredNews(
                     viewModel.getNewsMutableLiveData(),
                     keyWordSearch,
@@ -288,7 +324,7 @@ public class SearchResultsFragment extends Fragment {
                     DateUtils.getDateToSearch(filters.getEndingDate()),
                     getString(R.string.lang_prefix),
                     page);
-        } else if (filters.getBeginningDate() != null) {
+        } else if (filters != null && filters.getBeginningDate() != null) {
             NewsRequestsApi.getInstance().getFilteredNews(
                     viewModel.getNewsMutableLiveData(),
                     keyWordSearch,
@@ -296,7 +332,7 @@ public class SearchResultsFragment extends Fragment {
                     DateUtils.getActualDate(),
                     getString(R.string.lang_prefix),
                     page);
-        } else if (filters.getEndingDate() != null) {
+        } else if (filters != null && filters.getEndingDate() != null) {
             NewsRequestsApi.getInstance().getFilteredNews(
                     viewModel.getNewsMutableLiveData(),
                     keyWordSearch,
@@ -328,5 +364,11 @@ public class SearchResultsFragment extends Fragment {
             }
         }
         return builder.toString();
+    }
+
+    public void setOnArticleEventListener(OnArticleEventListener listener, List<ArticleRowViewModel> feedArticleDataList, int feedPage) {
+        this.listener = listener;
+        this.feedArticleDataList = feedArticleDataList;
+        this.page = feedPage;
     }
 }

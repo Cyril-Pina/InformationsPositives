@@ -57,9 +57,10 @@
     <string name="shared_article_subject">Regarde ce super article positif lu sur l\'app \"Informations Positives\" ! &#128525;</string>
     <string name="chooser_message">&#x1F680; Envoyer cet article incroyable…</string>
     <string name="written_by_sample">Redigé par Michaël Doe le 06 janvier 2020 à 16h25</string>
+    <string name="see_full_article">Voir l\'article entier.</string>
 
     <!-- article_in_story.xml -->
-    <string name="see_full_article">Voir l\'article</string>
+    <string name="see_article">Voir l\'article</string>
     <string name="initial_count_down_value">10</string>
 
     <!-- settings_fragment.xml -->
@@ -126,10 +127,10 @@
 
     <!--Category description -->
     <string name="nature_desc">Découvre les meilleures nouvelles qui raviront Mère Nature. &#x1F333;</string>
-    <string name="fauna_desc">Savais-tu que les chauves-souris tournaient toujours à gauche en sortant d\'une grotte ? Non ? Vous êtes donc au bon endroit. &#x1F987;</string>
+    <string name="fauna_desc">Savais-tu que les chauves-souris tournaient toujours à gauche en sortant d\'une grotte ? Non ? Tu es donc au bon endroit. &#x1F987;</string>
     <string name="techno_desc">L\'antre des férus de nouvelles technos qui essayent de transférer leur cerveau dans un super ordinateur (ou d\'apprendre le C++, au choix). &#x1F4BB;</string>
     <string name="humanitarian_desc">Des superbes anecdotes qui prouvent bien que ce sont les gentils qui gagnent toujours à la fin. &#x1F493;</string>
-    <string name="food_desc">Ton pote vegan relou sous forme d\'articles. &#x1F34E;</string>
-    <string name="economy_desc">L\'argent rend-il heureux ? Tu n\'auras certainement jamais la réponse mais réconfortes-toi avec ces articles enrichissants. &#x1F4B8;</string>
+    <string name="food_desc">Ton pote vegan un peu lourd sous forme d\'articles. &#x1F34E;</string>
+    <string name="economy_desc">L\'argent rend-il heureux ? Tu n\'auras certainement jamais la réponse mais réconforte-toi avec ces articles enrichissants. &#x1F4B8;</string>
     <string name="sport_desc">Un regain de motivation pour renouveler ton abonnement à cette salle que tu as délaissée depuis 1 an après 3 séances. &#x1F3CB;</string>
 </resources>

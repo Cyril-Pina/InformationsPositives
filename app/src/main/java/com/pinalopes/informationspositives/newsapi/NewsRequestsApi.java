@@ -32,6 +32,11 @@ public class NewsRequestsApi extends NewsApi {
         call.enqueue(getNewsCallBack(newsMutableLiveData));
     }
 
+    public void getLatestCategoryNews(MutableLiveData<News> newsMutableLiveData, String language, String category, String from, int page) {
+        Call<News> call = service.getCategoryLatestNews(language, category, from, page, NEWS_API_TOKEN);
+        call.enqueue(getNewsCallBack(newsMutableLiveData));
+    }
+
     public void getFilteredNews(MutableLiveData<News> newsMutableLiveData, String keywords, String language, int page) {
         Call<News> call = service.getFilteredNews(language, keywords, page, NEWS_API_TOKEN);
         call.enqueue(getNewsCallBack(newsMutableLiveData));

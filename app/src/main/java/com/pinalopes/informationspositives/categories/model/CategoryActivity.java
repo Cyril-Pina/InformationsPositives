@@ -1,5 +1,6 @@
 package com.pinalopes.informationspositives.categories.model;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,30 +12,57 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.pinalopes.informationspositives.R;
-import com.pinalopes.informationspositives.categories.viewmodel.ArticleCategoryViewModel;
 import com.pinalopes.informationspositives.categories.viewmodel.CategoryViewModel;
 import com.pinalopes.informationspositives.databinding.CategoryBinding;
+import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
+import com.pinalopes.informationspositives.feed.viewmodel.DataLoadingViewModel;
+import com.pinalopes.informationspositives.feed.viewmodel.NewsViewModel;
+import com.pinalopes.informationspositives.network.model.NetworkErrorFragment;
+import com.pinalopes.informationspositives.network.model.NetworkService;
+import com.pinalopes.informationspositives.newsapi.NewsRequestsApi;
+import com.pinalopes.informationspositives.newsapi.responsebody.Article;
+import com.pinalopes.informationspositives.newsapi.responsebody.News;
 import com.pinalopes.informationspositives.storage.DataStorageHelper;
+import com.pinalopes.informationspositives.utils.AdapterUtils;
+import com.pinalopes.informationspositives.utils.DateUtils;
 import com.pinalopes.informationspositives.utils.ResourceUtils;
 import com.r0adkll.slidr.Slidr;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.pinalopes.informationspositives.Constants.ADD_NEW_ELEMENT;
 import static com.pinalopes.informationspositives.Constants.CURRENT_CATEGORY;
+import static com.pinalopes.informationspositives.Constants.DEFAULT_PAGINATION_VALUE;
+import static com.pinalopes.informationspositives.Constants.DIRECTION_SCROLL_VERTICALLY;
 import static com.pinalopes.informationspositives.Constants.ELEVATION_TEN;
+import static com.pinalopes.informationspositives.Constants.FAILURE_ITERATION_INIT_VALUE;
+import static com.pinalopes.informationspositives.Constants.FAILURE_VALUE;
+import static com.pinalopes.informationspositives.Constants.INITIAL_VALUE_NB_ELEMENTS_ADDED;
+import static com.pinalopes.informationspositives.Constants.MAX_FAILURE_ITERATION;
+import static com.pinalopes.informationspositives.Constants.MIN_SIZE;
+import static com.pinalopes.informationspositives.Constants.NEXT_PAGE;
+import static com.pinalopes.informationspositives.Constants.NO_ARTICLE;
 import static com.pinalopes.informationspositives.Constants.NO_BACKGROUND_RESOURCE;
 import static com.pinalopes.informationspositives.Constants.NO_ELEVATION;
 
-public class CategoryActivity extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity implements NetworkErrorFragment.OnNetworkErrorEventListener{
 
     private CategoryBinding binding;
     private Category category;
+    private NewsViewModel viewModel;
+    private List<ArticleRowViewModel> categoryArticleDataList;
+
+    private int page = DEFAULT_PAGINATION_VALUE;
+    private int failureIteration = FAILURE_ITERATION_INIT_VALUE;
 
     private int currentThemeId;
 
@@ -47,16 +75,36 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Slidr.attach(this);
 
+        viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
+        categoryArticleDataList = new ArrayList<>();
+        binding.articleCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         initCategoryView(savedInstanceState);
         setNestedScrollViewListener();
         setOnClickHeaderButtons();
-        initArticleCategoryRecyclerView();
+        setOnFeedListReachesBottomListener();
+        updateDataLoadingViewModel(false, true);
+        initArticleCategoryRecyclerView(this);
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString(CURRENT_CATEGORY, new Gson().toJson(category));
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onRefreshButtonPressed() {
+        updateDataLoadingViewModel(false, true);
+        if (viewModel.getNewsMutableLiveData().hasObservers()) {
+            NewsRequestsApi.getInstance().getLatestCategoryNews(
+                    viewModel.getNewsMutableLiveData(),
+                    getString(R.string.lang_prefix),
+                    category.getCategoryName(),
+                    DateUtils.getActualDate(),
+                    page);
+        } else {
+            initArticleCategoryRecyclerView(this);
+        }
     }
 
     private void initCategoryView(Bundle savedInstanceState) {
@@ -67,6 +115,62 @@ public class CategoryActivity extends AppCompatActivity {
             category = new Gson().fromJson(savedInstanceState.getString(CURRENT_CATEGORY), Category.class);
         }
         binding.setCategoryViewModel(new CategoryViewModel(category, category.getDescFromName(this)));
+    }
+
+    private void initArticleCategoryRecyclerView(Context context) {
+        if (!viewModel.getNewsMutableLiveData().hasObservers()) {
+            viewModel.getNewsMutableLiveData().observe((LifecycleOwner) context, news -> {
+                if (news != null && news.getTotalResults() > NO_ARTICLE) {
+                    int nbElementsAdded = updateCategoryArticleDataList(news);
+                    showArticlesLayout();
+                    initArticleCategoryAdapter(this.categoryArticleDataList, nbElementsAdded);
+                    failureIteration = FAILURE_ITERATION_INIT_VALUE;
+                    page += NEXT_PAGE;
+                    return;
+                } else if (failureIteration < MAX_FAILURE_ITERATION) {
+                    NewsRequestsApi.getInstance().getLatestCategoryNews(
+                            viewModel.getNewsMutableLiveData(),
+                            getString(R.string.lang_prefix),
+                            category.getCategoryName(),
+                            DateUtils.getPreviousDate(),
+                            page);
+                } else if (categoryArticleDataList.size() <= MIN_SIZE) {
+                    showNetworkErrorFragment(NetworkService.isNetworkOn(context) ?
+                            getString(R.string.article_not_found) : getString(R.string.no_network_connection));
+                } else {
+                    updateDataLoadingViewModel(true, true);
+                }
+                failureIteration += FAILURE_VALUE;
+            });
+        }
+        NewsRequestsApi.getInstance().getLatestCategoryNews(
+                viewModel.getNewsMutableLiveData(),
+                getString(R.string.lang_prefix),
+                category.getCategoryName(),
+                DateUtils.getActualDate(),
+                page);
+    }
+
+    private int updateCategoryArticleDataList(News news) {
+        int nbElementsAdded = INITIAL_VALUE_NB_ELEMENTS_ADDED;
+        for (Article article : news.getArticles()) {
+            if (AdapterUtils.isArticleValid(article)
+                    && AdapterUtils.isArticleNonDuplicate(categoryArticleDataList, article.getTitle())) {
+                ArticleRowViewModel articleCategoryViewModel = new ArticleRowViewModel();
+                articleCategoryViewModel.setTitle(article.getTitle());
+                articleCategoryViewModel.setImageUrl(article.getUrlToImage());
+                articleCategoryViewModel.setWriter(AdapterUtils.getArticleWriter(article));
+                articleCategoryViewModel.setDate(DateUtils.formatArticlePublishedDate(article.getPublishedAt()));
+                articleCategoryViewModel.setText(article.getContent());
+                articleCategoryViewModel.setDescription(article.getDescription());
+                articleCategoryViewModel.setLinkToArticle(article.getUrl());
+                articleCategoryViewModel.setCategory(AdapterUtils.getFeedGeneralCategory(binding.getRoot().getContext(),
+                        R.style.AppTheme_Dark_NoActionBar));
+                categoryArticleDataList.add(articleCategoryViewModel);
+                nbElementsAdded += ADD_NEW_ELEMENT;
+            }
+        }
+        return nbElementsAdded;
     }
 
     private void setNestedScrollViewListener() {
@@ -101,31 +205,70 @@ public class CategoryActivity extends AppCompatActivity {
         });
     }
 
+    private void setOnFeedListReachesBottomListener() {
+        binding.articleCategoryRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!recyclerView.canScrollVertically(DIRECTION_SCROLL_VERTICALLY) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    initArticleCategoryRecyclerView(CategoryActivity.this);
+                }
+            }
+        });
+    }
+
     private void setOnClickHeaderButtons() {
         binding.leftArrowButton.setOnClickListener(v -> finish());
     }
 
-    private void initArticleCategoryRecyclerView() {
-        RecyclerView articleCategoryRecyclerView = binding.articleCategoryRecyclerView;
-        LinearLayoutManager layout = new LinearLayoutManager(this);
+    private void initArticleCategoryAdapter(List<ArticleRowViewModel> categoryArticleDataList, int nbElementsAdded) {
+        if (binding.articleCategoryRecyclerView.getAdapter() != null
+                && categoryArticleDataListIsAlreadyFilled(categoryArticleDataList, nbElementsAdded)) {
+            int startIndex = categoryArticleDataList.size() - nbElementsAdded;
+            notifyItemsAddedInCategoryFeed(startIndex, nbElementsAdded);
+        } else {
+            ArticleCategoryRecyclerAdapter adapter = new ArticleCategoryRecyclerAdapter(categoryArticleDataList);
+            binding.articleCategoryRecyclerView.setAdapter(adapter);
+            binding.articleCategoryRecyclerView.getAdapter().notifyDataSetChanged();
+        }
+    }
 
-        List<ArticleCategoryViewModel> test = new ArrayList<>();
-        test.add(new ArticleCategoryViewModel("Un chiot est sauvers par Gaston du PMU", "19:25-12/12/2020", "Michael Jaqueson", 1802, 235, R.drawable.picture_economy, true));
-        test.add(new ArticleCategoryViewModel("Sangoku a encore sauvé laa terre top", "17:10-12/12/2020", "Miki Mike", 36820, 13, R.drawable.picture_economy, true));
-        test.add(new ArticleCategoryViewModel("Macron donne 1million d'eusros e un jeune sans abri", "18:02-12/12/2020", "Michel Jaqueson", 36974, 13, R.drawable.picture_economy, false));
-        test.add(new ArticleCategoryViewModel("Oui, la news plus haute esta vraie été test", "06:01-12/12/2020", "Brigitte Bardot", 1859265, 483, R.drawable.picture_economy,  false));
-        test.add(new ArticleCategoryViewModel("Un chiot est sauver par Gastodn du PMU", "20:25-12/12/2020", "Mickael Jaqueson", 1802, 235, R.drawable.picture_economy, true));
-        test.add(new ArticleCategoryViewModel("Sangoku a encore sauvé la terrde top", "09:10-12/12/2020", "Mikky Mike", 36820, 13, R.drawable.picture_economy, true));
-        test.add(new ArticleCategoryViewModel("Macron donne 1million d'euros ag un jeune sans abri", "02:02-12/12/2020", "Micael Jaqueson", 36974, 13, R.drawable.picture_economy, false));
-        test.add(new ArticleCategoryViewModel("Oui, la news plus haute est vraire été test", "08:01-12/12/2020", "Brigittes Bardot", 1859265, 483, R.drawable.picture_economy,  false));
-        test.add(new ArticleCategoryViewModel("Un chiot est sauver par Gaston du PMU", "18:25-12/12/2020", "Michelle Jaqueson", 1802, 235, R.drawable.picture_economy, true));
-        test.add(new ArticleCategoryViewModel("Sangoku a encore sauvé la terre top", "16:10-12/12/2020", "Mikitty Mike", 36820, 13, R.drawable.picture_economy, true));
-        test.add(new ArticleCategoryViewModel("Macron donne 1million d'euros z un jeune sans abri", "08:30-12/12/2020", "Mickel Jaqueson", 36974, 13, R.drawable.picture_economy, false));
-        test.add(new ArticleCategoryViewModel("Oui, la news plus haute est vraie été test", "08:59-12/12/2020", "Brigittef Bardot", 1859265, 483, R.drawable.picture_economy,  false));
+    private void notifyItemsAddedInCategoryFeed(int startIndex, int size) {
+        if (binding.articleCategoryRecyclerView.getAdapter() != null) {
+            binding.articleCategoryRecyclerView.getAdapter().notifyItemRangeInserted(startIndex, size);
+        }
+    }
 
-        articleCategoryRecyclerView.setLayoutManager(layout);
-        ArticleCategoryRecyclerAdapter adapter = new ArticleCategoryRecyclerAdapter(test);
-        articleCategoryRecyclerView.setAdapter(adapter);
+    private boolean categoryArticleDataListIsAlreadyFilled(List<ArticleRowViewModel> categoryArticleDataList, int nbElementsAdded) {
+        return categoryArticleDataList.size() > nbElementsAdded;
+    }
+
+    private void updateDataLoadingViewModel(boolean isDataLoaded, boolean isNetworkOn) {
+        if (binding.getDataLoadingViewModel() != null) {
+            binding.getDataLoadingViewModel().setDataLoaded(isDataLoaded);
+            binding.getDataLoadingViewModel().setNetworkOn(isNetworkOn);
+        } else {
+            binding.setDataLoadingViewModel(new DataLoadingViewModel(isDataLoaded, isNetworkOn));
+        }
+        binding.invalidateAll();
+    }
+
+    private void showArticlesLayout() {
+        if (!isDataVisible()) {
+            updateDataLoadingViewModel(true, true);
+        }
+    }
+
+    private boolean isDataVisible() {
+        return binding.getDataLoadingViewModel() != null && binding.getDataLoadingViewModel().isDataLoaded();
+    }
+
+    private void showNetworkErrorFragment(String cause) {
+        updateDataLoadingViewModel(true, false);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        NetworkErrorFragment networkErrorFragment = NetworkErrorFragment.newInstance(cause, true);
+        networkErrorFragment.setOnNetworkErrorEventListener(this);
+        fragmentManager.beginTransaction().replace(R.id.networkErrorFragment, networkErrorFragment).commitAllowingStateLoss();
     }
 
     private void animateTextColorChanges(int newColor, Animation textColorInAnim) {

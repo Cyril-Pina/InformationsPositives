@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import com.pinalopes.informationspositives.categories.model.CategoriesFragment;
 import com.pinalopes.informationspositives.databinding.ActivityMainBinding;
 import com.pinalopes.informationspositives.feed.model.FeedFragment;
+import com.pinalopes.informationspositives.feed.model.OnArticleEventListener;
 import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 import com.pinalopes.informationspositives.search.model.SearchActivity;
 import com.pinalopes.informationspositives.settings.model.SettingsFragment;
@@ -22,7 +23,7 @@ import java.util.List;
 import static com.pinalopes.informationspositives.Constants.DEFAULT_PAGINATION_VALUE;
 import static com.pinalopes.informationspositives.Constants.IS_ACTIVITY_RECREATED;
 
-public class MainActivity extends AppCompatActivity implements FeedFragment.OnFeedFragmentEventListener {
+public class MainActivity extends AppCompatActivity implements OnArticleEventListener {
 
     private ActivityMainBinding binding;
     private Fragment currentFragment;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFe
     private void initBottomNavigationMenu() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         currentFragment = new FeedFragment();
-        ((FeedFragment) currentFragment).setOnFeedFragmentEventListener(this, feedArticleDataList, feedPage);
+        ((FeedFragment) currentFragment).setOnArticleEventListener(this, feedArticleDataList, feedPage);
         fragmentManager.beginTransaction().add(R.id.activityMainFrameLayout, currentFragment).addToBackStack(null).commit();
 
         binding.activityMainBottomNavigation.setItemIconTintList(null);
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFe
             if (item.getItemId() != currentItemId) {
                 currentItemId = item.getItemId();
                 return updateMainFragment(item.getItemId());
-            } else if (item.getItemId() == currentItemId) {
+            } else if (item.getItemId() == currentItemId && currentFragment instanceof FeedFragment) {
                 ((FeedFragment)currentFragment).scrollUpToTopOfList();
             }
             return false;
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFe
         } else if (itemId == R.id.action_feed) {
             setTopBarVisibility(View.VISIBLE);
             currentFragment = new FeedFragment();
-            ((FeedFragment) currentFragment).setOnFeedFragmentEventListener(this, this.feedArticleDataList, feedPage);
+            ((FeedFragment) currentFragment).setOnArticleEventListener(this, this.feedArticleDataList, feedPage);
         } else if (itemId == R.id.action_settings) {
             setTopBarVisibility(View.GONE);
             currentFragment = new SettingsFragment();
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFe
     }
 
     @Override
-    public void onFeedArticleUpdated(List<ArticleRowViewModel> feedArticleDataList, int page) {
+    public void onArticleUpdated(List<ArticleRowViewModel> feedArticleDataList, int page) {
         this.feedArticleDataList = feedArticleDataList;
         this.feedPage = page;
     }

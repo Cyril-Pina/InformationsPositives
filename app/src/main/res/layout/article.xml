@@ -3,6 +3,7 @@
 
     <data>
         <import type="android.view.View" />
+        <import type="com.pinalopes.informationspositives.utils.AdapterUtils" />
         <variable
             name="articleViewModel"
             type="com.pinalopes.informationspositives.articles.viewmodel.ArticleViewModel" />
@@ -27,8 +28,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -40,9 +41,7 @@
                         android:layout_height="match_parent"
                         android:contentDescription="@string/image_article"
                         android:scaleType="centerCrop"
-                        android:src="@{articleViewModel.imageRes}"
-                        app:srcCompat="@{articleViewModel.imageRes}"
-                        tools:srcCompat="@{articleViewModel.imageRes}"
+                        app:imageUrl="@{articleViewModel.imageUrl}"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_writer_text_view"
                     android:layout_marginEnd="@dimen/margin_end_writer_text_view"
-                    android:text="@{articleViewModel.writtenBy}"
+                    android:text="@{@string/written_by + articleViewModel.writer}"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/text_size_article_info"
                     android:fontFamily="@font/made_tommy_bold"
@@ -185,10 +184,36 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:text="@string/text"
-                    android:textSize="14sp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="@dimen/margin_s_e_article_content"
+                    android:layout_marginEnd="@dimen/margin_s_e_article_content"
+                    android:text="@{articleViewModel.description}"
+                    android:textSize="@dimen/size_text_article_content"
                     android:fontFamily="@font/made_tommy" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_s_e_article_content"
+                    android:layout_marginEnd="@dimen/margin_s_e_article_content"
+                    android:text="@{AdapterUtils.getTextContentWithoutBrackets(articleViewModel.text)}"
+                    android:textSize="@dimen/size_text_article_content"
+                    android:fontFamily="@font/made_tommy" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_s_e_article_content"
+                    android:layout_marginEnd="@dimen/margin_s_e_article_content"
+                    android:layout_marginTop="@dimen/margin_top_article_content"
+                    android:text="@string/see_full_article"
+                    android:textSize="@dimen/size_text_article_content"
+                    android:textColor="@color/link_color"
+                    android:fontFamily="@font/made_tommy"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="goToFullArticleOnClick"
+                    style="text-decoration: underline;"/>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -290,9 +315,7 @@
                 android:contentDescription="@string/image_article_header"
                 android:scaleType="centerCrop"
                 android:visibility="@{articleViewModel.headerVisible ? View.VISIBLE : View.GONE}"
-                android:src="@{articleViewModel.imageRes}"
-                app:srcCompat="@{articleViewModel.imageRes}"
-                tools:srcCompat="@{articleViewModel.imageRes}"
+                app:imageUrl="@{articleViewModel.imageUrl}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

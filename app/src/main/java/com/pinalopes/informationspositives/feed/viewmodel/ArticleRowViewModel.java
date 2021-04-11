@@ -13,6 +13,9 @@ public class ArticleRowViewModel extends ViewModel {
     protected String title;
     protected String date;
     protected String writer;
+    protected String text;
+    protected String description;
+    protected String linkToArticle;
     protected Category category;
     protected long nbViews;
     protected long nbLikes;
@@ -22,10 +25,28 @@ public class ArticleRowViewModel extends ViewModel {
 
     public ArticleRowViewModel() {}
 
-    public ArticleRowViewModel(String title, String date, String writer, Category category, long nbViews, long nbLikes, int imageRes, String imageUrl, boolean isVideo) {
+    public ArticleRowViewModel(ArticleRowViewModel articleRowViewModel) {
+        this.title = articleRowViewModel.title;
+        this.date = articleRowViewModel.date;
+        this.writer = articleRowViewModel.writer;
+        this.text = articleRowViewModel.text;
+        this.description = articleRowViewModel.description;
+        this.linkToArticle = articleRowViewModel.linkToArticle;
+        this.category = articleRowViewModel.category;
+        this.nbViews = articleRowViewModel.nbViews;
+        this.nbLikes = articleRowViewModel.nbLikes;
+        this.imageRes = articleRowViewModel.imageRes;
+        this.imageUrl = articleRowViewModel.imageUrl;
+        this.imageUrl = articleRowViewModel.imageUrl;
+        this.isVideo = articleRowViewModel.isVideo;
+    }
+
+    public ArticleRowViewModel(String title, String date, String writer, String text, String description, Category category, long nbViews, long nbLikes, int imageRes, String imageUrl, boolean isVideo) {
         this.title = title;
         this.date = date;
         this.writer = writer;
+        this.text = text;
+        this.description = description;
         this.category = category;
         this.nbViews = nbViews;
         this.nbLikes = nbLikes;
@@ -56,6 +77,30 @@ public class ArticleRowViewModel extends ViewModel {
 
     public void setWriter(String writer) {
         this.writer = writer;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLinkToArticle() {
+        return linkToArticle;
+    }
+
+    public void setLinkToArticle(String linkToArticle) {
+        this.linkToArticle = linkToArticle;
     }
 
     public Category getCategory() {

@@ -1,6 +1,7 @@
 package com.pinalopes.informationspositives.feed.model;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class ArticlesFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         View rootView = binding.getRoot();
 
+        binding.feedRecyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
         initNewsSwipeRefreshLayout();
         setOnFeedListReachesBottomListener();
         return rootView;
@@ -44,17 +46,19 @@ public class ArticlesFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        listener.onRefresh();
+        if (listener != null) {
+            listener.onRefresh();
+        }
     }
 
     private void initNewsSwipeRefreshLayout() {
         binding.newsSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
-    public void initFeedRecyclerViewAdapter(List<ArticleRowViewModel> feedArticleDataList, int nbElementsAdded, LinearLayoutManager layoutManager) {
-        binding.feedRecyclerView.setLayoutManager(layoutManager);
+    public void initFeedRecyclerViewAdapter(List<ArticleRowViewModel> feedArticleDataList, int nbElementsAdded) {
         if (binding.feedRecyclerView.getAdapter() != null
                 && feedArticleDataListIsAlreadyFilled(feedArticleDataList, nbElementsAdded)) {
+            Log.wtf("Adapter", "nort null");
             int startIndex = feedArticleDataList.size() - nbElementsAdded;
             notifyItemsAddedInFeed(startIndex, nbElementsAdded);
         } else {
@@ -84,7 +88,9 @@ public class ArticlesFragment extends Fragment implements SwipeRefreshLayout.OnR
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (!recyclerView.canScrollVertically(DIRECTION_SCROLL_VERTICALLY) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                if (!recyclerView.canScrollVertically(DIRECTION_SCROLL_VERTICALLY)
+                        && newState == RecyclerView.SCROLL_STATE_IDLE
+                        && listener != null) {
                     listener.onFeedListReachesBottomListener();
                 }
             }

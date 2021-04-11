@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import androidx.transition.Transition;
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.TransitionService;
 import com.pinalopes.informationspositives.databinding.SearchActivityBinding;
+import com.pinalopes.informationspositives.feed.model.OnArticleEventListener;
+import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 import com.pinalopes.informationspositives.search.viewmodel.SearchActivityViewModel;
 import com.pinalopes.informationspositives.storage.DataStorageHelper;
 import com.pinalopes.informationspositives.utils.AdapterUtils;
@@ -32,14 +35,17 @@ import com.pinalopes.informationspositives.utils.DateUtils;
 import com.pinalopes.informationspositives.utils.ViewUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import static com.pinalopes.informationspositives.Constants.DATE_FORMAT_FILTER;
+import static com.pinalopes.informationspositives.Constants.DEFAULT_PAGINATION_VALUE;
 import static com.pinalopes.informationspositives.Constants.MIN_SIZE;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements OnArticleEventListener {
 
     private static final long DELAY_POST_KEYBOARD = 250;
     private static final long START_DELAY_TRANSITION = 0;
@@ -53,6 +59,9 @@ public class SearchActivity extends AppCompatActivity {
     private boolean isFiltersDisplayed = false;
     private Filters filters;
     private int currentThemeId;
+
+    private List<ArticleRowViewModel> feedArticleDataList;
+    private int feedPage = DEFAULT_PAGINATION_VALUE;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,7 +86,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onResume();
         binding.cardViewTopBar.post(this::startTopBarViewsAnimation);
         binding.searchEditText.postDelayed(this::focusSearchEditText, DELAY_POST_KEYBOARD);
-        openSearchFragment(binding.searchEditText.getText().toString(), null);
+        openSearchFragmentWithSearchResults(binding.searchEditText.getText().toString(), filters);
     }
 
     @Override
@@ -177,8 +186,22 @@ public class SearchActivity extends AppCompatActivity {
     private void openSearchFragment(String keyWordSearch, Filters filters) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         SearchResultsFragment searchResultsFragment = SearchResultsFragment.newInstance(keyWordSearch, filters);
+        searchResultsFragment.setOnArticleEventListener(this, new ArrayList<>(), DEFAULT_PAGINATION_VALUE);
         fragmentTransaction.replace(R.id.searchResultsFrameLayout, searchResultsFragment);
         fragmentTransaction.commit();
+    }
+
+    private void openSearchFragmentWithSearchResults(String keyWordSearch, Filters filters) {
+        if (feedArticleDataList != null && feedArticleDataList.size() > MIN_SIZE) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            SearchResultsFragment searchResultsFragment = new SearchResultsFragment();
+            searchResultsFragment.setOnArticleEventListener(this, this.feedArticleDataList, feedPage);
+            fragmentTransaction.replace(R.id.searchResultsFrameLayout, searchResultsFragment);
+            fragmentTransaction.commit();
+        } else {
+            Log.wtf("YEAS", "WTF");
+            openSearchFragment(keyWordSearch, filters);
+        }
     }
 
     private void initDateFiltersMutable() {
@@ -355,5 +378,11 @@ public class SearchActivity extends AppCompatActivity {
                 // onTransitionResume() ignored
             }
         };
+    }
+
+    @Override
+    public void onArticleUpdated(List<ArticleRowViewModel> feedArticleDataList, int page) {
+        this.feedArticleDataList = feedArticleDataList;
+        this.feedPage = page;
     }
 }
