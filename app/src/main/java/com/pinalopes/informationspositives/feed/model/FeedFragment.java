@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.pinalopes.informationspositives.LoadingService;
 import com.pinalopes.informationspositives.R;
@@ -55,16 +54,12 @@ public class FeedFragment extends Fragment implements NetworkErrorFragment.OnNet
     @Inject LoadingService loadingService;
     private FeedFragmentBinding binding;
     private NewsViewModel viewModel;
-    private OnFeedFragmentEventListener listener;
+    private OnArticleEventListener listener;
     private List<ArticleRowViewModel> feedArticleDataList;
     private ArticlesFragment articlesFragment;
 
     private int page = DEFAULT_PAGINATION_VALUE;
     private int failureIteration = FAILURE_ITERATION_INIT_VALUE;
-
-    public interface OnFeedFragmentEventListener {
-        void onFeedArticleUpdated(List<ArticleRowViewModel> feedArticleDataList, int page);
-    }
 
     @Nullable
     @Override
@@ -81,9 +76,10 @@ public class FeedFragment extends Fragment implements NetworkErrorFragment.OnNet
         initStoriesFragment();
         initArticlesFragment();
         if (feedArticleDataList != null && feedArticleDataList.size() > MIN_SIZE) {
-            showLoadedFeedArticles(rootView.getContext());
+            showLoadedFeedArticles();
         } else {
             feedArticleDataList = new ArrayList<>();
+            updateDataLoadingViewModel(false, true);
             initFeedRecyclerView(rootView.getContext());
         }
         return rootView;
@@ -130,12 +126,12 @@ public class FeedFragment extends Fragment implements NetworkErrorFragment.OnNet
         fragmentManager.executePendingTransactions();
     }
 
-    private void showLoadedFeedArticles(Context context) {
+    private void showLoadedFeedArticles() {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 updateDataLoadingViewModel(true, true);
-                updateArticlesFragment(feedArticleDataList, NO_ELEMENT_ADDED, new LinearLayoutManager(context));
+                updateArticlesFragment(feedArticleDataList, NO_ELEMENT_ADDED);
             }
         }, DELAY_BEFORE_RELOAD_FEED_ARTICLES);
     }
@@ -150,31 +146,31 @@ public class FeedFragment extends Fragment implements NetworkErrorFragment.OnNet
     }
 
     private void initFeedRecyclerView(Context context) {
-        updateDataLoadingViewModel(false, true);
-        viewModel.getNewsMutableLiveData().observe((LifecycleOwner) context, news -> {
-            if (news != null && news.getTotalResults() > NO_ARTICLE) {
-                int nbElementsAdded = updateFeedArticleDataList(news);
-                updateDataLoadingViewModel(true, true);
-                updateArticlesFragment(this.feedArticleDataList, nbElementsAdded, new LinearLayoutManager(context));
-                failureIteration = FAILURE_ITERATION_INIT_VALUE;
-                page += NEXT_PAGE;
-                listener.onFeedArticleUpdated(this.feedArticleDataList, page);
-                return;
-            } else if (failureIteration < MAX_FAILURE_ITERATION) {
-                NewsRequestsApi.getInstance().getLatestNews(
-                        viewModel.getNewsMutableLiveData(),
-                        getString(R.string.lang_prefix),
-                        DateUtils.getPreviousDate(),
-                        page);
-            } else if (feedArticleDataList.size() <= MIN_SIZE) {
-                showNetworkErrorFragment(NetworkService.isNetworkOn(context) ?
-                        getString(R.string.article_not_found) : getString(R.string.no_network_connection));
-            } else {
-                articlesFragment.stopSwipeRefreshing();
-                updateDataLoadingViewModel(true, true);
-            }
-            failureIteration += FAILURE_VALUE;
-        });
+        if (!viewModel.getNewsMutableLiveData().hasObservers()) {
+            viewModel.getNewsMutableLiveData().observe((LifecycleOwner) context, news -> {
+                if (news != null && news.getTotalResults() > NO_ARTICLE) {
+                    int nbElementsAdded = updateFeedArticleDataList(news);
+                    updateArticlesFragment(this.feedArticleDataList, nbElementsAdded);
+                    failureIteration = FAILURE_ITERATION_INIT_VALUE;
+                    page += NEXT_PAGE;
+                    listener.onArticleUpdated(this.feedArticleDataList, page);
+                    return;
+                } else if (failureIteration < MAX_FAILURE_ITERATION) {
+                    NewsRequestsApi.getInstance().getLatestNews(
+                            viewModel.getNewsMutableLiveData(),
+                            getString(R.string.lang_prefix),
+                            DateUtils.getPreviousDate(),
+                            page);
+                } else if (feedArticleDataList.size() <= MIN_SIZE) {
+                    showNetworkErrorFragment(NetworkService.isNetworkOn(context) ?
+                            getString(R.string.article_not_found) : getString(R.string.no_network_connection));
+                } else {
+                    articlesFragment.stopSwipeRefreshing();
+                    updateDataLoadingViewModel(true, true);
+                }
+                failureIteration += FAILURE_VALUE;
+            });
+        }
         NewsRequestsApi.getInstance().getLatestNews(
                 viewModel.getNewsMutableLiveData(),
                 getString(R.string.lang_prefix),
@@ -182,8 +178,11 @@ public class FeedFragment extends Fragment implements NetworkErrorFragment.OnNet
                 page);
     }
 
-    private void updateArticlesFragment(List<ArticleRowViewModel> feedArticleDataList, int nbElementsAdded, LinearLayoutManager layoutManager) {
-        articlesFragment.initFeedRecyclerViewAdapter(feedArticleDataList, nbElementsAdded, layoutManager);
+    private void updateArticlesFragment(List<ArticleRowViewModel> feedArticleDataList, int nbElementsAdded) {
+        if (!isDataVisible()) {
+            updateDataLoadingViewModel(true, true);
+        }
+        articlesFragment.initFeedRecyclerViewAdapter(feedArticleDataList, nbElementsAdded);
     }
 
     public void scrollUpToTopOfList() {
@@ -202,6 +201,9 @@ public class FeedFragment extends Fragment implements NetworkErrorFragment.OnNet
                 articleRowViewModel.setDate(DateUtils.formatArticlePublishedDate(article.getPublishedAt()));
                 articleRowViewModel.setCategory(AdapterUtils.getFeedGeneralCategory(binding.getRoot().getContext(),
                         DataStorageHelper.getUserSettings().getCurrentTheme()));
+                articleRowViewModel.setText(article.getContent());
+                articleRowViewModel.setDescription(article.getDescription());
+                articleRowViewModel.setLinkToArticle(article.getUrl());
                 feedArticleDataList.add(articleRowViewModel);
                 nbElementsAdded += ADD_NEW_ELEMENT;
             }
@@ -219,7 +221,11 @@ public class FeedFragment extends Fragment implements NetworkErrorFragment.OnNet
         binding.invalidateAll();
     }
 
-    public void setOnFeedFragmentEventListener(OnFeedFragmentEventListener listener, List<ArticleRowViewModel> feedArticleDataList, int feedPage) {
+    private boolean isDataVisible() {
+        return binding.getDataLoadingViewModel() != null && binding.getDataLoadingViewModel().isDataLoaded();
+    }
+
+    public void setOnArticleEventListener(OnArticleEventListener listener, List<ArticleRowViewModel> feedArticleDataList, int feedPage) {
         this.listener = listener;
         this.feedArticleDataList = feedArticleDataList;
         this.page = feedPage;

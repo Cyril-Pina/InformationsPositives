@@ -1,37 +1,26 @@
 package com.pinalopes.informationspositives.articles.viewmodel;
 
-import com.pinalopes.informationspositives.categories.model.Category;
 import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 
 public class ArticleViewModel extends ArticleRowViewModel {
 
-    private String writtenBy;
-    protected String text;
     private boolean isLiked;
     private boolean isHeaderVisible;
 
-    public ArticleViewModel(String title, String text, Category category, long nbViews, long nbLikes, int imageRes, boolean isVideo, String writtenBy, boolean isLiked) {
-        super(title, "", "", category, nbViews, nbLikes, imageRes, "", isVideo);
-        this.text = text;
-        this.writtenBy = writtenBy;
-        this.isLiked = isLiked;
-        this.isHeaderVisible = false;
+    public ArticleViewModel() {}
+
+    public ArticleViewModel(ArticleRowViewModel articleRowViewModel) {
+        super(articleRowViewModel);
     }
 
+    @Override
     public String getText() {
         return text;
     }
 
+    @Override
     public void setText(String text) {
         this.text = text;
-    }
-
-    public String getWrittenBy() {
-        return writtenBy;
-    }
-
-    public void setWrittenBy(String writtenBy) {
-        this.writtenBy = writtenBy;
     }
 
     public boolean isLiked() {

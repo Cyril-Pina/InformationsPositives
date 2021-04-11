@@ -6,17 +6,30 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.articles.model.ArticleActivity;
-import com.pinalopes.informationspositives.categories.model.Category;
+import com.pinalopes.informationspositives.articles.viewmodel.ArticleViewModel;
 import com.pinalopes.informationspositives.databinding.ArticleInStoryBinding;
-import com.pinalopes.informationspositives.story.viewmodel.ArticleInStoryViewModel;
+import com.pinalopes.informationspositives.utils.AdapterUtils;
 
+import java.util.List;
+
+import static com.pinalopes.informationspositives.Constants.ARTICLES_IN_STORY;
+import static com.pinalopes.informationspositives.Constants.ARTICLE_INFORMATION;
 import static com.pinalopes.informationspositives.Constants.COUNT_DOWN_INTERVAL;
+import static com.pinalopes.informationspositives.Constants.CURRENT_STORY_INDEX;
+import static com.pinalopes.informationspositives.Constants.INDEX_FIRST_STORY;
+import static com.pinalopes.informationspositives.Constants.LAST_INDEX_BOUND;
+import static com.pinalopes.informationspositives.Constants.NEXT_STORY_VALUE;
 import static com.pinalopes.informationspositives.Constants.NO_ANIM;
+import static com.pinalopes.informationspositives.Constants.PREVIOUS_STORY_VALUE;
+import static com.pinalopes.informationspositives.Constants.RECOMMENDED_ARTICLES;
 import static com.pinalopes.informationspositives.Constants.SWIPE_MAX_PERCENT;
 import static com.pinalopes.informationspositives.Constants.TIMER_INITIAL_VALUE;
 
@@ -28,6 +41,8 @@ public class ArticleInStory extends AppCompatActivity {
     private StoryCountDownTimer storyCountDownTimer;
     private Story story;
     private StoryHeaderService storyHeaderService;
+    private List<ArticleViewModel> articlesInStoryViewModel;
+    private int currentStoryIndex;
 
     private enum Story {
         NEXT_STORY,
@@ -40,11 +55,18 @@ public class ArticleInStory extends AppCompatActivity {
         binding = ArticleInStoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        initArticleInStoryView();
+        initArticleInStoryView(savedInstanceState);
         startStoryCountDown();
         setOnClickStoryButtons();
         setOnStoryTouchListener();
         setOnMovementHeaderListener();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString(ARTICLES_IN_STORY, new Gson().toJson(articlesInStoryViewModel));
+        outState.putInt(CURRENT_STORY_INDEX, currentStoryIndex);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -72,10 +94,21 @@ public class ArticleInStory extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
-    private void initArticleInStoryView() {
-        Category category = new Category("Faune", 0, R.drawable.ic_fauna);
-        binding.setArticleInStoryViewModel(new ArticleInStoryViewModel("Un chiot sauvé miraculeusement par un jeune homme dans le département de Tarn",
-                getString(R.string.text), category, R.drawable.puppy,"Michaël Doe"));
+    private void initArticleInStoryView(Bundle savedInstanceState) {
+        Gson gson = new Gson();
+        String articlesInStoryAsString;
+        if (savedInstanceState != null) {
+            articlesInStoryAsString = savedInstanceState.getString(ARTICLES_IN_STORY);
+            articlesInStoryViewModel = gson.fromJson(articlesInStoryAsString, new TypeToken<List<ArticleViewModel>>(){}.getType());
+            currentStoryIndex = savedInstanceState.getInt(CURRENT_STORY_INDEX);
+            binding.setArticleViewModel(articlesInStoryViewModel.get(currentStoryIndex));
+        } else if (getIntent() != null && getIntent().getExtras() != null) {
+            Bundle extras = getIntent().getExtras();
+            articlesInStoryAsString = extras.getString(ARTICLES_IN_STORY);
+            articlesInStoryViewModel = gson.fromJson(articlesInStoryAsString, new TypeToken<List<ArticleViewModel>>(){}.getType());
+            currentStoryIndex = extras.getInt(CURRENT_STORY_INDEX);
+            binding.setArticleViewModel(articlesInStoryViewModel.get(currentStoryIndex));
+        }
     }
 
     private void setOnClickStoryButtons() {
@@ -83,7 +116,9 @@ public class ArticleInStory extends AppCompatActivity {
 
         binding.seeArticleButton.setOnClickListener(v -> {
             storyCountDownTimer.stop();
-            Intent intentArticle = new Intent(ArticleInStory.this, ArticleActivity.class);
+            Intent intentArticle = new Intent(this, ArticleActivity.class);
+            intentArticle.putExtra(ARTICLE_INFORMATION, new Gson().toJson(articlesInStoryViewModel.get(currentStoryIndex)));
+            intentArticle.putExtra(RECOMMENDED_ARTICLES, AdapterUtils.getRecommendedArticlesFromArticle(articlesInStoryViewModel, currentStoryIndex));
             startActivity(intentArticle);
             finish();
         });
@@ -157,10 +192,23 @@ public class ArticleInStory extends AppCompatActivity {
         this.story = story;
         if (!storyCountDownTimer.isStopped()) {
             storyCountDownTimer.stop();
-            Intent intent = new Intent(ArticleInStory.this, ArticleInStory.class);
-            startActivity(intent);
+            Intent intentArticleStory = new Intent(ArticleInStory.this, ArticleInStory.class);
+            intentArticleStory.putExtra(ARTICLES_IN_STORY, new Gson().toJson(articlesInStoryViewModel));
+            intentArticleStory.putExtra(CURRENT_STORY_INDEX,
+                    getStoryDirection(currentStoryIndex, articlesInStoryViewModel.size() - LAST_INDEX_BOUND, story));
+            startActivity(intentArticleStory);
             finish();
         }
         storyCountDownTimer.stop();
+    }
+
+    private int getStoryDirection(int currentStoryIndex, int lastStoryIndex, Story story) {
+        if (currentStoryIndex == 0 && story == Story.PREVIOUS_STORY) {
+            return lastStoryIndex;
+        } else if (currentStoryIndex == lastStoryIndex && story == Story.NEXT_STORY) {
+            return INDEX_FIRST_STORY;
+        } else {
+            return story == Story.NEXT_STORY ? currentStoryIndex + NEXT_STORY_VALUE : currentStoryIndex + PREVIOUS_STORY_VALUE;
+        }
     }
 }

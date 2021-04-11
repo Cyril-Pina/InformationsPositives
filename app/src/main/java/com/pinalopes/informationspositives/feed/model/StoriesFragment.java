@@ -15,14 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pinalopes.informationspositives.R;
+import com.pinalopes.informationspositives.articles.viewmodel.ArticleViewModel;
 import com.pinalopes.informationspositives.databinding.StoriesFragmentBinding;
 import com.pinalopes.informationspositives.feed.viewmodel.DataLoadingViewModel;
 import com.pinalopes.informationspositives.feed.viewmodel.NewsViewModel;
-import com.pinalopes.informationspositives.feed.viewmodel.StoryViewModel;
 import com.pinalopes.informationspositives.newsapi.NewsRequestsApi;
 import com.pinalopes.informationspositives.newsapi.responsebody.Article;
 import com.pinalopes.informationspositives.newsapi.responsebody.News;
 import com.pinalopes.informationspositives.utils.AdapterUtils;
+import com.pinalopes.informationspositives.utils.DateUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,7 +51,7 @@ public class StoriesFragment extends Fragment {
         viewModel.getNewsMutableLiveData().observe((LifecycleOwner) context, news -> {
             if (news != null) {
                 storiesRecyclerView.setLayoutManager(layoutManager);
-                StoryRecyclerAdapter adapter = new StoryRecyclerAdapter(newsToStoryRows(news));
+                StoryRecyclerAdapter adapter = new StoryRecyclerAdapter(newsToArticlesInStoryViewModel(news));
                 storiesRecyclerView.setAdapter(adapter);
                 binding.setDataLogoViewModel(new DataLoadingViewModel(true, true));
             }
@@ -60,17 +61,24 @@ public class StoriesFragment extends Fragment {
                 getString(R.string.country_prefix));
     }
 
-    private List<StoryViewModel> newsToStoryRows(News news) {
-        List<StoryViewModel> storyViewModels = new ArrayList<>();
+    private List<ArticleViewModel> newsToArticlesInStoryViewModel(News news) {
+        List<ArticleViewModel> articlesInStoryViewModel = new ArrayList<>();
         for (Article article : news.getArticles()) {
             if (AdapterUtils.isArticleValid(article)
-                    && AdapterUtils.isArticleNonDuplicate(Collections.singletonList(storyViewModels), article.getTitle())) {
-                StoryViewModel storyViewModel = new StoryViewModel();
-                storyViewModel.setTitle(article.getTitle());
-                storyViewModel.setImageUrl(article.getUrlToImage());
-                storyViewModels.add(storyViewModel);
+                    && AdapterUtils.isArticleNonDuplicate(Collections.singletonList(articlesInStoryViewModel), article.getTitle())) {
+                ArticleViewModel articleViewModel = new ArticleViewModel();
+                articleViewModel.setTitle(article.getTitle());
+                articleViewModel.setDescription(article.getDescription());
+                articleViewModel.setText(article.getContent());
+                articleViewModel.setLinkToArticle(article.getUrl());
+                articleViewModel.setImageUrl(article.getUrlToImage());
+                articleViewModel.setWriter(AdapterUtils.getArticleWriter(article));
+                articleViewModel.setDate(DateUtils.formatArticlePublishedDate(article.getPublishedAt()));
+                articleViewModel.setCategory(AdapterUtils.getFeedGeneralCategory(binding.getRoot().getContext(),
+                       R.style.AppTheme_Dark_NoActionBar));
+                articlesInStoryViewModel.add(articleViewModel);
             }
         }
-        return storyViewModels;
+        return articlesInStoryViewModel;
     }
 }

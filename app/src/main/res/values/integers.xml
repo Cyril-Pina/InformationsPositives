@@ -2,6 +2,13 @@
 <resources>
     <integer name="no_animation">0</integer>
 
-    <!-- -->
+    <!-- search_activity.xml -->
     <integer name="search_edit_text_limit_characters">30</integer>
+
+    <!-- article_category_row.xml -->
+    <integer name="max_nb_title_characters">60</integer>
+    <integer name="max_nb_writer_characters">40</integer>
+
+    <!-- article_category_row.xml -->
+    <integer name="max_nb_title_reco">70</integer>
 </resources>

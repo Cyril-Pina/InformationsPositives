@@ -152,7 +152,7 @@
     <dimen name="margin_start_likes_text_view">10dp</dimen>
     <dimen name="margin_end_likes_text_view">3dp</dimen>
     <dimen name="margin_end_writer_text_view">10dp</dimen>
-    <dimen name="margin_top_writer_text_view">15dp</dimen>
+    <dimen name="margin_top_writer_text_view">22dp</dimen>
     <dimen name="text_size_article_category">12sp</dimen>
     <dimen name="margin_bottom_article_stats">4dp</dimen>
     <dimen name="size_article_left_arrow">40dp</dimen>
@@ -175,6 +175,9 @@
     <dimen name="text_size_header_title_article">16sp</dimen>
     <dimen name="height_header_article">60dp</dimen>
     <dimen name="padding_header_article_title">12dp</dimen>
+    <dimen name="size_text_article_content">15sp</dimen>
+    <dimen name="margin_s_e_article_content">15dp</dimen>
+    <dimen name="margin_top_article_content">8dp</dimen>
 
     <!-- recommendation_row.xml -->
     <dimen name="height_main_recommendation_row">140dp</dimen>
@@ -210,6 +213,7 @@
     <dimen name="size_text_count_down_story">14sp</dimen>
     <dimen name="margin_count_down_story">16dp</dimen>
     <dimen name="size_progress_bar_story">40dp</dimen>
+    <dimen name="margin_end_icon_story_category">3dp</dimen>
 
     <!-- category.xml -->
     <dimen name="size_text_title_category">30sp</dimen>
@@ -222,6 +226,8 @@
     <dimen name="padding_bottom_category_desc">20dp</dimen>
     <dimen name="size_text_category_desc">13sp</dimen>
     <dimen name="margin_top_category_recycler_view">50dp</dimen>
+    <dimen name="margin_top_category_error_anim">200dp</dimen>
+    <dimen name="margin_top_category_loading_anim">30dp</dimen>
 
     <!-- article_category_row.xml -->
     <dimen name="height_card_view_article_category">120dp</dimen>

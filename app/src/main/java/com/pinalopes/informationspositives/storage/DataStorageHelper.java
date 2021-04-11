@@ -20,7 +20,6 @@ import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import static com.pinalopes.informationspositives.Constants.FIRST_INDEX;
 import static com.pinalopes.informationspositives.Constants.MODEL_FILE_NAME;
@@ -36,7 +35,6 @@ public class DataStorageHelper {
     private static Gson gson;
     private static UserSettings userSettings;
     private static File modelFile;
-    public static final Random rand = new Random();
 
     private DataStorageHelper() {
         throw new AssertionError();

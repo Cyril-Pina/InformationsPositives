@@ -3,9 +3,10 @@
 
     <data>
         <import type="android.view.View"/>
+        <import type="com.pinalopes.informationspositives.utils.AdapterUtils" />
         <variable
             name="recommendationRowViewModel"
-            type="com.pinalopes.informationspositives.articles.viewmodel.RecommendationRowViewModel" />
+            type="com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,9 +44,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/image_article"
                     android:scaleType="centerCrop"
-                    android:src="@{recommendationRowViewModel.imageRes}"
-                    app:srcCompat="@{recommendationRowViewModel.imageRes}"
-                    tools:srcCompat="@{recommendationRowViewModel.imageRes}"
+                    app:imageUrl="@{recommendationRowViewModel.imageUrl}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".4"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_text_reco_title"
                         android:fontFamily="@font/espera"
-                        android:text="@{recommendationRowViewModel.title}"
+                        android:text="@{AdapterUtils.getSubstringStringFromMaxLength(recommendationRowViewModel.title, @integer/max_nb_title_reco)}"
                         android:textSize="@dimen/size_text_article_title_"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

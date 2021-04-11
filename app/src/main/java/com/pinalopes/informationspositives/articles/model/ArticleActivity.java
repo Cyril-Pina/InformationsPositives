@@ -3,26 +3,30 @@ package com.pinalopes.informationspositives.articles.model;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.articles.viewmodel.ArticleViewModel;
-import com.pinalopes.informationspositives.articles.viewmodel.RecommendationRowViewModel;
-import com.pinalopes.informationspositives.categories.model.Category;
 import com.pinalopes.informationspositives.databinding.ArticleBinding;
+import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
 import com.pinalopes.informationspositives.storage.DataStorageHelper;
 import com.r0adkll.slidr.Slidr;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.pinalopes.informationspositives.Constants.ARTICLE_INFORMATION;
 import static com.pinalopes.informationspositives.Constants.DATA_ARTICLE;
 import static com.pinalopes.informationspositives.Constants.END_DISLIKE_PROGRESS;
 import static com.pinalopes.informationspositives.Constants.END_LIKE_PROGRESS;
+import static com.pinalopes.informationspositives.Constants.RECOMMENDED_ARTICLES;
 import static com.pinalopes.informationspositives.Constants.START_DISLIKE_PROGRESS;
 import static com.pinalopes.informationspositives.Constants.START_LIKE_PROGRESS;
 import static com.pinalopes.informationspositives.Constants.TEXT_PLAIN;
@@ -31,6 +35,9 @@ import static com.pinalopes.informationspositives.Constants.URI_ARTICLE;
 public class ArticleActivity extends AppCompatActivity {
 
     private ArticleBinding binding;
+    private String articleAsString;
+    private String recommendedArticlesAsString;
+    private String linkToArticle;
     private boolean isLiked;
 
     @Override
@@ -41,12 +48,38 @@ public class ArticleActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Slidr.attach(this);
 
-        initArticleView();
+        getArticleInformation(savedInstanceState);
         fetchIntentFromUri();
         setNestedScrollViewListener();
         setOnClickHeaderButtons();
         setOnClickLikeIcon();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        outState.putString(ARTICLE_INFORMATION, articleAsString);
+        outState.putString(RECOMMENDED_ARTICLES, recommendedArticlesAsString);
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    private void getArticleInformation(Bundle savedInstanceState) {
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            Bundle extras = getIntent().getExtras();
+            articleAsString = extras.getString(ARTICLE_INFORMATION);
+            recommendedArticlesAsString = extras.getString(RECOMMENDED_ARTICLES);
+            setArticleViewModel();
+        } else if (savedInstanceState != null) {
+            articleAsString = savedInstanceState.getString(ARTICLE_INFORMATION);
+            recommendedArticlesAsString = savedInstanceState.getString(RECOMMENDED_ARTICLES);
+            setArticleViewModel();
+        }
+    }
+
+    private void setArticleViewModel() {
         initGridViewRecommendation();
+        ArticleViewModel articleViewModel = new ArticleViewModel(new Gson().fromJson(articleAsString, ArticleRowViewModel.class));
+        linkToArticle = articleViewModel.getLinkToArticle();
+        binding.setArticleViewModel(articleViewModel);
     }
 
     private void setNestedScrollViewListener() {
@@ -95,12 +128,6 @@ public class ArticleActivity extends AppCompatActivity {
         }
     }
 
-    private void initArticleView() {
-        Category category = new Category("Faune", 0, R.drawable.ic_fauna);
-        binding.setArticleViewModel(new ArticleViewModel("Un chiot sauvé miraculeusement par un jeune homme dans le département de Tarn", getString(R.string.text),
-                category, 35026, 360, R.drawable.puppy, false, getString(R.string.written_by_sample), isLiked));
-    }
-
     private void fetchIntentFromUri() {
         Intent intent = getIntent();
         Uri uri = intent.getData();
@@ -111,19 +138,21 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void initGridViewRecommendation() {
-        List<RecommendationRowViewModel> test = new ArrayList<>();
+        List<ArticleRowViewModel> recommendations =
+                new Gson().fromJson(recommendedArticlesAsString, new TypeToken<List<ArticleRowViewModel>>(){}.getType());
 
-        Category category = new Category("Nature", 0, R.drawable.ic_nature);
-        Category categoryFauna = new Category("Faune", 0, R.drawable.ic_fauna);
-        Category categoryFood = new Category("Alimentation", 0, R.drawable.ic_food);
-
-        test.add(new RecommendationRowViewModel("Un chiot est sauver par Gaston du PMU", category, R.drawable.picture_fauna, true));
-        test.add(new RecommendationRowViewModel("Sangoku a encore sauvé la terre top", category,R.drawable.picture_economy, true));
-        test.add(new RecommendationRowViewModel("Macron donne 1million d'euros a un jeune sans abri", categoryFauna, R.drawable.picture_food, false));
-        test.add(new RecommendationRowViewModel("Oui, la news plus haute est vraie été test", categoryFood, R.drawable.picture_sport, false));
-
-        RecommendationAdapter adapter = new RecommendationAdapter(this, test);
+        RecommendationAdapter adapter = new RecommendationAdapter(
+                this,
+                recommendations,
+                new Gson().fromJson(articleAsString, ArticleRowViewModel.class));
         binding.recommendationGridView.setExpanded(true);
         binding.recommendationGridView.setAdapter(adapter);
+    }
+
+    public void goToFullArticleOnClick(View view) {
+        if (linkToArticle != null) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(linkToArticle));
+            startActivity(browserIntent);
+        }
     }
 }

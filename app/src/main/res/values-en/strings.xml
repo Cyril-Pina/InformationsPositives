@@ -56,9 +56,10 @@
     <string name="shared_article_subject">Look this awesome article read in the \"Informations Positives\" app! &#128525;</string>
     <string name="chooser_message">&#x1F680; Send this amazing article…</string>
     <string name="written_by_sample">Written by X the 25th of December 2020, 12h18</string>
+    <string name="see_full_article">Show full article.</string>
 
     <!-- article_in_story.xml -->
-    <string name="see_full_article">See article</string>
+    <string name="see_article">Show article</string>
     <string name="initial_count_down_value">10</string>
 
     <!-- settings_fragment.xml -->

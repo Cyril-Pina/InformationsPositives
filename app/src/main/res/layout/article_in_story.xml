@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="articleInStoryViewModel"
-            type="com.pinalopes.informationspositives.story.viewmodel.ArticleInStoryViewModel" />
+            name="articleViewModel"
+            type="com.pinalopes.informationspositives.articles.viewmodel.ArticleViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,9 +22,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/image_article"
             android:scaleType="centerCrop"
-            android:src="@{articleInStoryViewModel.imageRes}"
-            app:srcCompat="@{articleInStoryViewModel.imageRes}"
-            tools:srcCompat="@{articleInStoryViewModel.imageRes}"
+            app:imageUrl="@{articleViewModel.imageUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,23 +137,23 @@
                 <ImageView
                     android:layout_width="@dimen/width_icon_category"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/margin_end_icon_category"
+                    android:layout_marginEnd="@dimen/margin_end_icon_story_category"
                     android:paddingTop="@dimen/padding_top_icon_category"
                     android:paddingEnd="@dimen/padding_s_e_b_icon_category"
                     android:paddingBottom="@dimen/padding_s_e_b_icon_category"
                     android:paddingStart="@dimen/padding_s_e_b_icon_category"
                     android:contentDescription="@string/category_icon"
                     android:layout_gravity="bottom"
-                    android:src="@{articleInStoryViewModel.category.categoryIcon}"
-                    app:srcCompat="@{articleInStoryViewModel.category.categoryIcon}"
-                    tools:srcCompat="@{articleInStoryViewModel.category.categoryIcon}" />
+                    android:src="@{articleViewModel.category.categoryIcon}"
+                    app:srcCompat="@{articleViewModel.category.categoryIcon}"
+                    tools:srcCompat="@{articleViewModel.category.categoryIcon}" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/padding_top_text_category"
                     android:paddingBottom="@dimen/padding_bottom_text_category"
-                    android:text="@{articleInStoryViewModel.category.categoryName}"
+                    android:text="@{articleViewModel.category.categoryName}"
                     android:textSize="@dimen/text_size_article_category"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/louis_george_cafe" />
@@ -167,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/padding_s_e_title_article_story"
                 android:paddingEnd="@dimen/padding_s_e_title_article_story"
-                android:text="@{articleInStoryViewModel.title}"
+                android:text="@{articleViewModel.title}"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/size_text_title_article_story"
                 android:fontFamily="@font/espera"
@@ -178,7 +176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_synopsis_article_story"
-                android:text="@{articleInStoryViewModel.text}"
+                android:text="@{articleViewModel.description}"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/size_text_synopsis_article_story"
                 android:fontFamily="@font/made_tommy"
@@ -192,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_start_writer_article_story"
-                android:text="@{@string/written_by + articleInStoryViewModel.writtenBy}"
+                android:text="@{@string/written_by + articleViewModel.writer}"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/size_text_synopsis_article_story"
                 android:fontFamily="@font/made_tommy_bold"
@@ -208,7 +206,7 @@
             android:layout_margin="@dimen/margin_button_article_story"
             android:paddingStart="@dimen/padding_s_e_text_button_story"
             android:paddingEnd="@dimen/padding_s_e_text_button_story"
-            android:text="@string/see_full_article"
+            android:text="@string/see_article"
             android:textColor="@android:color/white"
             android:textSize="@dimen/size_text_button_article_story"
             android:fontFamily="@font/louis_george_cafe"

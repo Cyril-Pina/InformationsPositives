@@ -35,6 +35,8 @@ public class Constants {
     public static final String TEXT_PLAIN = "text/plain";
     public static final String URI_ARTICLE = "https://informationspositives?id_article=";
     public static final String DATA_ARTICLE = "id_article";
+    public static final String ARTICLE_INFORMATION = "articleInformation";
+    public static final String RECOMMENDED_ARTICLES = "recommendedArticles";
 
     // StoryCountDownTimer.java
     public static final String ANIMATOR_PROPERTY_NAME = "progress";
@@ -51,14 +53,23 @@ public class Constants {
     public static final int INITIAL_VIEW_POSITION = 0;
     public static final int DURATION_VIEW_ANIMATION = 300;
 
-    // ArticleInStory.java
-    public static final float SWIPE_MAX_PERCENT = 0.5f;
+    // StoryFragment.java
+    public static final int MAX_STORY_TITLE_SIZE = 100;
 
-    // CategoryArticle.java
+    // ArticleInStory.java
+    public static final String ARTICLES_IN_STORY = "articlesInStory";
+    public static final String CURRENT_STORY_INDEX = "currentIndexArticleInStory";
+    public static final float SWIPE_MAX_PERCENT = 0.5f;
+    public static final int NEXT_STORY_VALUE = 1;
+    public static final int PREVIOUS_STORY_VALUE = -1;
+    public static final int LAST_INDEX_BOUND = 1;
+    public static final int INDEX_FIRST_STORY = 0;
+
+    // CategoryActivity.java
     public static final String CURRENT_CATEGORY = "current_category";
-    public static final int NO_BACKGROUND_RESOURCE = 0;
     public static final float NO_ELEVATION = 0;
     public static final float ELEVATION_TEN = 10;
+    public static final int NO_BACKGROUND_RESOURCE = 0;
 
     // TopCategoriesAdapter.java
     public static final int MAX_CATEGORIES_SELECTED = 3;
@@ -91,7 +102,7 @@ public class Constants {
 
     // SearchActivity.java
     public static final String DATE_FORMAT_FILTER = "dd/MM/yyyy";
-    public static final int LENGTH_EMPTY_KEYWORD_SEARCH = 2;
+    public static final int LENGTH_EMPTY_KEYWORD_SEARCH = 0;
     public static final int SIZE_EMPTY_LIST = 0;
     public static final int MIN_SIZE = 0;
 
@@ -100,6 +111,7 @@ public class Constants {
     public static final String OR_SUFFIX = " OR ";
     public static final String PARENTHESIS_REGEX = ")";
     public static final String DOUBLE_QUOTE_REGEX = "\"";
+    public static final long DELAY_BEFORE_SET_FEED_ADAPTER = 500;
     public static final int DEFAULT_VALUE_CATEGORIES_ADDED = 0;
     public static final int ADD_CATEGORY = 1;
 
@@ -136,7 +148,13 @@ public class Constants {
     // ArticlesFragment.java
     public static final int DIRECTION_SCROLL_VERTICALLY = 1;
 
-    // DateUtils.java
+    // AdapterUtils.java
+    public static final String SUSPENSION_POINTS = "...";
+    public static final String OPENING_BRACKET = "[";
+    public static final String ENDING_BRACKET = "]";
+    public static final int NB_RECOMMENDED_ARTICLES = 4;
+
+     // DateUtils.java
     public static final String DEFAULT_TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
     public static final String NEWS_SEARCHES_DATE_FORMAT = "yyyy-MM-dd";
     public static final String NEWS_RESULTS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";

@@ -9,6 +9,7 @@ import com.pinalopes.informationspositives.R;
 import com.pinalopes.informationspositives.notifications.NotificationsBroadcastReceiver;
 import com.pinalopes.informationspositives.storage.LocalDatabase;
 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,6 +17,7 @@ public class IPApplication extends Application {
 
     public static final NotificationsBroadcastReceiver
             notificationsBroadcastReceiver = new NotificationsBroadcastReceiver();
+    public static final Random rand = new Random();
 
     public static final ExecutorService executorService = Executors.newFixedThreadPool(4);
     public static LocalDatabase localDB;
