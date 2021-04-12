@@ -57,6 +57,8 @@
     <string name="chooser_message">&#x1F680; Send this amazing article…</string>
     <string name="written_by_sample">Written by X the 25th of December 2020, 12h18</string>
     <string name="see_full_article">Show full article.</string>
+    <string name="mail_content_to_see_full_article">Read the full article:\u0020</string>
+    <string name="mail_content_open_app">Want to see more article like this? Download Informations Positives app:\u0020</string>
 
     <!-- article_in_story.xml -->
     <string name="see_article">Show article</string>

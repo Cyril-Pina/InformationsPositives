@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.pinalopes.informationspositives.Constants.FIRST_INDEX;
+import static com.pinalopes.informationspositives.Constants.MIN_SIZE;
 import static com.pinalopes.informationspositives.Constants.MODEL_FILE_NAME;
 import static com.pinalopes.informationspositives.Constants.NB_DAYS_BEFORE_DOWNLOAD_MODEL;
 import static com.pinalopes.informationspositives.Constants.SIZE_EMPTY_LIST;
@@ -35,6 +36,7 @@ public class DataStorageHelper {
     private static Gson gson;
     private static UserSettings userSettings;
     private static File modelFile;
+    private static List<LikeModel> likes;
 
     private DataStorageHelper() {
         throw new AssertionError();
@@ -220,5 +222,24 @@ public class DataStorageHelper {
                 modelMutableLiveData.postValue(null);
             }
         });
+    }
+
+    public static void getLikeFromTitle(String currentTitle, MutableLiveData<LikeModel> likeMutableLiveData) {
+        IPApplication.executorService.execute(() -> {
+            List<LikeModel> likes = IPApplication.localDB.likesModelDao().getLike(currentTitle);
+            if (likes != null && likes.size() > MIN_SIZE) {
+                likeMutableLiveData.postValue(likes.get(FIRST_INDEX));
+            } else {
+                likeMutableLiveData.postValue(null);
+            }
+        });
+    }
+
+    public static void insertLike(LikeModel like) {
+        IPApplication.executorService.execute(() -> localDB.likesModelDao().insertLike(like));
+    }
+
+    public static void deleteLike(LikeModel like) {
+        IPApplication.executorService.execute(() -> localDB.likesModelDao().deleteLike(like));
     }
 }

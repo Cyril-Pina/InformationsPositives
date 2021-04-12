@@ -1,8 +1,13 @@
 package com.pinalopes.informationspositives.articles.viewmodel;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.pinalopes.informationspositives.feed.viewmodel.ArticleRowViewModel;
+import com.pinalopes.informationspositives.storage.LikeModel;
 
 public class ArticleViewModel extends ArticleRowViewModel {
+
+    private MutableLiveData<LikeModel> likeModelMutableLiveData;
 
     private boolean isLiked;
     private boolean isHeaderVisible;
@@ -13,14 +18,11 @@ public class ArticleViewModel extends ArticleRowViewModel {
         super(articleRowViewModel);
     }
 
-    @Override
-    public String getText() {
-        return text;
-    }
-
-    @Override
-    public void setText(String text) {
-        this.text = text;
+    public MutableLiveData<LikeModel> getLikeModelMutableLiveData() {
+        if (likeModelMutableLiveData == null) {
+            likeModelMutableLiveData = new MutableLiveData<>();
+        }
+        return likeModelMutableLiveData;
     }
 
     public boolean isLiked() {

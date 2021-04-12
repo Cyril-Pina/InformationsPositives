@@ -48,6 +48,10 @@ import static com.pinalopes.informationspositives.Constants.FAILURE_ITERATION_IN
 import static com.pinalopes.informationspositives.Constants.FAILURE_VALUE;
 import static com.pinalopes.informationspositives.Constants.INITIAL_VALUE_NB_ELEMENTS_ADDED;
 import static com.pinalopes.informationspositives.Constants.MAX_FAILURE_ITERATION;
+import static com.pinalopes.informationspositives.Constants.MAX_RAND_LIKES;
+import static com.pinalopes.informationspositives.Constants.MAX_RAND_VIEWS;
+import static com.pinalopes.informationspositives.Constants.MIN_RAND_LIKES;
+import static com.pinalopes.informationspositives.Constants.MIN_RAND_VIEWS;
 import static com.pinalopes.informationspositives.Constants.MIN_SIZE;
 import static com.pinalopes.informationspositives.Constants.NEXT_PAGE;
 import static com.pinalopes.informationspositives.Constants.NO_ARTICLE;
@@ -166,6 +170,8 @@ public class CategoryActivity extends AppCompatActivity implements NetworkErrorF
                 articleCategoryViewModel.setLinkToArticle(article.getUrl());
                 articleCategoryViewModel.setCategory(AdapterUtils.getFeedGeneralCategory(binding.getRoot().getContext(),
                         R.style.AppTheme_Dark_NoActionBar));
+                articleCategoryViewModel.setNbLikes(AdapterUtils.getRandomDecimalNumber(MIN_RAND_LIKES, MAX_RAND_LIKES));
+                articleCategoryViewModel.setNbViews(AdapterUtils.getRandomDecimalNumber(MIN_RAND_VIEWS, MAX_RAND_VIEWS));
                 categoryArticleDataList.add(articleCategoryViewModel);
                 nbElementsAdded += ADD_NEW_ELEMENT;
             }

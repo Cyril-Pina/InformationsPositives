@@ -33,10 +33,12 @@ public class Constants {
 
     // ArticleActivity.java
     public static final String TEXT_PLAIN = "text/plain";
-    public static final String URI_ARTICLE = "https://informationspositives?id_article=";
-    public static final String DATA_ARTICLE = "id_article";
+    public static final String URI_ARTICLE = "https://www.informationspositives.com";
     public static final String ARTICLE_INFORMATION = "articleInformation";
     public static final String RECOMMENDED_ARTICLES = "recommendedArticles";
+    public static final String DOUBLE_LINE_BREAK = "\n\n";
+    public static final String LINE_BREAK = "\n";
+    public static final int SHARE_ARTICLE_DESC_MAX_LENGTH = 90;
 
     // StoryCountDownTimer.java
     public static final String ANIMATOR_PROPERTY_NAME = "progress";
@@ -144,15 +146,24 @@ public class Constants {
     public static final int INITIAL_VALUE_NB_ELEMENTS_ADDED = 0;
     public static final int ADD_NEW_ELEMENT = 1;
     public static final int DELAY_BEFORE_RELOAD_FEED_ARTICLES = 200;
+    public static final int MIN_RAND_LIKES = 300;
+    public static final int MAX_RAND_LIKES = 1000;
+    public static final int MIN_RAND_VIEWS = 8000;
+    public static final int MAX_RAND_VIEWS = 20000;
 
     // ArticlesFragment.java
     public static final int DIRECTION_SCROLL_VERTICALLY = 1;
+
+    // ArticleRowViewModel.java
+    public static final int TARGET_WIDTH = 2688;
+    public static final int TARGET_HEIGHT = 1242;
 
     // AdapterUtils.java
     public static final String SUSPENSION_POINTS = "...";
     public static final String OPENING_BRACKET = "[";
     public static final String ENDING_BRACKET = "]";
     public static final int NB_RECOMMENDED_ARTICLES = 4;
+    public static final int BOUND = 1;
 
      // DateUtils.java
     public static final String DEFAULT_TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
