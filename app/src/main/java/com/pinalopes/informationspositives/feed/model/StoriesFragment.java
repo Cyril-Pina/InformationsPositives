@@ -29,6 +29,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.pinalopes.informationspositives.Constants.MAX_RAND_LIKES;
+import static com.pinalopes.informationspositives.Constants.MAX_RAND_VIEWS;
+import static com.pinalopes.informationspositives.Constants.MIN_RAND_LIKES;
+import static com.pinalopes.informationspositives.Constants.MIN_RAND_VIEWS;
+
 public class StoriesFragment extends Fragment {
 
     private StoriesFragmentBinding binding;
@@ -76,6 +81,8 @@ public class StoriesFragment extends Fragment {
                 articleViewModel.setDate(DateUtils.formatArticlePublishedDate(article.getPublishedAt()));
                 articleViewModel.setCategory(AdapterUtils.getFeedGeneralCategory(binding.getRoot().getContext(),
                        R.style.AppTheme_Dark_NoActionBar));
+                articleViewModel.setNbLikes(AdapterUtils.getRandomDecimalNumber(MIN_RAND_LIKES, MAX_RAND_LIKES));
+                articleViewModel.setNbViews(AdapterUtils.getRandomDecimalNumber(MIN_RAND_VIEWS, MAX_RAND_VIEWS));
                 articlesInStoryViewModel.add(articleViewModel);
             }
         }

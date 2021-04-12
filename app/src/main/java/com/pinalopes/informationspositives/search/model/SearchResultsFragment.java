@@ -60,6 +60,10 @@ import static com.pinalopes.informationspositives.Constants.INITIAL_VALUE_NB_ELE
 import static com.pinalopes.informationspositives.Constants.KEY_WORD_SEARCH;
 import static com.pinalopes.informationspositives.Constants.LENGTH_EMPTY_KEYWORD_SEARCH;
 import static com.pinalopes.informationspositives.Constants.MAX_FAILURE_ITERATION;
+import static com.pinalopes.informationspositives.Constants.MAX_RAND_LIKES;
+import static com.pinalopes.informationspositives.Constants.MAX_RAND_VIEWS;
+import static com.pinalopes.informationspositives.Constants.MIN_RAND_LIKES;
+import static com.pinalopes.informationspositives.Constants.MIN_RAND_VIEWS;
 import static com.pinalopes.informationspositives.Constants.MIN_SIZE;
 import static com.pinalopes.informationspositives.Constants.NEXT_PAGE;
 import static com.pinalopes.informationspositives.Constants.NO_ARTICLE;
@@ -204,6 +208,8 @@ public class SearchResultsFragment extends Fragment {
                 articleRowViewModel.setText(article.getContent());
                 articleRowViewModel.setDescription(article.getDescription());
                 articleRowViewModel.setLinkToArticle(article.getUrl());
+                articleRowViewModel.setNbLikes(AdapterUtils.getRandomDecimalNumber(MIN_RAND_LIKES, MAX_RAND_LIKES));
+                articleRowViewModel.setNbViews(AdapterUtils.getRandomDecimalNumber(MIN_RAND_VIEWS, MAX_RAND_VIEWS));
                 if (binding != null) {
                     articleRowViewModel.setCategory(AdapterUtils.getFeedGeneralCategory(binding.getRoot().getContext(),
                             DataStorageHelper.getUserSettings().getCurrentTheme()));

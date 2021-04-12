@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.squareup.picasso.Picasso;
 
+import static com.pinalopes.informationspositives.Constants.TARGET_HEIGHT;
+import static com.pinalopes.informationspositives.Constants.TARGET_WIDTH;
+
 public class StoryViewModel extends ViewModel {
 
     private String title;
@@ -31,7 +34,7 @@ public class StoryViewModel extends ViewModel {
     @BindingAdapter({"imageUrl"})
     public static void setImageUrl(ImageView view, String imageUrl){
         if (imageUrl != null && !imageUrl.equals("")) {
-            Picasso.get().load(imageUrl).into(view);
+            Picasso.get().load(imageUrl).resize(TARGET_WIDTH, TARGET_HEIGHT).onlyScaleDown().into(view);
         }
     }
 }

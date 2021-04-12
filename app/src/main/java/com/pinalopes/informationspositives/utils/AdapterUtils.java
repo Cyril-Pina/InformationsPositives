@@ -13,6 +13,7 @@ import com.pinalopes.informationspositives.search.viewmodel.FilterCategoriesView
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.pinalopes.informationspositives.Constants.BOUND;
 import static com.pinalopes.informationspositives.Constants.DRAWABLE;
 import static com.pinalopes.informationspositives.Constants.ENDING_BRACKET;
 import static com.pinalopes.informationspositives.Constants.FIRST_INDEX;
@@ -101,11 +102,10 @@ public class AdapterUtils {
         List<Integer> selectedArticles = new ArrayList<>();
 
         if (articles.size() > NB_RECOMMENDED_ARTICLES) {
-            articles.remove(currentArticleId);
             int totalArticle = articles.size();
             while (recommendedArticles.size() < NB_RECOMMENDED_ARTICLES) {
                 int index = rand.nextInt(totalArticle);
-                if (!selectedArticles.contains(index)) {
+                if (!selectedArticles.contains(index) && index != currentArticleId) {
                     selectedArticles.add(index);
                     recommendedArticles.add(articles.get(index));
                 }
@@ -115,4 +115,7 @@ public class AdapterUtils {
         return new Gson().toJson(articles);
     }
 
+    public static long getRandomDecimalNumber(int min, int max) {
+        return rand.nextInt((max - min) + BOUND) + min;
+    }
 }

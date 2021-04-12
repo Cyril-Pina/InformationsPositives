@@ -8,6 +8,9 @@ import androidx.lifecycle.ViewModel;
 import com.pinalopes.informationspositives.categories.model.Category;
 import com.squareup.picasso.Picasso;
 
+import static com.pinalopes.informationspositives.Constants.TARGET_HEIGHT;
+import static com.pinalopes.informationspositives.Constants.TARGET_WIDTH;
+
 public class ArticleRowViewModel extends ViewModel {
 
     protected String title;
@@ -153,7 +156,7 @@ public class ArticleRowViewModel extends ViewModel {
 
     @BindingAdapter({"imageUrl"})
     public static void setImageUrl(ImageView view, String imageUrl){
-        Picasso.get().load(imageUrl).into(view);
+        Picasso.get().load(imageUrl).resize(TARGET_WIDTH, TARGET_HEIGHT).onlyScaleDown().into(view);
     }
 
     @BindingAdapter({"android:src"})

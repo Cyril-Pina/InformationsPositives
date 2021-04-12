@@ -58,6 +58,8 @@
     <string name="chooser_message">&#x1F680; Envoyer cet article incroyable…</string>
     <string name="written_by_sample">Redigé par Michaël Doe le 06 janvier 2020 à 16h25</string>
     <string name="see_full_article">Voir l\'article entier.</string>
+    <string name="mail_content_to_see_full_article">Pour lire l\'article complet :\u0020</string>
+    <string name="mail_content_open_app">Pour voir plus d\articles intéressants comme celui-là, télécharge l\'app Informations Positives :\u0020</string>
 
     <!-- article_in_story.xml -->
     <string name="see_article">Voir l\'article</string>
