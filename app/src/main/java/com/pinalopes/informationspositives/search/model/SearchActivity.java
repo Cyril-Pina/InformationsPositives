@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -199,7 +198,6 @@ public class SearchActivity extends AppCompatActivity implements OnArticleEventL
             fragmentTransaction.replace(R.id.searchResultsFrameLayout, searchResultsFragment);
             fragmentTransaction.commit();
         } else {
-            Log.wtf("YEAS", "WTF");
             openSearchFragment(keyWordSearch, filters);
         }
     }

@@ -36,6 +36,11 @@ Builds the release code
 fastlane android test
 ```
 Runs all the tests
+### android increment_build_number
+```
+fastlane android increment_build_number
+```
+Increment build version
 ### android internal
 ```
 fastlane android internal
