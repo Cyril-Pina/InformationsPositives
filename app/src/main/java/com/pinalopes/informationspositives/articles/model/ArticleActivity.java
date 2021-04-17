@@ -150,9 +150,9 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void initLikeMutableLiveData() {
-        binding.getArticleViewModel().getLikeModelMutableLiveData().observe(this, likeModel -> {
-            this.likeModel = likeModel;
-            isLiked = likeModel != null;
+        binding.getArticleViewModel().getLikeModelMutableLiveData().observe(this, model -> {
+            this.likeModel = model;
+            isLiked = model != null;
             initLikeStatus();
         });
         DataStorageHelper.getLikeFromTitle(articleTitle, binding.getArticleViewModel().getLikeModelMutableLiveData());

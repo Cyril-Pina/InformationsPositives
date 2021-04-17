@@ -116,6 +116,6 @@ public class AdapterUtils {
     }
 
     public static long getRandomDecimalNumber(int min, int max) {
-        return rand.nextInt((max - min) + BOUND) + min;
+        return rand.nextInt((max - min) + BOUND) + (long) min;
     }
 }

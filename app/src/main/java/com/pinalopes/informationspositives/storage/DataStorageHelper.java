@@ -36,7 +36,6 @@ public class DataStorageHelper {
     private static Gson gson;
     private static UserSettings userSettings;
     private static File modelFile;
-    private static List<LikeModel> likes;
 
     private DataStorageHelper() {
         throw new AssertionError();
@@ -92,8 +91,8 @@ public class DataStorageHelper {
         editor.apply();
     }
 
-    public static void updateNotificationsState(Context context) {
-        userSettings.modifyNotificationsState();
+    public static void updateNotificationsState(Context context, boolean isChecked) {
+        userSettings.modifyNotificationsState(isChecked);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(context.getString(R.string.saved_notifications_state_key),
                 userSettings.isNotificationsEnabled());

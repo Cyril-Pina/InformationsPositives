@@ -42,8 +42,8 @@ public class UserSettings {
         return isNotificationsEnabled;
     }
 
-    public void modifyNotificationsState() {
-        this.isNotificationsEnabled = !this.isNotificationsEnabled;
+    public void modifyNotificationsState(boolean isChecked) {
+        this.isNotificationsEnabled = isChecked;
     }
 
     public int getCurrentTheme() {

@@ -2,8 +2,6 @@ package com.pinalopes.informationspositives.utils;
 
 import android.util.Log;
 
-import com.pinalopes.informationspositives.utils.DateUtils;
-
 import org.junit.Test;
 
 import java.text.ParseException;

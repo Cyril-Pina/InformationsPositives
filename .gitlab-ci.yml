@@ -3,7 +3,7 @@ image: openjdk:8-jdk
 variables:
   ANDROID_COMPILE_SDK: "30"
   ANDROID_BUILD_TOOLS: "30.0.2"
-  ANDROID_SDK_TOOLS:   "4333796"
+  ANDROID_SDK_TOOLS: "4333796"
 
 before_script:
   - apt-get --quiet update --yes
@@ -19,31 +19,47 @@ before_script:
   - set +o pipefail
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
+  - apt-get --yes install ruby-dev
+  - apt-get --yes install rubygems
+  - apt-get --yes install gcc
+  - apt-get --yes install libffi-dev
+  - apt-get --yes install make
+  - apt-get --yes install build-essential
+  - gem install bundler
+  - bundle install
+
 
 stages:
   - build
   - test
+  - internal
 
-lintDebug:
+buildDebug-on-push:
   stage: build
   script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+    - bundle exec fastlane buildDebug
+  only:
+    - pushes
+
+buildDebug-on-merge-request:
+  stage: build
+  script:
+    - bundle exec fastlane buildDebug
   only:
     - merge_requests
 
-assembleDebug:
-  stage: build
-  script:
-    - ./gradlew assembleDebug
-  artifacts:
-    paths:
-      - app/build/outputs/
-  only:
-    - merge_requests
-
-debugTests:
+debugTests-on-merge-request:
   stage: test
   script:
-    - ./gradlew -Pci --console=plain :app:testDebug
+    - bundle exec fastlane test
   only:
     - merge_requests
+
+publishInternal:
+  stage: internal
+  before_script:
+    - bundle exec fastlane increment_build_number
+  script:
+    - bundle exec fastlane internal
+  only:
+    - tags

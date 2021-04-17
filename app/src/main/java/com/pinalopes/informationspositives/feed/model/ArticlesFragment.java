@@ -23,6 +23,8 @@ import static com.pinalopes.informationspositives.Constants.TOP_SCROLL_POSITION;
 
 public class ArticlesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
+    private static final String TAG = "ArticlesFragment";
+
     private ArticlesFragmentBinding binding;
     private OnRefreshEventListener listener;
 
@@ -58,13 +60,16 @@ public class ArticlesFragment extends Fragment implements SwipeRefreshLayout.OnR
     public void initFeedRecyclerViewAdapter(List<ArticleRowViewModel> feedArticleDataList, int nbElementsAdded) {
         if (binding.feedRecyclerView.getAdapter() != null
                 && feedArticleDataListIsAlreadyFilled(feedArticleDataList, nbElementsAdded)) {
-            Log.wtf("Adapter", "nort null");
             int startIndex = feedArticleDataList.size() - nbElementsAdded;
             notifyItemsAddedInFeed(startIndex, nbElementsAdded);
         } else {
             FeedRecyclerAdapter adapter = new FeedRecyclerAdapter(feedArticleDataList);
             binding.feedRecyclerView.setAdapter(adapter);
-            binding.feedRecyclerView.getAdapter().notifyDataSetChanged();
+            try {
+                binding.feedRecyclerView.getAdapter().notifyDataSetChanged();
+            } catch (IllegalStateException ise) {
+                Log.e(TAG, ise.toString());
+            }
         }
         binding.newsSwipeRefreshLayout.setRefreshing(false);
     }

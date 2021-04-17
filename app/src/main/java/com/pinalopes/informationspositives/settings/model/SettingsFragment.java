@@ -93,7 +93,7 @@ public class SettingsFragment extends Fragment {
 
         settingsRecyclerView.setLayoutManager(layoutManager);
         SettingsMenuAdapter adapter = new SettingsMenuAdapter(menuItems,
-                getOnSettingsMenuClickListener(context), getOnCheckedChangeListener(context));
+                getOnSettingsMenuClickListener(), getOnCheckedChangeListener(context));
         settingsRecyclerView.setAdapter(adapter);
         binding.settingsRecyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
     }
@@ -109,17 +109,15 @@ public class SettingsFragment extends Fragment {
     private CompoundButton.OnCheckedChangeListener getOnCheckedChangeListener(Context context) {
         return (notificationSwitch, isChecked) -> {
             notificationsManager(context, (SwitchCompat) notificationSwitch, isChecked);
-            DataStorageHelper.updateNotificationsState(context);
+            DataStorageHelper.updateNotificationsState(context, isChecked);
         };
     }
 
-    private OnSettingsMenuClickListener getOnSettingsMenuClickListener(Context context) {
+    private OnSettingsMenuClickListener getOnSettingsMenuClickListener() {
         return (position, notificationSwitch) -> {
             switch (position) {
                 case ITEM_NOTIFICATIONS_INDEX:
-                    boolean isNotificationEnabled = !notificationSwitch.isChecked();
-                    notificationsManager(context, notificationSwitch, isNotificationEnabled);
-                    DataStorageHelper.updateNotificationsState(context);
+                    notificationSwitch.setChecked(!notificationSwitch.isChecked());
                     break;
                 case ITEM_NIGHT_MODE_INDEX:
                     showNightModePopUp();
