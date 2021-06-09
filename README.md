@@ -3,7 +3,7 @@
 Retrouvez toutes les informations positives de la planète directement dans votre smartphone.\
 Choisissez parmi plusieurs catégories afin de maximiser vos chances de tomber sur l'article qui vous irait le mieux.
 
-![alt text](https://github.com/CyrilTheAndroid/InformationsPositives/blob/master/app/src/main/res/drawable-v24/logo.png?raw=true?style=centerme)
+![Screenshot_2021-06-09-11-58-48-199_com pinalopes informationspositives](https://user-images.githubusercontent.com/78708458/121337807-3415a380-c91d-11eb-9c25-02d47081dc9d.jpg)
 
 ## Sommaire
 
