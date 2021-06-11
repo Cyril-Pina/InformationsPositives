@@ -3,9 +3,7 @@
 Retrouvez toutes les informations positives de la planète directement dans votre smartphone.\
 Choisissez parmi plusieurs catégories afin de maximiser vos chances de tomber sur l'article qui vous irait le mieux.
 
-<img src="https://user-images.githubusercontent.com/78708458/121337807-3415a380-c91d-11eb-9c25-02d47081dc9d.jpg" width=200 height=400 /> 
-
-## Sommaire
+<img src="https://user-images.githubusercontent.com/78708458/121337807-3415a380-c91d-11eb-9c25-02d47081dc9d.jpg" width=200 height=420 />
 
 - [Installation](#Installation)
 - [Fonctionnalités](#Fonctionnalités)
