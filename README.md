@@ -58,4 +58,4 @@ Publications alimentées par [NewsApi](https://newsapi.org/).\
 
 Copyright © Cyril The Android\
 Designé et développé par Cyril "The Android" Pina-Lopes.\
-Contact via cyril.7he4ndroid@gmail.com.
+Contact via cyril.pinalopes@hotmail.com.
