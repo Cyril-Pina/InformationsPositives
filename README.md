@@ -17,7 +17,7 @@ Choisissez parmi plusieurs catégories afin de maximiser vos chances de tomber s
 
 Installer Android Studio via le site officiel : https://developer.android.com/studio  
 Une fois l'installation terminée, récupérer l'URL ci-dessous et importer le projet avec "Project from Version Control..."\
-`git@github.com:CyrilTheAndroid/InformationsPositives.git`
+`https://github.com/Cyril-Pina/InformationsPositives.git`
 
 ## Fonctionnalités
 
